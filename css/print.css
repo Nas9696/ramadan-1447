@@ -1,0 +1,16 @@
+@media print {
+
+    nav,
+    .btn {
+        display: none
+    }
+
+    body {
+        background: #fff
+    }
+
+    section {
+        box-shadow: none;
+        margin: 0
+    }
+}

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مهام اللجان | الخطة التعليمية الرمضانية</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/print.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Command Center Infographic Styles */
+        .command-center {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+            align-items: start;
+        }
+
+        .role-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .role-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .role-header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            color: white;
+            overflow: hidden;
+        }
+
+        .role-header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: white;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .role-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .role-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .role-content {
+            padding: 1rem 2rem 2.5rem;
+            text-align: right;
+            flex-grow: 1;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .task-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-right: 4px solid transparent;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .task-item:hover {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transform: translateX(-5px);
+        }
+
+        .task-item i {
+            margin-left: 12px;
+            opacity: 0.7;
+        }
+
+        /* Role Specific Colors */
+        /* Educational Agent - Gold/Leadership */
+        .role-agent .role-header {
+            background: linear-gradient(135deg, #f1c40f, #f39c12);
+        }
+
+        .role-agent .task-item {
+            border-right-color: #f1c40f;
+        }
+
+        .role-agent .task-item:hover i {
+            color: #d35400;
+        }
+
+        /* Guide - Teal/Support */
+        .role-guide .role-header {
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+        }
+
+        .role-guide .task-item {
+            border-right-color: #1abc9c;
+        }
+
+        .role-guide .task-item:hover i {
+            color: #16a085;
+        }
+
+        /* Activity - Purple/Creativity */
+        .role-activity .role-header {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+
+        .role-activity .task-item {
+            border-right-color: #9b59b6;
+        }
+
+        .role-activity .task-item:hover i {
+            color: #8e44ad;
+        }
+
+        /* Teachers - Blue/Foundation */
+        .role-teachers .role-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .role-teachers .task-item {
+            border-right-color: #3498db;
+        }
+
+        .role-teachers .task-item:hover i {
+            color: #2980b9;
+        }
+
+        /* Connector Lines for Desktop */
+        @media (min-width: 992px) {
+            .command-header-line {
+                height: 4px;
+                background: #e0e0e0;
+                width: 60%;
+                margin: 0 auto 2rem;
+                position: relative;
+                border-radius: 4px;
+            }
+
+            .command-header-line::before,
+            .command-header-line::after {
+                content: '';
+                position: absolute;
+                width: 15px;
+                height: 15px;
+                background: #bdc3c7;
+                border-radius: 50%;
+                top: -6px;
+            }
+
+            .command-header-line::before {
+                left: 0;
+            }
+
+            .command-header-line::after {
+                right: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="school-icon"><i class="fas fa-school"></i></div>
+                <h2>مدرسة محمد بن القاسم</h2>
+                <div class="term-badge">رمضان 1447هـ</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home fa-fw ml-2"></i> الرئيسية</a></li>
+                <li><a href="intro.html"><i class="fas fa-book-open fa-fw ml-2"></i> كلمة المدير</a></li>
+                <li><a href="objectives.html"><i class="fas fa-bullseye fa-fw ml-2"></i> الأهداف الإجرائية</a></li>
+                <li><a href="paths.html"><i class="fas fa-road fa-fw ml-2"></i> مسارات العمل</a></li>
+                <li><a href="procedural-plan.html"><i class="fas fa-tasks fa-fw ml-2"></i> الخطة الزمنية</a></li>
+                <li><a href="excellence.html"><i class="fas fa-trophy fa-fw ml-2"></i> لوحة التميز</a></li>
+                <li><a href="roles.html" class="active"><i class="fas fa-user-tie fa-fw ml-2"></i> مهام اللجان</a></li>
+                <li><a href="activities.html"><i class="fas fa-shapes fa-fw ml-2"></i> الأنشطة الرمضانية</a></li>
+                <li><a href="family-messages.html"><i class="fas fa-envelope fa-fw ml-2"></i> رسائل للمنزل</a></li>
+                <li><a href="appendices.html"><i class="fas fa-paperclip fa-fw ml-2"></i> الملاحق</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header fade-in">
+                <h1>مركز العمليات (التكاليف)</h1>
+                <p>توزيع المهام التشغيلية لضمان سير الخطة الرمضانية</p>
+            </div>
+
+            <!-- Optional visual connector -->
+            <div class="command-header-line fade-in"></div>
+
+            <div class="command-center fade-in">
+
+                <!-- Card 1: Agent -->
+                <div class="role-card role-agent">
+                    <div class="role-header">
+                        <div class="role-icon"><i class="fas fa-user-clock"></i></div>
+                        <h3 class="role-title">وكيل الشؤون التعليمية</h3>
+                        <div style="font-size:0.8rem; opacity:0.9; margin-top:5px;">قائد العمليات الميدانية</div>
+                    </div>
+                    <div class="role-content">
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <i class="fas fa-stopwatch"></i>
+                                ضبط توقيت الحصص (35 دقيقة) بدقة.
+                            </li>
+                            <li class="task-item">
+                                <i class="fas fa-calendar-check"></i>
+                                اعتماد الجدول الرمضاني المرن.
+                            </li>
+                            <li class="task-item">
+                                <i class="fas fa-chart-line"></i>
+                                رصد الفاقد التعليمي ومعالجته فورياً.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 2: Guide -->
+                <div class="role-card role-guide">
+                    <div class="role-header">
+                        <div class="role-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h3 class="role-title">الموجه الطلابي</h3>
+                        <div style="font-size:0.8rem; opacity:0.9; margin-top:5px;">الدعم النفسي والتربوي</div>
+                    </div>
+                    <div class="role-content">
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <i class="fas fa-user-slash"></i>
+                                متابعة ورصد حالات الغياب والتأخر.
+                            </li>
+                            <li class="task-item">
+                                <i class="fas fa-mobile-alt"></i>
+                                جسر تواصل فعال مع أولياء الأمور.
+                            </li>
+                            <li class="task-item">
+                                <i class="fas fa-brain"></i>
+                                تعزيز الانضباط الذاتي لدى الطلاب.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 3: Activity -->
+                <div class="role-card role-activity">
+                    <div class="role-header">
+                        <div class="role-icon"><i class="fas fa-microphone-alt"></i></div>
+                        <h3 class="role-title">رائد النشاط</h3>
+                        <div style="font-size:0.8rem; opacity:0.9; margin-top:5px;">مهندس البيئة الجاذبة</div>
+                    </div>
+                    <div class="role-content">
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <i class="fas fa-volume-up"></i>
+                                الإشراف على الإذاعة والبرامج الصفية.
+                            </li>
+                            <li class="task-item">
+                                <i class="fas fa-trophy"></i>
+                                إدارة المسابقات (مزامير، ريشة صائم).
+                            </li>
+                            <li class="task-item">
+                                <i class="fas fa-camera"></i>
+                                التوثيق الإعلامي وإبراز المنجزات.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 4: Teachers -->
+                <div class="role-card role-teachers">
+                    <div class="role-header">
+                        <div class="role-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <h3 class="role-title">الهيئة التعليمية</h3>
+                        <div style="font-size:0.8rem; opacity:0.9; margin-top:5px;">صناع الأثر (المعلمون)</div>
+                    </div>
+                    <div class="role-content">
+                        <ul class="task-list">
+                            <li class="task-item">
+                                <i class="fas fa-hourglass-half"></i>
+                                استثمار زمن الحصة بفاعلية تامة.
+                            </li>
+                            <li class="task-item">
+                                <i class="fas fa-tasks"></i>
+                                التركيز على التقويم المستمر الممتع.
+                            </li>
+                            <li class="task-item">
+                                <i class="fas fa-heart"></i>
+                                الاحتواء التربوي ومراعاة الصيام.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <button class="btn-print" onclick="window.print()" title="طباعة المهام">
+        <i class="fas fa-print"></i>
+    </button>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

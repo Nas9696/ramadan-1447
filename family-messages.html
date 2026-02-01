@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملتقى التواصل | مدرسة محمد بن القاسم</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/print.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Flashy & Infographic Styles */
+        .hub-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hub-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .hub-header h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hub-header::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #f1c40f, #e67e22);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* Segments Grid */
+        .segments-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .segments-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .segment-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+        }
+
+        .segment-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            z-index: 10;
+        }
+
+        .segment-header {
+            padding: 1.5rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .segment-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+
+            20% {
+                left: 100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .segment-icon {
+            font-size: 2.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .segment-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .segment-body {
+            padding: 2rem;
+        }
+
+        .message-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .message-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            border-right: 4px solid #ddd;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .message-item i {
+            margin-left: 10px;
+            margin-top: 4px;
+            font-size: 1.1rem;
+        }
+
+        /* Specific Styles for Each Segment */
+
+        /* Fathers (Blue/Authority) */
+        .seg-fathers {
+            border-color: #2980b9;
+        }
+
+        .seg-fathers .segment-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .seg-fathers .message-item {
+            border-right-color: #2980b9;
+        }
+
+        .seg-fathers .message-item i {
+            color: #2980b9;
+        }
+
+        /* Mothers (Purple/Care) */
+        .seg-mothers {
+            border-color: #8e44ad;
+        }
+
+        .seg-mothers .segment-header {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+
+        .seg-mothers .message-item {
+            border-right-color: #8e44ad;
+        }
+
+        .seg-mothers .message-item i {
+            color: #8e44ad;
+        }
+
+        /* Students (Orange/Energy) */
+        .seg-students {
+            border-color: #e67e22;
+        }
+
+        .seg-students .segment-header {
+            background: linear-gradient(135deg, #f39c12, #d35400);
+        }
+
+        .seg-students .message-item {
+            border-right-color: #e67e22;
+        }
+
+        .seg-students .message-item i {
+            color: #e67e22;
+        }
+
+        /* Teachers (Teal/Wisdom) */
+        .seg-teachers {
+            border-color: #16a085;
+        }
+
+        .seg-teachers .segment-header {
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+        }
+
+        .seg-teachers .message-item {
+            border-right-color: #16a085;
+        }
+
+        .seg-teachers .message-item i {
+            color: #16a085;
+        }
+
+        /* Flashy Banner */
+        .flash-banner {
+            background: linear-gradient(45deg, #c0392b, #e74c3c);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(192, 57, 43, 0.3);
+            animation: pulse-border 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% {
+                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+            }
+        }
+
+        .banner-icon {
+            font-size: 2rem;
+            margin-left: 15px;
+            animation: ring 4s ease-in-out infinite;
+        }
+
+        @keyframes ring {
+            0% {
+                transform: rotate(0);
+            }
+
+            5% {
+                transform: rotate(20deg);
+            }
+
+            10% {
+                transform: rotate(-20deg);
+            }
+
+            15% {
+                transform: rotate(20deg);
+            }
+
+            20% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="school-icon"><i class="fas fa-school"></i></div>
+                <h2>مدرسة محمد بن القاسم</h2>
+                <div class="term-badge">رمضان 1447هـ</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home fa-fw ml-2"></i> الرئيسية</a></li>
+                <li><a href="intro.html"><i class="fas fa-book-open fa-fw ml-2"></i> كلمة المدير</a></li>
+                <li><a href="objectives.html"><i class="fas fa-bullseye fa-fw ml-2"></i> الأهداف الإجرائية</a></li>
+                <li><a href="paths.html"><i class="fas fa-road fa-fw ml-2"></i> مسارات العمل</a></li>
+                <li><a href="procedural-plan.html"><i class="fas fa-tasks fa-fw ml-2"></i> الخطة الزمنية</a></li>
+                <li><a href="excellence.html"><i class="fas fa-trophy fa-fw ml-2"></i> لوحة التميز</a></li>
+                <li><a href="roles.html"><i class="fas fa-user-tie fa-fw ml-2"></i> مهام اللجان</a></li>
+                <li><a href="activities.html"><i class="fas fa-shapes fa-fw ml-2"></i> الأنشطة الرمضانية</a></li>
+                <li><a href="family-messages.html" class="active"><i class="fas fa-envelope fa-fw ml-2"></i> رسائل
+                        للمنزل</a></li>
+                <li><a href="appendices.html"><i class="fas fa-paperclip fa-fw ml-2"></i> الملاحق</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="hub-container fade-in">
+
+                <div class="hub-header">
+                    <h1>ملتقى التواصل الرمضاني</h1>
+                    <p style="font-size:1.2rem; color:#7f8c8d;">جسور ممتدة بين المدرسة والمجتمع</p>
+                </div>
+
+                <!-- Flashy Info Banner -->
+                <div class="flash-banner">
+                    <i class="fas fa-clock banner-icon"></i>
+                    <div>
+                        <h3 style="margin:0; font-size:1.3rem;">توقيت الدوام الرسمي</h3>
+                        <p style="margin:0; opacity:0.9;">بداية اليوم الدراسي ونهايته: <strong>حسب تعليمات وتوجيهات
+                                الوزارة لهذا العام</strong></p>
+                    </div>
+                </div>
+
+                <div class="segments-grid">
+
+                    <!-- 1. Fathers -->
+                    <div class="segment-card seg-fathers">
+                        <div class="segment-header">
+                            <span class="segment-title">إلى أولياء الأمور (الآباء)</span>
+                            <div class="segment-icon"><i class="fas fa-user-tie"></i></div>
+                        </div>
+                        <div class="segment-body">
+                            <ul class="message-list">
+                                <li class="message-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <div>أنتم شركاء النجاح، ومتابعتكم اللحظية للابن تعني لنا الكثير.</div>
+                                </li>
+                                <li class="message-item">
+                                    <i class="fas fa-car-side"></i>
+                                    <div>نرجو الحرص على الحضور والانصراف في المواعيد المحددة لضمان سلامة الأبناء.</div>
+                                </li>
+                                <li class="message-item">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <div>التواصل مع إدارة المدرسة والموجه الطلابي يحل 90% من المشكلات مبكراً.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 2. Mothers -->
+                    <div class="segment-card seg-mothers">
+                        <div class="segment-header">
+                            <span class="segment-title">إلى الأمهات الفاضلات</span>
+                            <div class="segment-icon"><i class="fas fa-heart"></i></div>
+                        </div>
+                        <div class="segment-body">
+                            <ul class="message-list">
+                                <li class="message-item">
+                                    <i class="fas fa-bed"></i>
+                                    <div>تنظيم نوم الابن ليلاً هو المفتاح لتركيزه نهاراً. السهر عدو التحصيل.</div>
+                                </li>
+                                <li class="message-item">
+                                    <i class="fas fa-utensils"></i>
+                                    <div>وجبة سحور صحية تمد الطالب بالطاقة اللازمة لليوم الدراسي.</div>
+                                </li>
+                                <li class="message-item">
+                                    <i class="fas fa-smile-beam"></i>
+                                    <div>تهيئة جو هادئ للمذاكرة في نهار رمضان يساعد على الإنجاز السريع.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 3. Students -->
+                    <div class="segment-card seg-students">
+                        <div class="segment-header">
+                            <span class="segment-title">إلى أحبابنا الطلاب</span>
+                            <div class="segment-icon"><i class="fas fa-user-graduate"></i></div>
+                        </div>
+                        <div class="segment-body">
+                            <ul class="message-list">
+                                <li class="message-item">
+                                    <i class="fas fa-star"></i>
+                                    <div>أنتم أمل المستقبل، وصيامكم لا يعني الكسل، بل النشاط والإنجاز.</div>
+                                </li>
+                                <li class="message-item">
+                                    <i class="fas fa-book-reader"></i>
+                                    <div>استثمروا الحصة الدراسية (35 دقيقة) بتركيز عالٍ لتنهوا واجباتكم في المدرسة.
+                                    </div>
+                                </li>
+                                <li class="message-item">
+                                    <i class="fas fa-mosque"></i>
+                                    <div>حافظوا على صلاتكم وأذكاركم، فهي سر توفيقكم ونجاحكم.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 4. Teachers -->
+                    <div class="segment-card seg-teachers">
+                        <div class="segment-header">
+                            <span class="segment-title">همسة لزملائي المعلمين</span>
+                            <div class="segment-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        </div>
+                        <div class="segment-body">
+                            <ul class="message-list">
+                                <li class="message-item">
+                                    <i class="fas fa-hand-holding-heart"></i>
+                                    <div>الاحتواء والرفق بالطلاب في هذا الشهر يترك أثراً لا يمحى.</div>
+                                </li>
+                                <li class="message-item">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <div>نوعوا في طرائق التدريس واجعلوا الحصة ممتعة وتفاعلية لكسر الجمود.</div>
+                                </li>
+                                <li class="message-item">
+                                    <i class="fas fa-clock"></i>
+                                    <div>الدقيقة أمانة، واستثمار الوقت بفاعلية عبادة وعمل صالح.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+    <button class="btn-print" onclick="window.print()" title="طباعة الصفحة"><i class="fas fa-print"></i></button>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

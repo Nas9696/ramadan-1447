@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التميز | الخطة التعليمية الرمضانية</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/print.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="school-icon"><i class="fas fa-school"></i></div>
+                <h2>مدرسة محمد بن القاسم</h2>
+                <div class="term-badge">رمضان 1447هـ</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home fa-fw ml-2"></i> الرئيسية</a></li>
+                <li><a href="intro.html"><i class="fas fa-book-open fa-fw ml-2"></i> كلمة المدير</a></li>
+                <li><a href="objectives.html"><i class="fas fa-bullseye fa-fw ml-2"></i> الأهداف الإجرائية</a></li>
+                <li><a href="paths.html"><i class="fas fa-road fa-fw ml-2"></i> مسارات العمل</a></li>
+                <li><a href="procedural-plan.html"><i class="fas fa-tasks fa-fw ml-2"></i> الخطة الزمنية</a></li>
+                <li><a href="excellence.html" class="active"><i class="fas fa-trophy fa-fw ml-2"></i> لوحة التميز</a>
+                </li>
+                <li><a href="roles.html"><i class="fas fa-user-tie fa-fw ml-2"></i> مهام اللجان</a></li>
+                <li><a href="activities.html"><i class="fas fa-shapes fa-fw ml-2"></i> الأنشطة الرمضانية</a></li>
+                <li><a href="family-messages.html"><i class="fas fa-envelope fa-fw ml-2"></i> رسائل للمنزل</a></li>
+                <li><a href="appendices.html"><i class="fas fa-paperclip fa-fw ml-2"></i> الملاحق</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header fade-in">
+                <h1>لوحة الشرف الرقمية</h1>
+                <p>سجل الفخر والإنجاز لمدرسة محمد بن القاسم لشهر رمضان 1447هـ</p>
+            </div>
+
+            <div class="excellence-grid fade-in">
+                <!-- Cards -->
+                <div class="excel-card" onclick="openManager('teachers')">
+                    <div class="excel-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3>المعلم المتميز</h3>
+                    <div class="winner-count" id="count-teachers">0</div>
+                </div>
+
+                <div class="excel-card" onclick="openManager('classes')">
+                    <div class="excel-icon"><i class="fas fa-users-crown"></i></div>
+                    <h3>الفصل الذهبي</h3>
+                    <div class="winner-count" id="count-classes">0</div>
+                </div>
+
+                <div class="excel-card" onclick="openManager('students')">
+                    <div class="excel-icon"><i class="fas fa-user-graduate"></i></div>
+                    <h3>الطالب المثالي</h3>
+                    <div class="winner-count" id="count-students">0</div>
+                </div>
+
+                <div class="excel-card" onclick="openManager('parents')">
+                    <div class="excel-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3>الأسرة الداعمة</h3>
+                    <div class="winner-count" id="count-parents">0</div>
+                </div>
+            </div>
+
+            <!-- Manager Modal -->
+            <div id="managerModal" class="modal-overlay">
+                <div class="modal-content">
+                    <div style="text-align: left; margin-bottom: 20px;">
+                        <i class="fas fa-times" style="cursor: pointer; font-size: 1.2rem; color: #999;"
+                            onclick="closeManager()"></i>
+                    </div>
+
+                    <h2 id="modalTitle" style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-color);">
+                    </h2>
+
+                    <div class="input-group">
+                        <input type="text" id="nameInput" class="excel-input" placeholder="اكتب الاسم هنا...">
+                        <button class="add-btn" onclick="addWinner()">إضافة</button>
+                    </div>
+
+                    <div
+                        style="background: #f8f9fa; padding: 1rem; border-radius: 12px; min-height: 200px; margin-top: 1rem;">
+                        <ul id="winnersList" class="winners-list" style="list-style: none; padding: 0;"></ul>
+                        <div id="emptyState" style="text-align: center; color: #aaa; margin-top: 2rem;">
+                            <i class="fas fa-clipboard-list fa-3x"></i>
+                            <p style="margin-top: 1rem;">لا توجد أسماء مضافة بعد.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // Data Management
+        let currentCategory = '';
+        const data = JSON.parse(localStorage.getItem('excellence_db')) || {
+            teachers: [], classes: [], students: [], parents: []
+        };
+
+        function init() {
+            updateCounts();
+        }
+
+        function openManager(cat) {
+            currentCategory = cat;
+            const titles = {
+                teachers: 'المعلمون المتميزون',
+                classes: 'الفصـول الذهبيــة',
+                students: 'الطلاب المثاليون',
+                parents: 'الأسر الداعمة'
+            };
+            document.getElementById('modalTitle').innerText = titles[cat];
+            document.getElementById('managerModal').style.display = 'flex';
+            renderList();
+        }
+
+        function closeManager() {
+            document.getElementById('managerModal').style.display = 'none';
+        }
+
+        function addWinner() {
+            const input = document.getElementById('nameInput');
+            const val = input.value.trim();
+            if (val) {
+                data[currentCategory].push(val);
+                save();
+                input.value = '';
+                renderList();
+                updateCounts();
+            }
+        }
+
+        function removeWinner(index) {
+            data[currentCategory].splice(index, 1);
+            save();
+            renderList();
+            updateCounts();
+        }
+
+        function renderList() {
+            const list = document.getElementById('winnersList');
+            const empty = document.getElementById('emptyState');
+            list.innerHTML = '';
+
+            if (data[currentCategory].length === 0) {
+                empty.style.display = 'block';
+            } else {
+                empty.style.display = 'none';
+                data[currentCategory].forEach((item, index) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                    <strong>${item}</strong>
+                    <button onclick="removeWinner(${index})" style="background:none; border:none; color:red; cursor:pointer;"><i class="fas fa-trash"></i></button>
+                `;
+                    li.style.cssText = "display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #eee; background:white; margin-bottom:5px; border-radius:5px;";
+                    list.appendChild(li);
+                });
+            }
+        }
+
+        function updateCounts() {
+            document.getElementById('count-teachers').innerText = data.teachers.length;
+            document.getElementById('count-classes').innerText = data.classes.length;
+            document.getElementById('count-students').innerText = data.students.length;
+            document.getElementById('count-parents').innerText = data.parents.length;
+        }
+
+        function save() {
+            localStorage.setItem('excellence_db', JSON.stringify(data));
+        }
+
+        window.onclick = function (e) {
+            if (e.target == document.getElementById('managerModal')) closeManager();
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

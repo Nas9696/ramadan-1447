@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خارطة الطريق | مدرسة محمد بن القاسم</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/print.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Horizontal Process Flow Styles */
+        .process-wrapper {
+            margin-top: 3rem;
+            padding: 20px;
+            overflow-x: hidden;
+            /* Prevent horizontal scroll on small screens if any */
+        }
+
+        .process-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* The Marathon Line */
+        .process-container::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            /* Aligns with center of icons */
+            left: 50px;
+            right: 50px;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 0;
+            border-radius: 4px;
+        }
+
+        .process-step {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 0 0 8px rgba(255, 255, 255, 1), 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid transparent;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            min-height: 250px;
+            /* Ensure uniform height */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .process-step:hover .step-card {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .step-date {
+            background: #eee;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .step-list {
+            text-align: right;
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+            color: #666;
+            flex-grow: 1;
+        }
+
+        .step-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-right: 15px;
+        }
+
+        .step-list li::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            color: inherit;
+            font-weight: bold;
+        }
+
+        /* Phase Colors */
+        /* Phase 1: Preparation (Purple) */
+        .phase-1 .step-icon {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+
+        .phase-1 .step-card {
+            border-top-color: #8e44ad;
+        }
+
+        .phase-1 .step-list li::before {
+            color: #8e44ad;
+        }
+
+        /* Phase 2: Start (Orange) */
+        .phase-2 .step-icon {
+            background: linear-gradient(135deg, #f39c12, #d35400);
+        }
+
+        .phase-2 .step-card {
+            border-top-color: #d35400;
+        }
+
+        .phase-2 .step-list li::before {
+            color: #d35400;
+        }
+
+        /* Phase 3: Peak (Blue) */
+        .phase-3 .step-icon {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .phase-3 .step-card {
+            border-top-color: #2980b9;
+        }
+
+        .phase-3 .step-list li::before {
+            color: #2980b9;
+        }
+
+        /* Phase 4: Finish (Green) */
+        .phase-4 .step-icon {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+
+        .phase-4 .step-card {
+            border-top-color: #27ae60;
+        }
+
+        .phase-4 .step-list li::before {
+            color: #27ae60;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .process-container {
+                flex-direction: column;
+                max-width: 500px;
+            }
+
+            .process-container::before {
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                right: auto;
+                width: 4px;
+                height: auto;
+                margin-left: -2px;
+            }
+
+            .process-step {
+                display: flex;
+                align-items: center;
+                margin-bottom: 40px;
+                text-align: right;
+                padding: 0;
+            }
+
+            .step-icon {
+                margin: 0;
+                margin-left: 20px;
+                flex-shrink: 0;
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .step-card {
+                flex: 1;
+                min-height: auto;
+                text-align: right;
+            }
+
+            .step-card::before {
+                content: '';
+                position: absolute;
+                right: -10px;
+                top: 20px;
+                border: 10px solid transparent;
+                border-left-color: white;
+                /* Arrow pointing to icon */
+            }
+
+            /* Adjust alternating/stacking if needed, but simple stack is best for mobile flow */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="school-icon"><i class="fas fa-school"></i></div>
+                <h2>مدرسة محمد بن القاسم</h2>
+                <div class="term-badge">رمضان 1447هـ</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home fa-fw ml-2"></i> الرئيسية</a></li>
+                <li><a href="intro.html"><i class="fas fa-book-open fa-fw ml-2"></i> كلمة المدير</a></li>
+                <li><a href="objectives.html"><i class="fas fa-bullseye fa-fw ml-2"></i> الأهداف الإجرائية</a></li>
+                <li><a href="paths.html"><i class="fas fa-road fa-fw ml-2"></i> مسارات العمل</a></li>
+                <li><a href="procedural-plan.html" class="active"><i class="fas fa-tasks fa-fw ml-2"></i> الخطة
+                        الزمنية</a></li>
+                <li><a href="excellence.html"><i class="fas fa-trophy fa-fw ml-2"></i> لوحة التميز</a></li>
+                <li><a href="roles.html"><i class="fas fa-user-tie fa-fw ml-2"></i> مهام اللجان</a></li>
+                <li><a href="activities.html"><i class="fas fa-shapes fa-fw ml-2"></i> الأنشطة الرمضانية</a></li>
+                <li><a href="family-messages.html"><i class="fas fa-envelope fa-fw ml-2"></i> رسائل للمنزل</a></li>
+                <li><a href="appendices.html"><i class="fas fa-paperclip fa-fw ml-2"></i> الملاحق</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header fade-in" style="text-align: center; border-bottom: none;">
+                <h1 style="font-size: 2.5rem; margin-bottom: 10px;">خارطة الماراثون الرمضاني</h1>
+                <p>11 يوماً من الإنجاز والتميز .. خطوة بخطوة</p>
+            </div>
+
+            <div class="process-wrapper fade-in">
+                <div class="process-container">
+
+                    <!-- Phase 1 -->
+                    <div class="process-step phase-1">
+                        <div class="step-icon"><i class="fas fa-flag-checkered"></i></div>
+                        <div class="step-card">
+                            <span class="step-date">25 - 29 رجب</span>
+                            <h3 class="step-title">الاستعداد</h3>
+                            <ul class="step-list">
+                                <li>إعلان الجداول (6 حصص).</li>
+                                <li>تجهيز المصلى والإذاعة.</li>
+                                <li>رسائل "طمأنينة" للأهالي.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="process-step phase-2">
+                        <div class="step-icon"><i class="fas fa-running"></i></div>
+                        <div class="step-card">
+                            <span class="step-date">الأسبوع الأول</span>
+                            <h3 class="step-title">الانضباط</h3>
+                            <ul class="step-list">
+                                <li>استقبال الطلاب بالطيب والبخور.</li>
+                                <li>انطلاق "قارئ المدرسة".</li>
+                                <li>تقرير الحصاد رقم (1).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div class="process-step phase-3">
+                        <div class="step-icon"><i class="fas fa-palette"></i></div>
+                        <div class="step-card">
+                            <span class="step-date">الأسبوع الثاني</span>
+                            <h3 class="step-title">الإبداع</h3>
+                            <ul class="step-list">
+                                <li>معرض "ريشة صائم".</li>
+                                <li>إغلاق المهارات الأساسية.</li>
+                                <li>تكريم الفصول المنضبطة.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Phase 4 -->
+                    <div class="process-step phase-4">
+                        <div class="step-icon"><i class="fas fa-trophy"></i></div>
+                        <div class="step-card">
+                            <span class="step-date">11 رمضان</span>
+                            <h3 class="step-title">التتويج</h3>
+                            <ul class="step-list">
+                                <li>الحفل الختامي المبسط.</li>
+                                <li>توزيع النتائج والشهادات.</li>
+                                <li>إجازة عيد الفطر.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <p style="font-size: 1.1rem; color: #7f8c8d;">
+                    <i class="fas fa-quote-right quote-icon" style="color:#bdc3c7; margin-left:10px;"></i>
+                    كل دقيقة في رمضان غالية .. استثمرناها لنصنع الفرق.
+                    <i class="fas fa-quote-left quote-icon" style="color:#bdc3c7; margin-right:10px;"></i>
+                </p>
+                <p style="font-size: 1.2rem; font-weight: bold; color: #2c3e50; margin-top:10px;">مدير المدرسة: سفر آل
+                    فلكه</p>
+            </div>
+        </main>
+    </div>
+    <button class="btn-print" onclick="window.print()" title="طباعة الصفحة"><i class="fas fa-print"></i></button>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
