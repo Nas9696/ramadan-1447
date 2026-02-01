@@ -1,90 +1,747 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الخطة التعليمية الرمضانية | مدرسة محمد بن القاسم</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/print.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>بوابة رمضان | مدرسة محمد بن القاسم</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --gold: #f1c40f;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --neon-blue: #00f3ff;
+            --neon-gold: #ffd700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #0f172a;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+        }
+
+        /* Crescent Moon */
+        .crescent-moon {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            box-shadow: -20px 20px 0 0 var(--gold);
+            transform: rotate(-20deg);
+            animation: moon-glow 4s infinite alternate ease-in-out;
+            z-index: 1;
+        }
+
+        /* Star near moon */
+        .crescent-moon::after {
+            content: '★';
+            position: absolute;
+            top: 40px;
+            left: -30px;
+            font-size: 2rem;
+            color: white;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes moon-glow {
+            from {
+                filter: drop-shadow(0 0 10px rgba(241, 196, 15, 0.5));
+                transform: rotate(-20deg) scale(1);
+            }
+
+            to {
+                filter: drop-shadow(0 0 30px rgba(241, 196, 15, 0.9));
+                transform: rotate(-25deg) scale(1.05);
+            }
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Cannon Styles */
+        .cannon-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50px;
+            width: 200px;
+            height: 150px;
+            z-index: 5;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cannon-container:hover {
+            transform: scale(1.05);
+        }
+
+        .cannon-body {
+            width: 160px;
+            height: 70px;
+            background: linear-gradient(90deg, #444, #000);
+            border-radius: 10px 50px 50px 10px;
+            position: absolute;
+            bottom: 50px;
+            left: 20px;
+            transform: rotate(-30deg);
+            transform-origin: 20px 60px;
+        }
+
+        .cannon-wheel {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at center, #5d4037, #3e2723);
+            border: 5px solid #8d6e63;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 10px;
+            left: 30px;
+            z-index: 6;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .cannon-flash {
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            /* Adjusted for rotation */
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #fff, #ffae00, transparent);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+
+        .recoil-anim {
+            animation: recoil 0.4s ease-out;
+        }
+
+        .flash-anim {
+            animation: flash 0.4s ease-out;
+        }
+
+        @keyframes recoil {
+            0% {
+                transform: rotate(-30deg) translateX(0);
+            }
+
+            20% {
+                transform: rotate(-30deg) translateX(-20px);
+            }
+
+            100% {
+                transform: rotate(-30deg) translateX(0);
+            }
+        }
+
+        @keyframes flash {
+            0% {
+                opacity: 1;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(2);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(2.5);
+            }
+        }
+
+        /* Fire Button Label */
+        .fire-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            white-space: nowrap;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .cannon-container:hover .fire-label {
+            opacity: 1;
+        }
+
+        /* Animated Background Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            display: block;
+            pointer-events: none;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: rise 20s infinite linear;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(110vh) scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container - PURE WHITE THEME */
+        .dashboard-glass {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 1200px;
+            background: #ffffff;
+            /* PURE WHITE */
+            backdrop-filter: none;
+            border: 4px solid rgba(255, 255, 255, 1);
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 0 60px rgba(255, 255, 255, 0.4);
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+            animation: zoomIn 0.8s ease-out;
+            color: #2c3e50;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Left Side (Content) */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: right;
+        }
+
+        .header-section h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #2c3e50, #34495e);
+            /* Dark gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-section .sub-title {
+            font-size: 1.2rem;
+            color: #e67e22;
+            /* Orange Gold */
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            display: inline-block;
+            border-bottom: 2px solid #e67e22;
+            padding-bottom: 5px;
+        }
+
+        .school-icon-header {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: pulse-logo 3s infinite;
+        }
+
+        @keyframes pulse-logo {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+                color: #e67e22;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Infographic Stats Row - Floating Animation */
+        .info-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .info-card {
+            background: rgba(236, 240, 241, 0.5);
+            /* Light grey for inner cards */
+            border: 1px solid rgba(189, 195, 199, 0.5);
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            flex: 1;
+            transition: transform 0.3s;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .info-card:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .info-card:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        .info-card:hover {
+            transform: scale(1.05) !important;
+            background: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #2980b9;
+        }
+
+        .info-val {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        /* Enter Button (Updated to Launch Cannon) */
+        .enter-btn {
+            background: linear-gradient(90deg, #e67e22, #d35400);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 3rem;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            align-self: flex-start;
+            box-shadow: 0 0 20px rgba(230, 126, 34, 0.4);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+
+        .enter-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(230, 126, 34, 0.6);
+        }
+
+        /* Right Side (Credits) */
+        .credits-sidebar {
+            background: #f8f9fa;
+            /* Very Light Grey for Contrast */
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid #e9ecef;
+            position: relative;
+        }
+
+        .credit-box {
+            margin-bottom: 2rem;
+            padding-bottom: 0;
+            border-bottom: none;
+            text-align: center;
+        }
+
+        /* Matching Badge Styles */
+        .role-badge {
+            background: white;
+            border: 1px solid #e67e22;
+            /* Orange Border */
+            padding: 1.5rem;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .role-badge:hover {
+            transform: translateY(-5px);
+        }
+
+        .dev-badge {
+            background: white;
+            border: 1px solid #f1c40f;
+            /* Gold Border */
+            padding: 1.5rem;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .dev-badge:hover {
+            transform: translateY(-5px) rotate(1deg);
+        }
+
+        .dev-badge::before {
+            content: '★';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c3e50;
+            color: var(--gold);
+            padding: 0 10px;
+            font-size: 1.2rem;
+            border-radius: 50%;
+        }
+
+        .credit-role {
+            color: #d35400;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .credit-name {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #2c3e50;
+        }
+
+        /* Single Line Name Fix */
+        .single-line-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 1.2rem;
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Scrolling Ticker */
+        .news-ticker {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid var(--glass-border);
+            padding: 10px 0;
+            z-index: 20;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll-rtl 25s linear infinite;
+            color: var(--neon-gold);
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        @keyframes scroll-rtl {
+            0% {
+                transform: translateX(100vw);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Typing Effect Container */
+        .typing-container {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #d35400;
+            height: 30px;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .dashboard-glass {
+                grid-template-columns: 1fr;
+            }
+
+            .credits-sidebar {
+                flex-direction: row;
+                gap: 2rem;
+                justify-content: space-around;
+            }
+
+            .info-row {
+                flex-wrap: wrap;
+            }
+
+            .crescent-moon {
+                width: 100px;
+                height: 100px;
+                top: 20px;
+                right: 20px;
+            }
+
+            .cannon-container {
+                transform: scale(0.7);
+                left: -20px;
+                bottom: 50px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .credits-sidebar {
+                flex-direction: column;
+            }
+
+            .header-section h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div class="app-container">
-        <aside class="sidebar">
-            <div class="logo-container">
-                <div class="school-icon"><i class="fas fa-school"></i></div>
-                <h2>مدرسة محمد بن القاسم</h2>
-                <div class="term-badge">رمضان 1447هـ</div>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active"><i class="fas fa-home fa-fw ml-2"></i> الرئيسية</a></li>
-                <li><a href="intro.html"><i class="fas fa-book-open fa-fw ml-2"></i> كلمة المدير</a></li>
-                <li><a href="objectives.html"><i class="fas fa-bullseye fa-fw ml-2"></i> الأهداف الإجرائية</a></li>
-                <li><a href="paths.html"><i class="fas fa-road fa-fw ml-2"></i> مسارات العمل</a></li>
-                <li><a href="procedural-plan.html"><i class="fas fa-tasks fa-fw ml-2"></i> الخطة الزمنية</a></li>
-                <li><a href="excellence.html"><i class="fas fa-trophy fa-fw ml-2"></i> لوحة التميز</a></li>
-                <li><a href="roles.html"><i class="fas fa-user-tie fa-fw ml-2"></i> مهام اللجان</a></li>
-                <li><a href="activities.html"><i class="fas fa-shapes fa-fw ml-2"></i> الأنشطة الرمضانية</a></li>
-                <li><a href="family-messages.html"><i class="fas fa-envelope fa-fw ml-2"></i> رسائل للمنزل</a></li>
-                <li><a href="appendices.html"><i class="fas fa-paperclip fa-fw ml-2"></i> الملاحق</a></li>
-            </ul>
-        </aside>
 
-        <main class="main-content">
-            <div class="page-header fade-in">
-                <h1>أهلاً بكم في خطة رمضان (1447هـ / 2026م)</h1>
-                <p>مدرسة محمد بن القاسم الابتدائية - بيئة تربوية جاذبة</p>
-            </div>
+    <!-- Background Particles -->
+    <div class="particles" id="particles"></div>
 
-            <div class="excellence-grid fade-in">
-                <!-- Shortcuts -->
-                <a href="procedural-plan.html" class="excel-card" style="text-decoration:none; color:inherit;">
-                    <div class="excel-icon"><i class="fas fa-calendar-alt"></i></div>
-                    <h3>خطة الـ 11 يوم</h3>
-                    <p style="margin-bottom: 15px;">الجدول الزمني المكثف</p>
-                    <span class="flash-button">
-                        <i class="fas fa-eye ml-2" style="margin-left:8px"></i> عرض التفاصيل
-                    </span>
-                </a>
-                <a href="excellence.html" class="excel-card" style="text-decoration:none; color:inherit;">
-                    <div class="excel-icon"><i class="fas fa-trophy"></i></div>
-                    <h3>لوحة الشرف</h3>
-                    <p style="margin-bottom: 15px;">سجل المتميزين لهذا العام</p>
-                    <span class="flash-button">
-                        <i class="fas fa-eye ml-2" style="margin-left:8px"></i> مشاهدة اللوحة
-                    </span>
-                </a>
-                <a href="activities.html" class="excel-card" style="text-decoration:none; color:inherit;">
-                    <div class="excel-icon"><i class="fas fa-shapes"></i></div>
-                    <h3>الأنشطة</h3>
-                    <p style="margin-bottom: 15px;">فعاليات طلابية ممتعة</p>
-                    <span class="flash-button">
-                        <i class="fas fa-eye ml-2" style="margin-left:8px"></i> استعراض الأنشطة
-                    </span>
-                </a>
-                <a href="roles.html" class="excel-card" style="text-decoration:none; color:inherit;">
-                    <div class="excel-icon"><i class="fas fa-users-cog"></i></div>
-                    <h3>التكاليف</h3>
-                    <p style="margin-bottom: 15px;">توزيع الأدوار واللجان</p>
-                    <span class="flash-button">
-                        <i class="fas fa-eye ml-2" style="margin-left:8px"></i> عرض المهام
-                    </span>
-                </a>
-            </div>
+    <!-- Crescent Moon -->
+    <div class="crescent-moon"></div>
 
-            <div class="content-card fade-in" style="margin-top:2rem;">
-                <h3><i class="fas fa-bullhorn ml-2 text-gold"></i> تنبيهات هامة:</h3>
-                <ul style="margin-top:1rem; padding-right:1.5rem; line-height:1.8;">
-                    <li>بداية الدوام حسب توجيه الوزارة (9:30 أو 10:00).</li>
-                    <li>تم إيقاف الطابور الصباحي واستبداله ببرامج صفية.</li>
-                    <li>التركيز على المواد الأساسية وتقليص زمن الحصة إلى 35 دقيقة.</li>
-                </ul>
-            </div>
-        </main>
+    <!-- Cannon (Interactive) -->
+    <div class="cannon-container" onclick="fireCannon()">
+        <div class="cannon-body" id="cannonBody">
+            <div class="cannon-flash" id="cannonFlash"></div>
+        </div>
+        <div class="cannon-wheel"></div>
+        <div class="fire-label">أطلق المدفع!</div>
     </div>
-    <script src="js/main.js"></script>
+
+    <!-- Audio Element -->
+    <audio id="cannonSound" src="media/cannon.mp3"></audio>
+
+    <div class="dashboard-glass">
+
+        <!-- Main Content (Left) -->
+        <div class="content-area">
+            <div class="header-section">
+                <!-- School Logo -->
+                <i class="fas fa-school fa-3x mb-3 school-icon-header"></i>
+                <h1>منصة مدرسة محمد بن القاسم</h1>
+                <span class="sub-title">1447هـ - 2026م</span>
+            </div>
+
+            <!-- Dynamic Message -->
+            <div class="typing-container" id="typewriter"></div>
+
+            <!-- Infographic Stats -->
+            <div class="info-row">
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div class="info-val">11</div>
+                    <div class="info-label">يوماً دراسياً</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon" style="color: #10b981;"><i class="fas fa-tasks"></i></div>
+                    <div class="info-val">4</div>
+                    <div class="info-label">مسارات عمل</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon" style="color: #f59e0b;"><i class="fas fa-trophy"></i></div>
+                    <div class="info-val">∞</div>
+                    <div class="info-label">طموح لا يحد</div>
+                </div>
+            </div>
+
+            <!-- Button triggers cannon too -->
+            <button class="enter-btn" onclick="fireAndEnter()">
+                دخول للمنصة
+                <i class="fas fa-arrow-left"></i>
+            </button>
+        </div>
+
+        <!-- Credits Sidebar (Right) -->
+        <div class="credits-sidebar">
+
+            <!-- Manager Credit -->
+            <div class="credit-box">
+                <div class="role-badge">
+                    <div class="credit-role">
+                        <i class="fas fa-user-tie ml-2"></i> مدير المدرسة
+                    </div>
+                    <div class="credit-name single-line-name">
+                        سفر مبارك آل فلكه
+                    </div>
+                </div>
+            </div>
+
+            <!-- Developer Credit -->
+            <div class="credit-box">
+                <div class="dev-badge">
+                    <div class="credit-role">
+                        <i class="fas fa-laptop-code ml-2"></i> فكرة وإعداد وتصميم وبرمجة
+                    </div>
+                    <div class="credit-name single-line-name">
+                        ناصر مسعود آل مستنير
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Live Ticker -->
+    <div class="news-ticker">
+        <div class="ticker-content">
+            <i class="fas fa-bullhorn ml-2"></i> مرحباً بكم في البوابة الرقمية لشهر رمضان المبارك ... الموقع يتم تحديثه
+            بشكل مستمر لمواكبة الفعاليات والأنشطة ... تابعونا
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fas fa-star ml-2"></i> انضباطنا سر تميزنا
+        </div>
+    </div>
+
+    <script>
+        // Particle Generator
+        const container = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDelay = Math.random() * 20 + 's';
+            p.style.opacity = Math.random();
+            container.appendChild(p);
+        }
+
+        // Typewriter Effect
+        const text = "رمضان .. شهر الانضباط والإنجاز والتميز ..";
+        const typeElem = document.getElementById('typewriter');
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                typeElem.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(type, 100);
+            }
+        }
+        window.onload = type;
+
+        // Cannon Logic
+        function fireCannon() {
+            const sound = document.getElementById('cannonSound');
+            const body = document.getElementById('cannonBody');
+            const flash = document.getElementById('cannonFlash');
+
+            // Allow replay
+            sound.currentTime = 0;
+            sound.play().catch(e => console.log("Audio needs user interaction first"));
+
+            // Animation
+            body.classList.remove('recoil-anim');
+            void body.offsetWidth; // trigger reflow
+            body.classList.add('recoil-anim');
+
+            flash.classList.remove('flash-anim');
+            void flash.offsetWidth;
+            flash.classList.add('flash-anim');
+        }
+
+        function fireAndEnter() {
+            fireCannon();
+            // Wait for sound/anim then go
+            setTimeout(() => {
+                window.location.href = 'home.html';
+            }, 1000);
+        }
+    </script>
 </body>
 
 </html>
