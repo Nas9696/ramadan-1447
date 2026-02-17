@@ -94,7 +94,7 @@
             left: 50px;
             width: 200px;
             height: 150px;
-            z-index: 5;
+            z-index: 20;
             cursor: pointer;
             transition: transform 0.3s;
         }
@@ -503,7 +503,7 @@
             display: block;
         }
 
-        /* Scrolling Ticker */
+        /* Fade Ticker */
         .news-ticker {
             position: fixed;
             bottom: 0;
@@ -511,29 +511,26 @@
             width: 100%;
             background: rgba(0, 0, 0, 0.8);
             border-top: 1px solid var(--glass-border);
-            padding: 10px 0;
+            padding: 15px 0;
             z-index: 20;
-            white-space: nowrap;
+            text-align: center;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .ticker-content {
             display: inline-block;
-            padding-left: 100%;
-            animation: scroll-rtl 25s linear infinite;
             color: var(--neon-gold);
             font-size: 1.1rem;
             font-weight: bold;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
         }
 
-        @keyframes scroll-rtl {
-            0% {
-                transform: translateX(100vw);
-            }
-
-            100% {
-                transform: translateX(-100%);
-            }
+        .ticker-content.fade-out {
+            opacity: 0;
         }
 
         /* Typing Effect Container */
@@ -605,7 +602,7 @@
     </div>
 
     <!-- Audio Element -->
-    <audio id="cannonSound" src="media/cannon.mp3"></audio>
+    <audio id="cannonSound" src="media/cannon.mp3" preload="auto"></audio>
 
     <div class="dashboard-glass">
 
@@ -662,6 +659,30 @@
                 </div>
             </div>
 
+            <!-- School Agent Credit -->
+            <div class="credit-box">
+                <div class="role-badge">
+                    <div class="credit-role">
+                        <i class="fas fa-user-tie ml-2"></i> وكيل المدرسة
+                    </div>
+                    <div class="credit-name single-line-name">
+                        مشعل علي آل نميس
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student Counselor Credit -->
+            <div class="credit-box">
+                <div class="role-badge">
+                    <div class="credit-role">
+                        <i class="fas fa-user-graduate ml-2"></i> المرشد الطلابي
+                    </div>
+                    <div class="credit-name single-line-name">
+                        أحمد عوير آل هتيلة
+                    </div>
+                </div>
+            </div>
+
             <!-- Developer Credit -->
             <div class="credit-box">
                 <div class="dev-badge">
@@ -680,11 +701,8 @@
 
     <!-- Live Ticker -->
     <div class="news-ticker">
-        <div class="ticker-content">
-            <i class="fas fa-bullhorn ml-2"></i> مرحباً بكم في البوابة الرقمية لشهر رمضان المبارك ... الموقع يتم تحديثه
-            بشكل مستمر لمواكبة الفعاليات والأنشطة ... تابعونا
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class="fas fa-star ml-2"></i> انضباطنا سر تميزنا
+        <div class="ticker-content" id="fadingTicker">
+            <!-- Content via JS -->
         </div>
     </div>
 
@@ -714,15 +732,38 @@
         }
         window.onload = type;
 
+        function fireAndEnter() {
+            fireCannon();
+            // Wait for sound/anim then go
+            setTimeout(() => {
+                window.location.href = 'home.html';
+            }, 2000); // Increased wait time to 2 seconds to hear sound
+        }
+
         // Cannon Logic
         function fireCannon() {
             const sound = document.getElementById('cannonSound');
             const body = document.getElementById('cannonBody');
             const flash = document.getElementById('cannonFlash');
 
-            // Allow replay
-            sound.currentTime = 0;
-            sound.play().catch(e => console.log("Audio needs user interaction first"));
+            // Debugging Audio
+            if (sound) {
+                sound.volume = 1.0;
+                var playPromise = sound.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        // playback started
+                        console.log("Audio playing");
+                    })
+                        .catch(error => {
+                            console.error("Audio playback failed:", error);
+                            // alert("تعذر تشغيل الصوت. يرجى التحقق من إعدادات المتصفح.");
+                        });
+                }
+            } else {
+                console.error("Audio element not found");
+            }
 
             // Animation
             body.classList.remove('recoil-anim');
@@ -734,12 +775,30 @@
             flash.classList.add('flash-anim');
         }
 
-        function fireAndEnter() {
-            fireCannon();
-            // Wait for sound/anim then go
+        // Fading Ticker Logic
+        const tickerMessages = [
+            '<i class="fas fa-bullhorn ml-2"></i> تنبيهات هامة: بداية الدوام حسب توجيه الوزارة (9:30) | تم إيقاف الطابور الصباحي واستبداله ببرامج صفية',
+            '<i class="fas fa-clock ml-2"></i> التركيز على المواد الأساسية وتقليص زمن الحصة إلى 35 دقيقة',
+            '<i class="fas fa-tasks ml-2"></i> الاستعداد: إعلان الجداول | تجهيز المصلى والإذاعة | رسائل "طمأنينة" للأهالي'
+        ];
+
+        let currentTickerIndex = 0;
+        const tickerElement = document.getElementById('fadingTicker');
+
+        function updateTicker() {
+            tickerElement.classList.add('fade-out');
             setTimeout(() => {
-                window.location.href = 'home.html';
+                currentTickerIndex = (currentTickerIndex + 1) % tickerMessages.length;
+                tickerElement.innerHTML = tickerMessages[currentTickerIndex];
+                tickerElement.classList.remove('fade-out');
             }, 1000);
+        }
+
+        // Initial Set
+        if (tickerElement) {
+            tickerElement.innerHTML = tickerMessages[0];
+            // Start Loop
+            setInterval(updateTicker, 5000);
         }
     </script>
 </body>

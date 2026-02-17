@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التهاني الرمضانية | مدرسة محمد بن القاسم</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/print.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700&family=Tajawal:wght@400;700&family=Rakkas&display=swap"
+        rel="stylesheet">
+    <!-- Image Generation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        :root {
+            --gold-primary: #d4af37;
+            --blue-royal: #1e3c72;
+        }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .greetings-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- Gallery Section --- */
+        .gallery-section {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .gallery-title {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--blue-royal);
+        }
+
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            padding: 10px;
+        }
+
+        .design-thumb {
+            aspect-ratio: 16/9;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid transparent;
+            transition: 0.3s;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .design-thumb:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .design-thumb.active {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.3);
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .thumb-label {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 0.8rem;
+            padding: 3px;
+        }
+
+        /* --- Controls --- */
+        .controls-bar {
+            background: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .custom-input {
+            padding: 10px 20px;
+            border: 2px solid #eee;
+            border-radius: 25px;
+            width: 300px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .btn-action {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .btn-print {
+            background: var(--blue-royal);
+        }
+
+        .btn-download {
+            background: #e67e22;
+        }
+
+        .btn-share {
+            background: #25D366;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .btn-action:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* --- Preview Canvas --- */
+        .preview-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: #e9ecef;
+            border-radius: 20px;
+            min-height: 600px;
+        }
+
+        .card-frame {
+            width: 960px;
+            height: 540px;
+            /* 16:9 Full HD Scale */
+            position: relative;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: all 0.5s ease;
+            /* Ensure text is selectable/printable */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================
+           8 PREMIUM DIGITAL ART THEMES
+           ============================ */
+
+        /* 1. ROYAL BLACK (كسوة الكعبة) */
+        .theme-royal {
+            background-color: #1a1a1a;
+            /* Gold geometric pattern overlay */
+            background-image: radial-gradient(circle at 50% 50%, transparent 50%, rgba(0, 0, 0, 0.8) 100%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: #d4af37;
+            font-family: 'Amiri', serif;
+            border: 8px double #d4af37;
+        }
+
+        .theme-royal .card-content {
+            z-index: 10;
+        }
+
+        .theme-royal::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            opacity: 0.2;
+        }
+
+        .theme-royal .card-title {
+            font-size: 6rem;
+            background: linear-gradient(45deg, #fbf5b7, #bf953f, #b38728, #fbf5b7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 4px 0px rgba(0, 0, 0, 0.5));
+        }
+
+        /* 2. GOLDEN MOSQUE (إسلامي بيج) */
+        .theme-mosque {
+            background: #fdfbf7;
+            background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #fdfbf7 40px), repeating-linear-gradient(#f3e5c955, #f3e5c955);
+            color: #5d4037;
+            font-family: 'Aref Ruqaa', serif;
+        }
+
+        .theme-mosque::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 250px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23d4af37' fill-opacity='0.2' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .theme-mosque .card-icon i {
+            color: #d4af37;
+            font-size: 5rem;
+            filter: drop-shadow(0 5px 0 rgba(0, 0, 0, 0.1));
+        }
+
+        .theme-mosque .card-title {
+            font-size: 5rem;
+            color: #3e2723;
+        }
+
+        /* 3. BLUE NIGHT (ليلي) */
+        .theme-night {
+            background: radial-gradient(circle at bottom, #1a237e 0%, #000051 100%);
+            color: white;
+            font-family: 'Cairo', sans-serif;
+            overflow: hidden;
+        }
+
+        .theme-night::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(white 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .theme-night .lanterns-row {
+            position: absolute;
+            top: -20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+        }
+
+        .theme-night .lantern {
+            width: 40px;
+            height: 150px;
+            background: rgba(255, 215, 0, 0.8);
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+            animation: swing 3s infinite alternate ease-in-out;
+            transform-origin: top;
+        }
+
+        .theme-night .card-title {
+            font-size: 5rem;
+            text-shadow: 0 0 20px #ffea00;
+            z-index: 10;
+        }
+
+        @keyframes swing {
+            from {
+                transform: rotate(-5deg);
+            }
+
+            to {
+                transform: rotate(5deg);
+            }
+        }
+
+        /* 4. VINTAGE SCROLL (مخطوطة) */
+        .theme-scroll {
+            background: #f4e1c1;
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1h2v2H1V1zm4 4h2v2H5V5zm4 4h2v2H9V9zm4 4h2v2h-2v-2zm4 4h2v2h-2v-2z' fill='%238d6e63' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/g%3E%3C/svg%3E");
+            color: #5d4037;
+            font-family: 'Rakkas', serif;
+            box-shadow: inset 0 0 100px rgba(93, 64, 55, 0.4);
+            border: 20px solid transparent;
+            border-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h30v30H0z' fill='none' stroke='%235d4037' stroke-width='2'/%3E%3C/svg%3E") 30 stretch;
+        }
+
+        .theme-scroll .card-title {
+            font-size: 5.5rem;
+            letter-spacing: 2px;
+        }
+
+        /* 5. KIDS FUN (أطفال) */
+        .theme-kids {
+            background: #80deea;
+            font-family: 'Tajawal', sans-serif;
+            color: white;
+            border: 10px dashed white;
+        }
+
+        .theme-kids .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        .theme-kids .cloud:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 50px;
+            left: 50px;
+        }
+
+        .theme-kids .cloud:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 20px;
+            right: 80px;
+        }
+
+        .theme-kids .card-title {
+            font-size: 5rem;
+            color: #ffeb3b;
+            text-shadow: 4px 4px 0 #00bcd4, -2px -2px 0 #0097a7;
+            font-weight: 900;
+        }
+
+        /* 6. FLORAL ART (زخارف نباتية) */
+        .theme-floral {
+            background: #fff0f5;
+            color: #880e4f;
+            font-family: 'Amiri', serif;
+            border: 5px solid #f8bbd0;
+        }
+
+        .theme-floral::before,
+        .theme-floral::after {
+            content: '✿';
+            position: absolute;
+            font-size: 10rem;
+            color: #f48fb1;
+            opacity: 0.2;
+        }
+
+        .theme-floral::before {
+            top: -50px;
+            left: -50px;
+        }
+
+        .theme-floral::after {
+            bottom: -50px;
+            right: -50px;
+        }
+
+        .theme-floral .card-title {
+            font-size: 4.5rem;
+            background: -webkit-linear-gradient(#e91e63, #880e4f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 7. MODERN GEOMETRIC (هندسي) */
+        .theme-modern {
+            background: white;
+            color: #2c3e50;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .theme-modern .geo-shape {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f5f6fa 0%, #c2e9fb 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+            z-index: 1;
+        }
+
+        .theme-modern .card-content {
+            z-index: 5;
+        }
+
+        .theme-modern .card-title {
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: -3px;
+        }
+
+        .theme-modern .card-title span {
+            font-weight: 900;
+            color: #3498db;
+        }
+
+        /* 8. SUNSET (غروب) */
+        .theme-sunset {
+            background: linear-gradient(180deg, #ff512f 0%, #dd2476 100%);
+            color: white;
+            font-family: 'Reem Kufi', sans-serif;
+        }
+
+        .theme-sunset .card-title {
+            font-size: 5rem;
+            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-sunset .city-silhouette {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: #2c0e18;
+            clip-path: polygon(0% 100%, 10% 80%, 15% 90%, 20% 70%, 25% 90%, 30% 60%, 40% 90%, 50% 100%, 100% 100%);
+        }
+
+        /* --- Footer & Print --- */
+        .sender-name-display {
+            font-size: 2.5rem;
+            margin-top: 2rem;
+            padding: 5px 30px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        /* ========================
+           PRINT STYLES (Fixed)
+           ======================== */
+        @media print {
+
+            /* Hide UI */
+            .sidebar,
+            .page-header,
+            .gallery-section,
+            .controls-bar {
+                display: none !important;
+            }
+
+            @page {
+                size: landscape;
+                margin: 0;
+            }
+
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .app-container,
+            .main-content,
+            .greetings-container,
+            .preview-area {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                background: transparent !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: none;
+                border: none;
+                min-height: 0;
+            }
+
+            /* FIXED CARD SIZE FOR PRINT (approx 18cm x 10cm) needs to enable fit-page or no-scale */
+            .card-frame {
+                width: 180mm !important;
+                /* Fixed Width */
+                height: 101mm !important;
+                /* Fixed Height (16:9 ratio) */
+                border: 1px dotted #ccc !important;
+                /* Guide for cutting */
+                box-shadow: none !important;
+                transform: none !important;
+                position: relative !important;
+                page-break-inside: avoid;
+            }
+
+            /* Force Print Backgrounds */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="school-icon"><i class="fas fa-school"></i></div>
+                <h2>مدرسة محمد بن القاسم</h2>
+                <div class="term-badge">رمضان 1447هـ</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="home.html"><i class="fas fa-home fa-fw ml-2"></i> الرئيسية</a></li>
+                <li><a href="intro.html"><i class="fas fa-book-open fa-fw ml-2"></i> كلمة المدير</a></li>
+                <li><a href="objectives.html"><i class="fas fa-bullseye fa-fw ml-2"></i> الأهداف الإجرائية</a></li>
+                <li><a href="paths.html"><i class="fas fa-road fa-fw ml-2"></i> مسارات العمل</a></li>
+                <li><a href="procedural-plan.html"><i class="fas fa-tasks fa-fw ml-2"></i> الخطة الزمنية</a></li>
+                <li><a href="excellence.html"><i class="fas fa-trophy fa-fw ml-2"></i> لوحة التميز</a></li>
+                <li><a href="roles.html"><i class="fas fa-user-tie fa-fw ml-2"></i> مهام اللجان</a></li>
+                <li><a href="activities.html"><i class="fas fa-shapes fa-fw ml-2"></i> الأنشطة الرمضانية</a></li>
+                <li><a href="family-messages.html"><i class="fas fa-envelope fa-fw ml-2"></i> رسائل للمنزل</a></li>
+                <li><a href="greetings.html" class="active"><i class="fas fa-gift fa-fw ml-2"></i> التهاني</a></li>
+                <li><a href="appendices.html"><i class="fas fa-paperclip fa-fw ml-2"></i> الملاحق</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="greetings-container fade-in">
+
+                <div class="page-header">
+                    <h1>اصنع تهنئة رمضانية مميزة</h1>
+                    <p>اختر التصميم، اكتب اسمك، وحمل البطاقة كصورة لمشاركتها</p>
+                </div>
+
+                <!-- 1. Gallery Selection -->
+                <div class="gallery-section">
+                    <h3 class="gallery-title">اختر التصميم المفضل لديك:</h3>
+                    <div class="design-grid">
+
+                        <div class="design-thumb active" onclick="setTheme('theme-royal')"
+                            style="background:#1a1a1a; border-color:#d4af37">
+                            <span class="thumb-label">فخامة الكعبة</span>
+                        </div>
+
+                        <div class="design-thumb" onclick="setTheme('theme-mosque')" style="background:#fdfbf7;">
+                            <span class="thumb-label">المسجد الذهبي</span>
+                            <div
+                                style="position: absolute; bottom: 0; width: 100%; height: 50%; border-radius: 50% 50% 0 0; border: 2px solid #d4af37; top: 20%;">
+                            </div>
+                        </div>
+
+                        <div class="design-thumb" onclick="setTheme('theme-night')"
+                            style="background:linear-gradient(#1a237e, #000051);">
+                            <span class="thumb-label">ليل وفوانيس</span>
+                        </div>
+
+                        <div class="design-thumb" onclick="setTheme('theme-scroll')" style="background:#f4e1c1;">
+                            <span class="thumb-label">مخطوطة تاريخية</span>
+                        </div>
+
+                        <div class="design-thumb" onclick="setTheme('theme-sunset')"
+                            style="background:linear-gradient(#ff512f, #dd2476);">
+                            <span class="thumb-label">غروب دافئ</span>
+                        </div>
+
+                        <div class="design-thumb" onclick="setTheme('theme-kids')" style="background:#80deea;">
+                            <span class="thumb-label">بهجة الأطفال</span>
+                        </div>
+
+                        <div class="design-thumb" onclick="setTheme('theme-floral')" style="background:#fff0f5;">
+                            <span class="thumb-label">زخارف نباتية</span>
+                        </div>
+
+                        <div class="design-thumb" onclick="setTheme('theme-modern')" style="background:#fff;">
+                            <span class="thumb-label">هندسي عصري</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 2. Controls -->
+                <div class="controls-bar">
+                    <input type="text" id="senderName" class="custom-input" placeholder="اكتب اسمك هنا..."
+                        maxlength="25" oninput="updateText()">
+
+                    <button id="btnDownload" class="btn-action btn-download" onclick="downloadCardImage()">
+                        <i class="fas fa-image"></i> تحميل (صورة)
+                    </button>
+
+                    <button id="btnShare" class="btn-action btn-share" onclick="shareCard()">
+                        <i class="fas fa-share-alt"></i> مشاركة (موبايل/واتس)
+                    </button>
+
+                    <button class="btn-action btn-print" onclick="window.print()">
+                        <i class="fas fa-print"></i> طباعة
+                    </button>
+                </div>
+
+                <!-- 3. Live Preview -->
+                <div class="preview-area">
+                    <div id="cardFrame" class="card-frame theme-royal">
+
+                        <!-- Extra Elements for specific themes -->
+                        <div class="geo-shape"></div>
+                        <div class="city-silhouette"></div>
+                        <div class="cloud"></div>
+                        <div class="cloud"></div>
+                        <div class="lanterns-row">
+                            <div class="lantern"></div>
+                            <div class="lantern"></div>
+                            <div class="lantern"></div>
+                        </div>
+
+                        <div class="card-content">
+                            <div class="card-icon"><i class="fas fa-kaaba"></i></div>
+                            <h1 class="card-title">رمضان مبارك</h1>
+                            <p class="card-text">أسأل الله أن يتقبل منا ومنكم صالح الأعمال</p>
+                            <div class="sender-name-display" id="cardNameDisplay">اسم المرسل</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        let currentTheme = 'theme-royal';
+
+        function updateText() {
+            const input = document.getElementById('senderName');
+            const display = document.getElementById('cardNameDisplay');
+            display.textContent = input.value.trim() === "" ? "اسم المرسل" : input.value;
+        }
+
+        function setTheme(theme) {
+            currentTheme = theme;
+            const card = document.getElementById('cardFrame');
+            const title = card.querySelector('.card-title');
+            const icon = card.querySelector('.card-icon');
+            const text = card.querySelector('.card-text');
+
+            // Reset
+            card.className = 'card-frame ' + theme;
+
+            // Thumbnail Active State
+            document.querySelectorAll('.design-thumb').forEach(t => t.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // Content Update Logic
+            if (theme === 'theme-royal') {
+                icon.innerHTML = '<i class="fas fa-kaaba"></i>';
+                title.innerHTML = 'رمضان مبارك';
+                text.textContent = "أسأل الله أن يتقبل منا ومنكم صالح الأعمال";
+            }
+            else if (theme === 'theme-mosque') {
+                icon.innerHTML = '<i class="fas fa-mosque"></i>';
+                title.innerHTML = 'شهر الرحمة';
+                text.textContent = "أعاده الله عليكم باليمن والبركات";
+            }
+            else if (theme === 'theme-night') {
+                icon.innerHTML = '';
+                title.innerHTML = 'رمضان يجمعنا';
+                text.textContent = "كل عام وأنتم إلى الله أقرب";
+            }
+            else if (theme === 'theme-scroll') {
+                icon.innerHTML = '<i class="fas fa-quran"></i>';
+                title.innerHTML = 'شهر القرآن';
+                text.textContent = "اللهم بلغنا رمضان لا فاقدين ولا مفقودين";
+            }
+            else if (theme === 'theme-kids') {
+                icon.innerHTML = '<i class="fas fa-star fa-spin"></i>';
+                title.innerHTML = 'رمضان أحلى';
+                text.textContent = "صيام مقبول وإفطار شهي!";
+            }
+            else if (theme === 'theme-floral') {
+                icon.innerHTML = '<i class="fas fa-leaf"></i>';
+                title.innerHTML = 'مبارك عليكم الشهر';
+                text.textContent = "جعلنا الله وإياكم من عتقائه من النار";
+            }
+            else if (theme === 'theme-modern') {
+                icon.innerHTML = '<i class="fas fa-cube"></i>';
+                title.innerHTML = 'RAMADAN <span>KAREEM</span>';
+                text.textContent = "Wishing you a blessed month";
+            }
+            else if (theme === 'theme-sunset') {
+                icon.innerHTML = '<i class="fas fa-sun"></i>';
+                title.innerHTML = 'وقت الإفطار';
+                text.textContent = "ذهب الظمأ وابتلت العروق وثبت الأجر إن شاء الله";
+            }
+        }
+
+        // --- IMAGE GENERATION LOGIC ---
+
+        function downloadCardImage() {
+            const card = document.getElementById('cardFrame');
+            const btn = document.getElementById('btnDownload');
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحويل...';
+            btn.disabled = true;
+
+            html2canvas(card, {
+                scale: 2, // High Quality
+                useCORS: true,
+                backgroundColor: null
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `ramadan-card-${Date.now()}.png`;
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+
+                // Reset Button
+                btn.innerHTML = '<i class="fas fa-image"></i> تحميل (صورة)';
+                btn.disabled = false;
+            }).catch(err => {
+                console.error(err);
+                alert("حدث خطأ أثناء تحويل الصورة");
+                btn.disabled = false;
+            });
+        }
+
+        async function shareCard() {
+            const card = document.getElementById('cardFrame');
+            const btn = document.getElementById('btnShare');
+            const name = document.getElementById('senderName').value;
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التجهيز...';
+
+            try {
+                const canvas = await html2canvas(card, { scale: 2 });
+                const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+                const file = new File([blob], 'ramadan-card.png', { type: 'image/png' });
+
+                // Check for Web Share API support
+                if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        title: 'تهنئة رمضانية',
+                        text: `تهنئة خاصة من ${name} بمناسبة شهر رمضان المبارك`,
+                        files: [file]
+                    });
+                } else {
+                    // Fallback to WhatsApp Link (Text only) + Download Alert
+                    if (confirm("مشاركة الصورة المباشرة غير مدعومة في متصفحك الحالي. هل ترغب بتحميل الصورة لإرسالها يدوياً؟")) {
+                        downloadCardImage();
+                    }
+                    // Open WhatsApp anyway
+                    /*
+                    const msg = `تهنئة خاصة من ${name} بمناسبة شهر رمضان المبارك`;
+                    window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+                    */
+                }
+            } catch (err) {
+                console.error("Share failed:", err);
+            } finally {
+                btn.innerHTML = '<i class="fas fa-share-alt"></i> مشاركة (موبايل/واتس)';
+            }
+        }
+
+    </script>
+</body>
+
+</html>

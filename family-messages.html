@@ -39,240 +39,228 @@
             border-radius: 2px;
         }
 
-        /* Segments Grid */
-        .segments-grid {
+        /* Section Styling */
+        .section-block {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #eee;
+        }
+
+        .section-title i {
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        /* Fathers Style */
+        .father-title {
+            border-color: #2980b9;
+            color: #2c3e50;
+        }
+
+        .father-title i {
+            background: #2980b9;
+        }
+
+        /* Mothers Style */
+        .mother-title {
+            border-color: #8e44ad;
+            color: #2c3e50;
+        }
+
+        .mother-title i {
+            background: #8e44ad;
+        }
+
+        /* Students Style */
+        .student-title {
+            border-color: #e67e22;
+            color: #2c3e50;
+        }
+
+        .student-title i {
+            background: #e67e22;
+        }
+
+        /* Message Grid for Parents */
+        .message-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .message-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-right: 5px solid #ddd;
+            /* Dynamic Color */
+            transition: transform 0.3s;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .message-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-icon {
+            font-size: 1.5rem;
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f0f2f5;
+        }
+
+        .message-text h4 {
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .message-text p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Specific Card Colors */
+        .father-card {
+            border-right-color: #2980b9;
+        }
+
+        .father-card .message-icon {
+            color: #2980b9;
+            background: rgba(41, 128, 185, 0.1);
+        }
+
+        .father-card h4 {
+            color: #2980b9;
+        }
+
+        .mother-card {
+            border-right-color: #8e44ad;
+        }
+
+        .mother-card .message-icon {
+            color: #8e44ad;
+            background: rgba(142, 68, 173, 0.1);
+        }
+
+        .mother-card h4 {
+            color: #8e44ad;
+        }
+
+        /* Infographic Grid for Students */
+        .infographic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem;
         }
 
-        @media (max-width: 768px) {
-            .segments-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .segment-card {
+        .info-graphic-item {
             background: white;
             border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            /* Rounder */
+            padding: 2rem 1.5rem;
+            text-align: center;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 2px solid transparent;
         }
 
-        .segment-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            z-index: 10;
+        .info-graphic-item:hover {
+            transform: scale(1.05);
+            border-color: #f1c40f;
         }
 
-        .segment-header {
-            padding: 1.5rem;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .segment-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                left: -100%;
-            }
-
-            20% {
-                left: 100%;
-            }
-
-            100% {
-                left: 100%;
-            }
-        }
-
-        .segment-icon {
-            font-size: 2.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            width: 60px;
-            height: 60px;
+        .graphic-icon-box {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem auto;
+            background: linear-gradient(135deg, #f1c40f, #f39c12);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .segment-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
-
-        .segment-body {
-            padding: 2rem;
-        }
-
-        .message-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .message-item {
-            margin-bottom: 15px;
-            padding: 12px;
-            border-radius: 10px;
-            background: #f8f9fa;
-            border-right: 4px solid #ddd;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .message-item i {
-            margin-left: 10px;
-            margin-top: 4px;
-            font-size: 1.1rem;
-        }
-
-        /* Specific Styles for Each Segment */
-
-        /* Fathers (Blue/Authority) */
-        .seg-fathers {
-            border-color: #2980b9;
-        }
-
-        .seg-fathers .segment-header {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-        }
-
-        .seg-fathers .message-item {
-            border-right-color: #2980b9;
-        }
-
-        .seg-fathers .message-item i {
-            color: #2980b9;
-        }
-
-        /* Mothers (Purple/Care) */
-        .seg-mothers {
-            border-color: #8e44ad;
-        }
-
-        .seg-mothers .segment-header {
-            background: linear-gradient(135deg, #9b59b6, #8e44ad);
-        }
-
-        .seg-mothers .message-item {
-            border-right-color: #8e44ad;
-        }
-
-        .seg-mothers .message-item i {
-            color: #8e44ad;
-        }
-
-        /* Students (Orange/Energy) */
-        .seg-students {
-            border-color: #e67e22;
-        }
-
-        .seg-students .segment-header {
-            background: linear-gradient(135deg, #f39c12, #d35400);
-        }
-
-        .seg-students .message-item {
-            border-right-color: #e67e22;
-        }
-
-        .seg-students .message-item i {
-            color: #e67e22;
-        }
-
-        /* Teachers (Teal/Wisdom) */
-        .seg-teachers {
-            border-color: #16a085;
-        }
-
-        .seg-teachers .segment-header {
-            background: linear-gradient(135deg, #1abc9c, #16a085);
-        }
-
-        .seg-teachers .message-item {
-            border-right-color: #16a085;
-        }
-
-        .seg-teachers .message-item i {
-            color: #16a085;
-        }
-
-        /* Flashy Banner */
-        .flash-banner {
-            background: linear-gradient(45deg, #c0392b, #e74c3c);
+            font-size: 2.5rem;
             color: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 20px rgba(192, 57, 43, 0.3);
-            animation: pulse-border 2s infinite;
+            box-shadow: 0 10px 20px rgba(243, 156, 18, 0.3);
+            animation: bounce-slow 3s infinite;
         }
 
-        @keyframes pulse-border {
-            0% {
-                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
-            }
+        @keyframes bounce-slow {
 
-            70% {
-                box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
-            }
-
+            0%,
             100% {
-                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
             }
         }
 
-        .banner-icon {
-            font-size: 2rem;
-            margin-left: 15px;
-            animation: ring 4s ease-in-out infinite;
+        .graphic-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
         }
 
-        @keyframes ring {
-            0% {
-                transform: rotate(0);
+        .graphic-desc {
+            font-size: 1rem;
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+
+        /* Fun Student Colors based on nth-child */
+        .info-graphic-item:nth-child(1) .graphic-icon-box {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .info-graphic-item:nth-child(2) .graphic-icon-box {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        .info-graphic-item:nth-child(3) .graphic-icon-box {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .info-graphic-item:nth-child(4) .graphic-icon-box {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            box-shadow: 0 10px 20px rgba(155, 89, 182, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hub-header h1 {
+                font-size: 2rem;
             }
 
-            5% {
-                transform: rotate(20deg);
-            }
-
-            10% {
-                transform: rotate(-20deg);
-            }
-
-            15% {
-                transform: rotate(20deg);
-            }
-
-            20% {
-                transform: rotate(0);
-            }
-
-            100% {
-                transform: rotate(0);
+            .section-title {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -297,6 +285,7 @@
                 <li><a href="activities.html"><i class="fas fa-shapes fa-fw ml-2"></i> الأنشطة الرمضانية</a></li>
                 <li><a href="family-messages.html" class="active"><i class="fas fa-envelope fa-fw ml-2"></i> رسائل
                         للمنزل</a></li>
+                <li><a href="greetings.html"><i class="fas fa-gift fa-fw ml-2"></i> التهاني</a></li>
                 <li><a href="appendices.html"><i class="fas fa-paperclip fa-fw ml-2"></i> الملاحق</a></li>
             </ul>
         </aside>
@@ -306,118 +295,163 @@
 
                 <div class="hub-header">
                     <h1>ملتقى التواصل الرمضاني</h1>
-                    <p style="font-size:1.2rem; color:#7f8c8d;">جسور ممتدة بين المدرسة والمجتمع</p>
+                    <p style="font-size:1.2rem; color:#7f8c8d;">جسور ممتدة بين المدرسة والأسرة لبناء جيل واعد</p>
                 </div>
 
-                <!-- Flashy Info Banner -->
-                <div class="flash-banner">
-                    <i class="fas fa-clock banner-icon"></i>
-                    <div>
-                        <h3 style="margin:0; font-size:1.3rem;">توقيت الدوام الرسمي</h3>
-                        <p style="margin:0; opacity:0.9;">بداية اليوم الدراسي ونهايته: <strong>حسب تعليمات وتوجيهات
-                                الوزارة لهذا العام</strong></p>
+                <!-- 1. Fathers Section -->
+                <div class="section-block">
+                    <div class="section-title father-title">
+                        <i class="fas fa-user-tie"></i>
+                        <span>إلى شركاء النجاح .. الآباء الكرام</span>
+                    </div>
+                    <div class="message-grid">
+                        <div class="message-card father-card">
+                            <div class="message-icon"><i class="fas fa-handshake"></i></div>
+                            <div class="message-text">
+                                <h4>شراكة استراتيجية</h4>
+                                <p>نجاح ابنك في المدرسة يعتمد بنسبة 70% على التكامل بين دورك في المنزل ودورنا في الفصل.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="message-card father-card">
+                            <div class="message-icon"><i class="fas fa-eye"></i></div>
+                            <div class="message-text">
+                                <h4>المتابعة اليومية</h4>
+                                <p>سؤالك اليومي لابنك "ماذا تعلمت اليوم؟" يفتح آفاقاً للحوار ويشعره باهتمامك.</p>
+                            </div>
+                        </div>
+                        <div class="message-card father-card">
+                            <div class="message-icon"><i class="fas fa-praying-hands"></i></div>
+                            <div class="message-text">
+                                <h4>القدوة الحسنة</h4>
+                                <p>اصطحابك لابنك إلى المسجد وترتيل القرآن أمامه هو الدرس العملي الأبلغ في رمضان.</p>
+                            </div>
+                        </div>
+                        <div class="message-card father-card">
+                            <div class="message-icon"><i class="fas fa-clock"></i></div>
+                            <div class="message-text">
+                                <h4>ضبط الوقت</h4>
+                                <p>تعويد الابن على النوم المبكر في رمضان ليس خياراً، بل ضرورة لتركيزه ومناعته.</p>
+                            </div>
+                        </div>
+                        <div class="message-card father-card">
+                            <div class="message-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <div class="message-text">
+                                <h4>الرقابة الواعية</h4>
+                                <p>الأجهزة الذكية سارق صامت للوقت والذهن، قنن استخدامها لتضمن صفاء ذهن ابنك.</p>
+                            </div>
+                        </div>
+                        <div class="message-card father-card">
+                            <div class="message-icon"><i class="fas fa-medal"></i></div>
+                            <div class="message-text">
+                                <h4>التحفيز المستمر</h4>
+                                <p>كافئ ابنك على صيامه وإنجازه الدراسي، فالتشجيع يصنع المعجزات في شخصية الطفل.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="segments-grid">
-
-                    <!-- 1. Fathers -->
-                    <div class="segment-card seg-fathers">
-                        <div class="segment-header">
-                            <span class="segment-title">إلى أولياء الأمور (الآباء)</span>
-                            <div class="segment-icon"><i class="fas fa-user-tie"></i></div>
+                <!-- 2. Mothers Section -->
+                <div class="section-block">
+                    <div class="section-title mother-title">
+                        <i class="fas fa-heart"></i>
+                        <span>إلى صانعات الأجيال .. الأمهات الفاضلات</span>
+                    </div>
+                    <div class="message-grid">
+                        <div class="message-card mother-card">
+                            <div class="message-icon"><i class="fas fa-utensils"></i></div>
+                            <div class="message-text">
+                                <h4>وقود العقل</h4>
+                                <p>وجبة السحور المتوازنة (تمر، حليب، ألياف) تضمن لابنك طاقة ذهنية طوال اليوم الدراسي.
+                                </p>
+                            </div>
                         </div>
-                        <div class="segment-body">
-                            <ul class="message-list">
-                                <li class="message-item">
-                                    <i class="fas fa-check-circle"></i>
-                                    <div>أنتم شركاء النجاح، ومتابعتكم اللحظية للابن تعني لنا الكثير.</div>
-                                </li>
-                                <li class="message-item">
-                                    <i class="fas fa-car-side"></i>
-                                    <div>نرجو الحرص على الحضور والانصراف في المواعيد المحددة لضمان سلامة الأبناء.</div>
-                                </li>
-                                <li class="message-item">
-                                    <i class="fas fa-mobile-alt"></i>
-                                    <div>التواصل مع إدارة المدرسة والموجه الطلابي يحل 90% من المشكلات مبكراً.</div>
-                                </li>
-                            </ul>
+                        <div class="message-card mother-card">
+                            <div class="message-icon"><i class="fas fa-bed"></i></div>
+                            <div class="message-text">
+                                <h4>عدو التركيز</h4>
+                                <p>السهر هو العدو الأول للتحصيل الدراسي. الطفل يحتاج 8 ساعات نوم ليلاً ليعمل عقله
+                                    بكفاءة.</p>
+                            </div>
+                        </div>
+                        <div class="message-card mother-card">
+                            <div class="message-icon"><i class="fas fa-smile-beam"></i></div>
+                            <div class="message-text">
+                                <h4>الدعم النفسي</h4>
+                                <p>استقبالك لابنك بابتسامة بعد المدرسة وتخفيف ضغوط الصيام عنه يرفع من روحه المعنوية.</p>
+                            </div>
+                        </div>
+                        <div class="message-card mother-card">
+                            <div class="message-icon"><i class="fas fa-book-reader"></i></div>
+                            <div class="message-text">
+                                <h4>البيئة المحفزة</h4>
+                                <p>تخصيص ركن هادئ للمذاكرة بعيداً عن ضجيج التلفاز والمطبخ يساعد على الإنجاز السريع.</p>
+                            </div>
+                        </div>
+                        <div class="message-card mother-card">
+                            <div class="message-icon"><i class="fas fa-hands-helping"></i></div>
+                            <div class="message-text">
+                                <h4>غرس القيم</h4>
+                                <p>رمضان فرصة لتعليمه الصبر، الإيثار، والعطاء. قصي عليه قصص السلف لترسخ في وجدانه.</p>
+                            </div>
+                        </div>
+                        <div class="message-card mother-card">
+                            <div class="message-icon"><i class="fas fa-clipboard-check"></i></div>
+                            <div class="message-text">
+                                <h4>تنظيم المهام</h4>
+                                <p>ساعديه في ترتيب جدوله: صلاة، قراءة قرآن، مذاكرة، ثم ترفيه. النظام أساس النجاح.</p>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- 2. Mothers -->
-                    <div class="segment-card seg-mothers">
-                        <div class="segment-header">
-                            <span class="segment-title">إلى الأمهات الفاضلات</span>
-                            <div class="segment-icon"><i class="fas fa-heart"></i></div>
-                        </div>
-                        <div class="segment-body">
-                            <ul class="message-list">
-                                <li class="message-item">
-                                    <i class="fas fa-bed"></i>
-                                    <div>تنظيم نوم الابن ليلاً هو المفتاح لتركيزه نهاراً. السهر عدو التحصيل.</div>
-                                </li>
-                                <li class="message-item">
-                                    <i class="fas fa-utensils"></i>
-                                    <div>وجبة سحور صحية تمد الطالب بالطاقة اللازمة لليوم الدراسي.</div>
-                                </li>
-                                <li class="message-item">
-                                    <i class="fas fa-smile-beam"></i>
-                                    <div>تهيئة جو هادئ للمذاكرة في نهار رمضان يساعد على الإنجاز السريع.</div>
-                                </li>
-                            </ul>
-                        </div>
+                <!-- 3. Students Section (Infographic Style) -->
+                <div class="section-block">
+                    <div class="section-title student-title">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>همسات لأحبابنا الأبطال (الطلاب)</span>
                     </div>
+                    <div class="infographic-grid">
 
-                    <!-- 3. Students -->
-                    <div class="segment-card seg-students">
-                        <div class="segment-header">
-                            <span class="segment-title">إلى أحبابنا الطلاب</span>
-                            <div class="segment-icon"><i class="fas fa-user-graduate"></i></div>
+                        <!-- Battery Card -->
+                        <div class="info-graphic-item">
+                            <div class="graphic-icon-box">
+                                <i class="fas fa-battery-full"></i>
+                            </div>
+                            <h3 class="graphic-title">اشحن طاقتك</h3>
+                            <p class="graphic-desc">نم مبكراً لتستيقظ نشيطاً .. السهر يجعلك "بدون شبكة" في الفصل!</p>
                         </div>
-                        <div class="segment-body">
-                            <ul class="message-list">
-                                <li class="message-item">
-                                    <i class="fas fa-star"></i>
-                                    <div>أنتم أمل المستقبل، وصيامكم لا يعني الكسل، بل النشاط والإنجاز.</div>
-                                </li>
-                                <li class="message-item">
-                                    <i class="fas fa-book-reader"></i>
-                                    <div>استثمروا الحصة الدراسية (35 دقيقة) بتركيز عالٍ لتنهوا واجباتكم في المدرسة.
-                                    </div>
-                                </li>
-                                <li class="message-item">
-                                    <i class="fas fa-mosque"></i>
-                                    <div>حافظوا على صلاتكم وأذكاركم، فهي سر توفيقكم ونجاحكم.</div>
-                                </li>
-                            </ul>
+
+                        <!-- Game Controller Card -->
+                        <div class="info-graphic-item">
+                            <div class="graphic-icon-box">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <h3 class="graphic-title">وقفة قصيرة</h3>
+                            <p class="graphic-desc">قلل من الألعاب الإلكترونية في رمضان .. واستبدلها بسباق الحسنات.</p>
                         </div>
+
+                        <!-- Book Card -->
+                        <div class="info-graphic-item">
+                            <div class="graphic-icon-box">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <h3 class="graphic-title">35 دقيقة ذهبية</h3>
+                            <p class="graphic-desc">زمن الحصة قصير! ركز مع المعلم لتفهم الدرس وتنهي واجباتك في المدرسة.
+                            </p>
+                        </div>
+
+                        <!-- Mosque Card -->
+                        <div class="info-graphic-item">
+                            <div class="graphic-icon-box">
+                                <i class="fas fa-mosque"></i>
+                            </div>
+                            <h3 class="graphic-title">ص صديقك</h3>
+                            <p class="graphic-desc">الصلاة ثم الصلاة ثم الصلاة .. هي مفتاح التوفيق والنجاح في الدنيا
+                                والآخرة.</p>
+                        </div>
+
                     </div>
-
-                    <!-- 4. Teachers -->
-                    <div class="segment-card seg-teachers">
-                        <div class="segment-header">
-                            <span class="segment-title">همسة لزملائي المعلمين</span>
-                            <div class="segment-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                        </div>
-                        <div class="segment-body">
-                            <ul class="message-list">
-                                <li class="message-item">
-                                    <i class="fas fa-hand-holding-heart"></i>
-                                    <div>الاحتواء والرفق بالطلاب في هذا الشهر يترك أثراً لا يمحى.</div>
-                                </li>
-                                <li class="message-item">
-                                    <i class="fas fa-lightbulb"></i>
-                                    <div>نوعوا في طرائق التدريس واجعلوا الحصة ممتعة وتفاعلية لكسر الجمود.</div>
-                                </li>
-                                <li class="message-item">
-                                    <i class="fas fa-clock"></i>
-                                    <div>الدقيقة أمانة، واستثمار الوقت بفاعلية عبادة وعمل صالح.</div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
