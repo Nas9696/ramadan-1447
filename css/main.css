@@ -24,6 +24,13 @@ body {
     color: var(--primary-color);
     direction: rtl;
     line-height: 1.6;
+    height: 100vh;
+    overflow: hidden;
+}
+
+html {
+    height: 100%;
+    overflow: hidden;
 }
 
 a {
@@ -37,16 +44,17 @@ ul {
 
 .app-container {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
+    /* Fixed height to viewport */
+    overflow: hidden;
+    /* Prevent body scroll */
 }
 
 /* Sidebar Redesign - Ramadan Theme */
 .sidebar {
     width: 280px;
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    /* Deep Royal Blue */
     padding: 1.5rem 1rem;
-    /* Compact padding */
     position: fixed;
     top: 0;
     right: 0;
@@ -58,28 +66,35 @@ ul {
     color: white;
 }
 
+/* Ensure sidebar scrollbar is hidden or styled if needed, keeping simple for now */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+
+
 .logo-container {
     text-align: center;
     margin-bottom: 1.5rem;
-    /* Reduced margin */
     padding-bottom: 1rem;
-    /* Reduced padding */
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .school-icon {
     width: 70px;
-    /* Slightly smaller */
     height: 70px;
     background: rgba(255, 255, 255, 0.1);
     color: var(--white);
-    /* White Icon */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 0.5rem;
-    /* Reduced margin */
     font-size: 2.2rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     border: 2px solid rgba(255, 255, 255, 0.1);
@@ -95,9 +110,7 @@ ul {
 
 .term-badge {
     background: var(--white);
-    /* White Background */
     color: var(--primary-color);
-    /* Dark Blue Text */
     padding: 2px 12px;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -108,9 +121,7 @@ ul {
 
 .nav-links li {
     margin-bottom: 0;
-    /* Removing margin to use border separation */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    /* Separator line */
 }
 
 .nav-links li:last-child {
@@ -121,24 +132,19 @@ ul {
     display: flex;
     align-items: center;
     padding: 0.8rem 1rem;
-    /* Compact padding */
     color: rgba(255, 255, 255, 0.85);
     font-weight: 500;
     transition: all 0.3s ease;
     border-right: 3px solid transparent;
-    /* Right border indicator */
     position: relative;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
     background: rgba(255, 255, 255, 0.05);
-    /* Subtle background instead of full gradient */
     color: white;
     border-right-color: var(--white);
-    /* White indicator */
     padding-right: 1.5rem;
-    /* Slight movement effect */
 }
 
 .nav-links a.active {
@@ -152,7 +158,6 @@ ul {
     font-size: 1.1rem;
     transition: transform 0.3s;
     color: var(--white);
-    /* White Icons */
 }
 
 .nav-links a:hover i,
@@ -201,11 +206,53 @@ ul {
     }
 }
 
+
 .main-content {
     flex: 1;
     margin-right: 280px;
+    /* Offset for fixed sidebar */
+    height: 100%;
+    /* Full height of app-container */
+    display: flex;
+    flex-direction: column;
+    /* Column layout */
+    overflow: hidden;
+    /* Prevent double scrollbars */
+    padding: 0;
+    /* Padding moved to wrapper */
+}
+
+.content-wrapper {
+    flex: 1;
+    /* Take remaining space */
+    overflow-y: auto;
+    /* Scrollable area */
     padding: 2.5rem;
-    max-width: 1400px;
+
+    /* High Visibility Scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary-color) #f0f0f0;
+}
+
+.content-wrapper::-webkit-scrollbar {
+    width: 12px;
+}
+
+.content-wrapper::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-left: 1px solid #e0e0e0;
+}
+
+.content-wrapper::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    /* Orange/Gold */
+    border-radius: 6px;
+    border: 3px solid #f0f0f0;
+    /* Creates padding effect */
+}
+
+.content-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #d35400;
 }
 
 /* Page Header */
@@ -539,19 +586,32 @@ ul {
 }
 
 @media (max-width: 900px) {
+    .app-container {
+        display: block;
+        /* Disable flex to prevent sidebar from taking space */
+    }
+
     .sidebar {
-        transform: translateX(100%);
-        /* Hidden by default on mobile (RTL) */
-        transition: transform 0.3s ease-in-out;
         width: 260px;
-        /* Slightly smaller width */
-        right: 0;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: -280px;
+        /* Hide to the right (outside viewport) */
         left: auto;
+        z-index: 2000;
+        /* High z-index to sit on top of everything */
+        transition: right 0.3s ease-in-out;
+        /* Transition on right property */
+        transform: none;
+        /* Reset transform */
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     }
 
     .sidebar.active {
-        transform: translateX(0);
-        /* Slide in */
+        right: 0;
+        /* Slide in to the edge */
+        transform: none;
     }
 
     .main-content {
@@ -568,8 +628,7 @@ ul {
         position: fixed;
         top: 20px;
         right: 20px;
-        /* Top right corner */
-        z-index: 1100;
+        z-index: 2100;
         /* Above sidebar */
         background: var(--secondary-color);
         color: white;
@@ -597,8 +656,8 @@ ul {
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.5);
-        z-index: 900;
-        /* Below sidebar, above content */
+        z-index: 1900;
+        /* Below sidebar */
         backdrop-filter: blur(3px);
         opacity: 0;
         transition: opacity 0.3s ease;
@@ -656,26 +715,47 @@ ul {
 
 /* --- APP FOOTER --- */
 /* --- APP FOOTER --- */
+/* --- APP FOOTER --- */
 .app-footer {
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     color: white;
     padding: 1rem;
-    /* Reduced padding */
     text-align: center;
-    margin-top: 2rem;
     width: 100%;
     border-top: 3px solid #d4af37;
-    /* Thinner border */
     position: relative;
+    /* Stacks normally in flex flow */
     z-index: 100;
-    border-radius: var(--radius);
+    /* Remove rounding for full width bar feel, or keep if preferred. Keeping consistent. */
+    border-radius: var(--radius) var(--radius) 0 0;
     box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+    /* Important: Do not shrink footer */
+    margin-top: 0;
 }
 
 /* Footer for landing page (full width, no radius) */
-.home-footer .app-footer {
+/* Footer for landing page (full width, no radius) */
+.home-footer {
+    position: fixed;
+    /* Fix to bottom */
+    bottom: 0;
+    left: 0;
+    width: 100%;
     border-radius: 0;
     margin-top: 0;
+    border-top: none;
+    /* Cleaner look for home */
+    background: rgba(30, 60, 114, 0.9);
+    /* Slightly transparent */
+    backdrop-filter: blur(5px);
+}
+
+.home-footer .app-footer {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
 }
 
 .footer-content {

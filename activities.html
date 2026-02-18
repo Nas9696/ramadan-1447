@@ -9,131 +9,297 @@
     <link rel="stylesheet" href="css/print.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Styles restored for robustness */
-        .activities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+        :root {
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --blue-deep: #1e3c72;
+            --blue-night: #2a5298;
+            --text-dark: #2c3e50;
+            --text-light: #ecf0f1;
         }
 
-        .activity-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem 1.5rem;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+        /* Ambient Background */
+        .content-wrapper {
+            background: linear-gradient(135deg, #fdfbf7 0%, #ffffff 100%);
             position: relative;
             overflow: hidden;
-            cursor: pointer;
-            border: 1px solid #f0f0f0;
         }
 
-        .activity-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            border-color: #eee;
-        }
-
-        .activity-card::before {
+        .content-wrapper::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #3498db, #8e44ad);
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            color: var(--blue-deep);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        /* Premium Activity Cards */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+            padding: 1rem;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 20px;
+            padding: 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--gold-primary);
+        }
+
+        .card-header-bg {
+            height: 100px;
+            background: linear-gradient(135deg, var(--blue-deep), var(--blue-night));
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .card-header-bg::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: white;
+            border-radius: 50% 50% 0 0;
+            transform: scaleX(1.5);
+        }
+
+        .act-icon-container {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 60px;
+            /* Position moved to top to overlap header */
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 3px solid white;
+            z-index: 2;
         }
 
         .act-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: inline-flex;
-            width: 80px;
-            height: 80px;
-            align-items: center;
-            justify-content: center;
-            background: #f8f9fa;
-            border-radius: 50%;
-            transition: transform 0.4s;
+            font-size: 2.5rem;
+            transition: transform 0.4s ease;
         }
 
         .activity-card:hover .act-icon {
-            transform: rotate(10deg) scale(1.1);
+            transform: scale(1.1) rotate(5deg);
         }
 
-        .act-badget {
-            background: #e74c3c;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            display: inline-block;
-            margin-top: 1rem;
-            font-weight: bold;
+        .card-body {
+            padding: 3.5rem 1.5rem 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .text-purple {
-            color: #8e44ad;
-            background: #f4ecf7;
+        .activity-card h3 {
+            font-size: 1.4rem;
+            color: var(--blue-deep);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
         }
 
-        .text-teal {
-            color: #16a085;
-            background: #e8f8f5;
+        .act-badge {
+            background: rgba(212, 175, 55, 0.15);
+            color: #bfa12f;
+            /* Darker gold for text */
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: auto;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
-        .text-blue {
-            color: #2980b9;
-            background: #ebf5fb;
+        /* Specific Colors */
+        .color-purple {
+            color: #9b59b6;
         }
 
-        .text-indigo {
-            color: #3f51b5;
-            background: #e8eaf6;
+        .color-teal {
+            color: #1abc9c;
         }
 
-        /* Modals */
+        .color-blue {
+            color: #3498db;
+        }
+
+        .color-orange {
+            color: #e67e22;
+        }
+
+        /* Modal Premium Design */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(30, 60, 114, 0.7);
+            /* Deep blue overlay */
             z-index: 2000;
             display: none;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            opacity: 1;
         }
 
         .modal-content {
             background: white;
             width: 90%;
-            max-width: 550px;
-            padding: 2rem;
+            max-width: 600px;
+            padding: 0;
             border-radius: 20px;
             position: relative;
-            animation: slideUp 0.4s ease-out;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            transform: translateY(30px);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
         }
 
-        @keyframes slideUp {
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--blue-deep), var(--blue-night));
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-list li {
+            margin-bottom: 1rem;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-right: 4px solid var(--gold-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-list li strong {
+            color: var(--blue-deep);
+            min-width: 80px;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
             from {
-                transform: translateY(50px);
                 opacity: 0;
+                transform: translateY(20px);
             }
 
             to {
-                transform: translateY(0);
                 opacity: 1;
+                transform: translateY(0);
             }
-        }
-
-        .modal-content h2 {
-            margin-bottom: 1.5rem;
         }
     </style>
 </head>
@@ -141,24 +307,29 @@
 <body>
 
     <div class="app-container">
+        <!-- Sidebar and top nav are handled by main.css layout -->
         <aside class="sidebar">
             <div class="logo-container">
                 <div class="school-icon"><i class="fas fa-school"></i></div>
                 <h2>مدرسة محمد بن القاسم</h2>
                 <div class="term-badge">رمضان 1447هـ</div>
             </div>
-                        <ul class="nav-links">
+            <ul class="nav-links">
                 <li><a href="home.html"><i class="fas fa-home fa-fw ml-2"></i> الرئيسية</a></li>
                 <li><a href="intro.html"><i class="fas fa-book-open fa-fw ml-2"></i> كلمة المدير</a></li>
-                
+
                 <li class="has-submenu open">
-                    <a href="#"><i class="fas fa-graduation-cap fa-fw ml-2"></i> الخطة الدراسية <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <a href="#"><i class="fas fa-graduation-cap fa-fw ml-2"></i> الخطة الدراسية <i
+                            class="fas fa-chevron-down dropdown-icon"></i></a>
                     <ul class="submenu">
-                        <li><a href="objectives.html"><i class="fas fa-bullseye fa-fw ml-2"></i> الأهداف الإجرائية</a></li>
+                        <li><a href="objectives.html"><i class="fas fa-bullseye fa-fw ml-2"></i> الأهداف الإجرائية</a>
+                        </li>
                         <li><a href="paths.html"><i class="fas fa-road fa-fw ml-2"></i> مسارات العمل</a></li>
-                        <li><a href="procedural-plan.html"><i class="fas fa-tasks fa-fw ml-2"></i> الخطة الزمنية</a></li>
+                        <li><a href="procedural-plan.html"><i class="fas fa-tasks fa-fw ml-2"></i> الخطة الزمنية</a>
+                        </li>
                         <li><a href="roles.html"><i class="fas fa-user-tie fa-fw ml-2"></i> مهام اللجان</a></li>
-                        <li><a href="activities.html" class="active"><i class="fas fa-shapes fa-fw ml-2"></i> الأنشطة الرمضانية</a></li>
+                        <li><a href="activities.html" class="active"><i class="fas fa-shapes fa-fw ml-2"></i> الأنشطة
+                                الرمضانية</a></li>
                         <li><a href="appendices.html"><i class="fas fa-paperclip fa-fw ml-2"></i> الملاحق</a></li>
                     </ul>
                 </li>
@@ -171,124 +342,203 @@
         </aside>
 
         <main class="main-content">
-            <div class="page-header fade-in">
-                <h1>الأنشطة الاستثنائية (11 يوم)</h1>
-                <p>فعاليات نوعية مكثفة تراعي أجواء الصيام (اضغط على النشاط للتفاصيل)</p>
-            </div>
-
-            <div class="activities-grid fade-in">
-
-                <div class="activity-card" onclick="openModal('act1')">
-                    <div class="act-icon text-purple"><i class="fas fa-quran"></i></div>
-                    <h3>مزامير آل داود</h3>
-                    <div class="act-badget">الأسبوع الأول</div>
+            <div class="content-wrapper">
+                <div class="page-header fade-in">
+                    <h1><i class="fas fa-star-and-crescent" style="color: var(--gold-primary);"></i> الأنشطة الاستثنائية
+                    </h1>
+                    <p>فعاليات نوعية مكثفة تراعي أجواء الصيام وتعزز القيم التربوية</p>
                 </div>
 
-                <div class="activity-card" onclick="openModal('act2')">
-                    <div class="act-icon text-teal"><i class="fas fa-film"></i></div>
-                    <h3>سينما القيم</h3>
-                    <div class="act-badget">طوال الـ 11 يوم</div>
+                <div class="activities-grid fade-in">
+
+                    <!-- Activity 1 -->
+                    <div class="activity-card" onclick="openModal('act1')">
+                        <div class="card-header-bg"></div>
+                        <div class="act-icon-container">
+                            <i class="fas fa-quran act-icon color-purple"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3>مزامير آل داود</h3>
+                            <p style="color:#777; font-size:0.9rem; margin-bottom:1rem;">مسابقة التلاوة العذبة</p>
+                            <span class="act-badge">الأسبوع الأول</span>
+                        </div>
+                    </div>
+
+                    <!-- Activity 2 -->
+                    <div class="activity-card" onclick="openModal('act2')">
+                        <div class="card-header-bg" style="background: linear-gradient(135deg, #16a085, #2ecc71);">
+                        </div>
+                        <div class="act-icon-container">
+                            <i class="fas fa-film act-icon color-teal"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3>سينما القيم</h3>
+                            <p style="color:#777; font-size:0.9rem; margin-bottom:1rem;">عروض مرئية هادفة</p>
+                            <span class="act-badge">طوال الـ 11 يوم</span>
+                        </div>
+                    </div>
+
+                    <!-- Activity 3 -->
+                    <div class="activity-card" onclick="openModal('act3')">
+                        <div class="card-header-bg" style="background: linear-gradient(135deg, #2980b9, #3498db);">
+                        </div>
+                        <div class="act-icon-container">
+                            <i class="fas fa-palette act-icon color-blue"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3>ريشة صائم</h3>
+                            <p style="color:#777; font-size:0.9rem; margin-bottom:1rem;">التعبير الفني الحر</p>
+                            <span class="act-badge">الأسبوع الثاني</span>
+                        </div>
+                    </div>
+
+                    <!-- Activity 4 -->
+                    <div class="activity-card" onclick="openModal('act4')">
+                        <div class="card-header-bg" style="background: linear-gradient(135deg, #e67e22, #f1c40f);">
+                        </div>
+                        <div class="act-icon-container">
+                            <i class="fas fa-box-open act-icon color-orange"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3>سلة الخير</h3>
+                            <p style="color:#777; font-size:0.9rem; margin-bottom:1rem;">مبادرة العطاء والتكافل</p>
+                            <span class="act-badge">الخميس (الحصاد)</span>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="activity-card" onclick="openModal('act3')">
-                    <div class="act-icon text-blue"><i class="fas fa-palette"></i></div>
-                    <h3>ريشة صائم</h3>
-                    <div class="act-badget">الأسبوع الثاني</div>
-                </div>
-
-                <div class="activity-card" onclick="openModal('act4')">
-                    <div class="act-icon text-indigo"><i class="fas fa-box-open"></i></div>
-                    <h3>سلة الخير</h3>
-                    <div class="act-badget">الخميس (الحصاد)</div>
-                </div>
-
-            </div>
-
-            <!-- Modals -->
-            <div id="act1" class="modal-overlay">
-                <div class="modal-content">
-                    <div style="text-align:left;"><i class="fas fa-times" onclick="closeModal('act1')"
-                            style="cursor:pointer; font-size:1.5rem; color:#aaa;"></i></div>
-                    <h2 style="color:#8e44ad; text-align:center;"> مسابقة مزامير آل داود</h2>
-                    <div style="margin-top:1.5rem; background:#f9f9f9; padding:1.5rem; border-radius:12px;">
-                        <ul style="list-style:none; padding:0;">
-                            <li style="margin-bottom:10px;"><strong>📅 التوقيت:</strong> يومياً في الفسحة (الأسبوع
-                                الأول).</li>
-                            <li style="margin-bottom:10px;"><strong>📍 المكان:</strong> المصلى المدرسي.</li>
-                            <li style="margin-bottom:10px;"><strong>📋 الآلية:</strong> تلاوة حرة لمدة دقيقتين لكل طالب.
-                            </li>
-                            <li style="margin-bottom:10px;"><strong>🏆 الجائزة:</strong> جائزة نقدية فورية (50 ريال)
-                                يومياً.</li>
-                        </ul>
+                <!-- Modals -->
+                <div id="act1" class="modal-overlay">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close-btn" onclick="closeModal('act1')"><i class="fas fa-times"></i></button>
+                            <h2><i class="fas fa-quran"></i> مسابقة مزامير آل داود</h2>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="info-list">
+                                <li><i class="far fa-calendar-alt text-purple"></i> <strong>التوقيت:</strong> يومياً في
+                                    الفسحة (الأسبوع الأول).</li>
+                                <li><i class="fas fa-map-marker-alt text-purple"></i> <strong>المكان:</strong> المصلى
+                                    المدرسي.</li>
+                                <li><i class="fas fa-list-ol text-purple"></i> <strong>الآلية:</strong> تلاوة حرة لمدة
+                                    دقيقتين لكل طالب مع التركيز على حسن الصوت والتجويد.</li>
+                                <li><i class="fas fa-trophy text-purple"></i> <strong>الجائزة:</strong> جائزة نقدية
+                                    فورية (50 ريال) يومياً لأجمل تلاوة.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div id="act2" class="modal-overlay">
-                <div class="modal-content">
-                    <div style="text-align:left;"><i class="fas fa-times" onclick="closeModal('act2')"
-                            style="cursor:pointer; font-size:1.5rem; color:#aaa;"></i></div>
-                    <h2 style="color:#16a085; text-align:center;"> سينما القيم</h2>
-                    <div style="margin-top:1.5rem; background:#f9f9f9; padding:1.5rem; border-radius:12px;">
-                        <ul style="list-style:none; padding:0;">
-                            <li style="margin-bottom:10px;"><strong>📅 التوقيت:</strong> بديل الطابور الصباحي (داخل
-                                الفصل).</li>
-                            <li style="margin-bottom:10px;"><strong>🎬 المحتوى:</strong> أفلام قصيرة عن "بر الوالدين"
-                                و"الصبر".</li>
-                            <li style="margin-bottom:10px;"><strong>🎯 الهدف:</strong> غرس القيم بهدوء وراحة.</li>
-                        </ul>
+                <div id="act2" class="modal-overlay">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: linear-gradient(135deg, #16a085, #2ecc71);">
+                            <button class="close-btn" onclick="closeModal('act2')"><i class="fas fa-times"></i></button>
+                            <h2><i class="fas fa-film"></i> سينما القيم</h2>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="info-list">
+                                <li><i class="far fa-clock text-teal"></i> <strong>التوقيت:</strong> بديل الطابور
+                                    الصباحي (داخل الفصل).</li>
+                                <li><i class="fas fa-video text-teal"></i> <strong>المحتوى:</strong> أفلام قصيرة ومنتقاة
+                                    بعناية عن "بر الوالدين" و"الصبر" و"الإحسان".</li>
+                                <li><i class="fas fa-bullseye text-teal"></i> <strong>الهدف:</strong> غرس القيم التربوية
+                                    بهدوء وراحة تراعي صيام الطلاب.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div id="act3" class="modal-overlay">
-                <div class="modal-content">
-                    <div style="text-align:left;"><i class="fas fa-times" onclick="closeModal('act3')"
-                            style="cursor:pointer; font-size:1.5rem; color:#aaa;"></i></div>
-                    <h2 style="color:#2980b9; text-align:center;"> معرض ريشة صائم</h2>
-                    <div style="margin-top:1.5rem; background:#f9f9f9; padding:1.5rem; border-radius:12px;">
-                        <ul style="list-style:none; padding:0;">
-                            <li style="margin-bottom:10px;"><strong>📅 التوقيت:</strong> حصص الفنية (الأسبوع الثاني).
-                            </li>
-                            <li style="margin-bottom:10px;"><strong>🎨 الفكرة:</strong> تفريغ الطاقة في الرسم الحر
-                                (مظاهر رمضان).</li>
-                            <li style="margin-bottom:10px;"><strong>🚫 ممنوع:</strong> الأنشطة الحركية المجهدة.</li>
-                        </ul>
+                <div id="act3" class="modal-overlay">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: linear-gradient(135deg, #2980b9, #3498db);">
+                            <button class="close-btn" onclick="closeModal('act3')"><i class="fas fa-times"></i></button>
+                            <h2><i class="fas fa-palette"></i> معرض ريشة صائم</h2>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="info-list">
+                                <li><i class="far fa-calendar-check text-blue"></i> <strong>التوقيت:</strong> حصص
+                                    التربية الفنية (الأسبوع الثاني).</li>
+                                <li><i class="fas fa-paint-brush text-blue"></i> <strong>الفكرة:</strong> تفريغ الطاقة
+                                    في الرسم الحر للتعبير عن مظاهر شهر رمضان المبارك.</li>
+                                <li><i class="fas fa-ban text-red"></i> <strong>ملاحظة:</strong> هذا النشاط بديل للأنشطة
+                                    الحركية المجهدة في حصص الرياضة.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div id="act4" class="modal-overlay">
-                <div class="modal-content">
-                    <div style="text-align:left;"><i class="fas fa-times" onclick="closeModal('act4')"
-                            style="cursor:pointer; font-size:1.5rem; color:#aaa;"></i></div>
-                    <h2 style="color:#3f51b5; text-align:center;"> مبادرة سلة الخير</h2>
-                    <div style="margin-top:1.5rem; background:#f9f9f9; padding:1.5rem; border-radius:12px;">
-                        <ul style="list-style:none; padding:0;">
-                            <li style="margin-bottom:10px;"><strong>📅 التوقيت:</strong> يوم الخميس الأخير.</li>
-                            <li style="margin-bottom:10px;"><strong>📦 الآلية:</strong> توزيع أغذية جافة على العمالة.
-                            </li>
-                            <li style="margin-bottom:10px;"><strong>❤️ القيمة:</strong> التكافل والشعور بالآخرين.</li>
-                        </ul>
+                <div id="act4" class="modal-overlay">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: linear-gradient(135deg, #e67e22, #f1c40f);">
+                            <button class="close-btn" onclick="closeModal('act4')"><i class="fas fa-times"></i></button>
+                            <h2><i class="fas fa-box-open"></i> مبادرة سلة الخير</h2>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="info-list">
+                                <li><i class="far fa-calendar-check text-orange"></i> <strong>التوقيت:</strong> يوم
+                                    الخميس الأخير من الدراسة.</li>
+                                <li><i class="fas fa-hands-helping text-orange"></i> <strong>الآلية:</strong> تجميع
+                                    وتوزيع أغذية جافة (تمر، ماء، فطائر) على العمالة المحتاجة.</li>
+                                <li><i class="fas fa-heart text-orange"></i> <strong>القيمة:</strong> تعزيز التكافل
+                                    الاجتماعي والشعور بالآخرين في هذا الشهر الفضيل.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
+            <!-- GLOBAL FOOTER (Unified) -->
+            <footer class="app-footer">
+                <div class="footer-content">
+                    <p class="copyright">جميع الحقوق محفوظة لـ مدرسة محمد بن القاسم الابتدائية &copy; 2026</p>
+                    <p class="developer">تصميم وبرمجة وتطوير: <span class="dev-name">الأستاذ / ناصر مسعود آل
+                            مستنير</span></p>
+                </div>
+            </footer>
         </main>
     </div>
 
+    <script src="js/main.js"></script>
     <script>
-        function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
-        }
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
-        }
-        window.onclick = function (e) {
-            if (e.target.classList.contains('modal-overlay')) {
-                e.target.style.display = 'none';
+        // Modal Functions - Fixed functionalities
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
             }
         }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('show');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        }
+
+        // Close modal when clicking outside the content
+        window.onclick = function (event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                event.target.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Add escape key support
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Escape") {
+                const modals = document.querySelectorAll('.modal-overlay');
+                modals.forEach(modal => {
+                    if (modal.classList.contains('show')) {
+                        modal.classList.remove('show');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        });
     </script>
 </body>
 

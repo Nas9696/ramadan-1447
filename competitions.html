@@ -1090,299 +1090,801 @@
         </aside>
 
         <main class="main-content">
-            <div class="competitions-container">
+            <div class="content-wrapper">
+                <div class="competitions-container">
 
-                <!-- STAGE 0: REGISTRATION -->
-                <div id="regSection" class="stage-section active">
-                    <div class="page-header">
-                        <h1>المسابقات الثقافية الكبرى</h1>
-                        <p>سجل بياناتك لتبدأ التحدي والمنافسة</p>
-                    </div>
-
-                    <div class="registration-card">
-                        <div class="school-icon"
-                            style="margin: 0 auto 2rem; width: 100px; height: 100px; font-size: 3rem; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white;">
-                            <i class="fas fa-user-graduate"></i>
+                    <!-- STAGE 0: REGISTRATION -->
+                    <div id="regSection" class="stage-section active">
+                        <div class="page-header">
+                            <h1>المسابقات الثقافية الكبرى</h1>
+                            <p>سجل بياناتك لتبدأ التحدي والمنافسة</p>
                         </div>
 
-                        <div class="input-group">
-                            <label for="studentName">اسم الطالب:</label>
-                            <input type="text" id="studentName" class="input-field" placeholder="اكتب اسمك هنا...">
-                        </div>
+                        <div class="registration-card">
+                            <div class="school-icon"
+                                style="margin: 0 auto 2rem; width: 100px; height: 100px; font-size: 3rem; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white;">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
 
-                        <div class="input-group">
-                            <label>الصف الدراسي:</label>
-                            <div class="grade-grid"
-                                style="grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0;">
-                                <div class="grade-card" onclick="selectGrade(1, this)" style="padding: 1rem;">
-                                    <div class="grade-icon" style="font-size: 1.5rem;">١</div>
-                                    <div class="grade-title" style="font-size: 0.9rem;">أول</div>
+                            <div class="input-group">
+                                <label for="studentName">اسم الطالب:</label>
+                                <input type="text" id="studentName" class="input-field" placeholder="اكتب اسمك هنا...">
+                            </div>
+
+                            <div class="input-group">
+                                <label>الصف الدراسي:</label>
+                                <div class="grade-grid"
+                                    style="grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0;">
+                                    <div class="grade-card" onclick="selectGrade(1, this)" style="padding: 1rem;">
+                                        <div class="grade-icon" style="font-size: 1.5rem;">١</div>
+                                        <div class="grade-title" style="font-size: 0.9rem;">أول</div>
+                                    </div>
+                                    <div class="grade-card" onclick="selectGrade(2, this)" style="padding: 1rem;">
+                                        <div class="grade-icon" style="font-size: 1.5rem;">٢</div>
+                                        <div class="grade-title" style="font-size: 0.9rem;">ثاني</div>
+                                    </div>
+                                    <div class="grade-card" onclick="selectGrade(3, this)" style="padding: 1rem;">
+                                        <div class="grade-icon" style="font-size: 1.5rem;">٣</div>
+                                        <div class="grade-title" style="font-size: 0.9rem;">ثالث</div>
+                                    </div>
+                                    <div class="grade-card" onclick="selectGrade(4, this)" style="padding: 1rem;">
+                                        <div class="grade-icon" style="font-size: 1.5rem;">٤</div>
+                                        <div class="grade-title" style="font-size: 0.9rem;">رابع</div>
+                                    </div>
+                                    <div class="grade-card" onclick="selectGrade(5, this)" style="padding: 1rem;">
+                                        <div class="grade-icon" style="font-size: 1.5rem;">٥</div>
+                                        <div class="grade-title" style="font-size: 0.9rem;">خامس</div>
+                                    </div>
+                                    <div class="grade-card" onclick="selectGrade(6, this)" style="padding: 1rem;">
+                                        <div class="grade-icon" style="font-size: 1.5rem;">٦</div>
+                                        <div class="grade-title" style="font-size: 0.9rem;">سادس</div>
+                                    </div>
                                 </div>
-                                <div class="grade-card" onclick="selectGrade(2, this)" style="padding: 1rem;">
-                                    <div class="grade-icon" style="font-size: 1.5rem;">٢</div>
-                                    <div class="grade-title" style="font-size: 0.9rem;">ثاني</div>
+                            </div>
+
+                            <button class="start-btn" onclick="submitRegistration()">
+                                <i class="fas fa-check ml-2"></i> التسجيل والبدء
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STAGE 2: SUBJECTS -->
+                    <div id="subjectSection" class="stage-section">
+                        <div class="page-header">
+                            <h1>اختر مجال المسابقة</h1>
+                            <p>حدد المادة التي تريد التحدي فيها</p>
+                        </div>
+
+                        <div class="subject-grid">
+                            <div class="subject-card math" onclick="selectSubject('math')">
+                                <div class="subject-icon"><i class="fas fa-calculator"></i></div>
+                                <h3>الرياضيات</h3>
+                            </div>
+                            <div class="subject-card science" onclick="selectSubject('science')">
+                                <div class="subject-icon"><i class="fas fa-flask"></i></div>
+                                <h3>العلوم</h3>
+                            </div>
+                            <div class="subject-card arabic" onclick="selectSubject('arabic')">
+                                <div class="subject-icon"><i class="fas fa-book-open"></i></div>
+                                <h3>لغتي</h3>
+                            </div>
+                            <div class="subject-card english" onclick="selectSubject('english')">
+                                <div class="subject-icon"><i class="fas fa-language"></i></div>
+                                <h3>English</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STAGE 3: LEVELS (NEW INFOGRAPHIC DESIGN) -->
+                    <div id="levelSection" class="stage-section">
+                        <div class="page-header">
+                            <h1>مسار التميز</h1>
+                            <p>اختر مستواك وانطلق نحو القمة .. لتكون من المتفوقين!</p>
+                        </div>
+
+                        <div class="steps-container">
+                            <!-- Level 1 -->
+                            <div class="level-step level-easy step-1" onclick="selectLevel('easy')">
+                                <div class="step-number">01</div>
+                                <div class="icon-circle">
+                                    <i class="fas fa-seedling"></i>
                                 </div>
-                                <div class="grade-card" onclick="selectGrade(3, this)" style="padding: 1rem;">
-                                    <div class="grade-icon" style="font-size: 1.5rem;">٣</div>
-                                    <div class="grade-title" style="font-size: 0.9rem;">ثالث</div>
+                                <div class="level-title">مبتدئ</div>
+                                <div class="level-desc">انطلاقة سهلة وممتعة<br>لجمع النقاط</div>
+                            </div>
+
+                            <!-- Level 2 -->
+                            <div class="level-step level-medium step-2" onclick="selectLevel('medium')">
+                                <div class="step-number">02</div>
+                                <div class="icon-circle">
+                                    <i class="fas fa-running"></i>
                                 </div>
-                                <div class="grade-card" onclick="selectGrade(4, this)" style="padding: 1rem;">
-                                    <div class="grade-icon" style="font-size: 1.5rem;">٤</div>
-                                    <div class="grade-title" style="font-size: 0.9rem;">رابع</div>
+                                <div class="level-title">متوسط</div>
+                                <div class="level-desc">تحدي لقدراتك الذهنية<br>وزيادة المعرفة</div>
+                            </div>
+
+                            <!-- Level 3 (RENAMED) -->
+                            <div class="level-step level-hard step-3" onclick="selectLevel('hard')">
+                                <div class="step-number">03</div>
+                                <div class="icon-circle">
+                                    <i class="fas fa-crown"></i>
                                 </div>
-                                <div class="grade-card" onclick="selectGrade(5, this)" style="padding: 1rem;">
-                                    <div class="grade-icon" style="font-size: 1.5rem;">٥</div>
-                                    <div class="grade-title" style="font-size: 0.9rem;">خامس</div>
+                                <div class="level-title">متفوق</div>
+                                <div class="level-desc">للأبطال فقط!<br>أثبت أنك من النخبة</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STAGE 2: QUIZ -->
+                    <div id="quizSection" class="stage-section">
+
+                        <!-- NEW HUD DESIGN -->
+                        <div class="stats-grid">
+                            <!-- Score Card -->
+                            <div class="stat-card score-card">
+                                <div class="stat-icon"><i class="fas fa-star"></i></div>
+                                <div class="stat-content">
+                                    <span class="stat-label">النقاط</span>
+                                    <span class="stat-value" id="scoreVal">٠</span>
                                 </div>
-                                <div class="grade-card" onclick="selectGrade(6, this)" style="padding: 1rem;">
-                                    <div class="grade-icon" style="font-size: 1.5rem;">٦</div>
-                                    <div class="grade-title" style="font-size: 0.9rem;">سادس</div>
+                            </div>
+
+                            <!-- Progress Card -->
+                            <div class="stat-card progress-card">
+                                <div class="stat-icon"><i class="fas fa-flag-checkered"></i></div>
+                                <div class="stat-content">
+                                    <span class="stat-label">السؤال</span>
+                                    <span class="stat-value" id="qCount">١</span>
+                                    <span class="stat-sub">من ٥</span>
+                                </div>
+                            </div>
+
+                            <!-- Remaining Card -->
+                            <div class="stat-card remaining-card">
+                                <div class="stat-icon"><i class="fas fa-hourglass-half"></i></div>
+                                <div class="stat-content">
+                                    <span class="stat-label">المتبقي</span>
+                                    <span class="stat-value" id="remainingVal">٥</span>
+                                </div>
+                            </div>
+
+                            <!-- Subject Card -->
+                            <div class="stat-card subject-card">
+                                <div class="stat-icon"><i class="fas fa-book"></i></div>
+                                <div class="stat-content">
+                                    <span class="stat-label">المادة</span>
+                                    <span class="stat-value" id="subjectBadge"
+                                        style="font-size:1.2rem; white-space:nowrap;">...</span>
                                 </div>
                             </div>
                         </div>
 
-                        <button class="start-btn" onclick="submitRegistration()">
-                            <i class="fas fa-check ml-2"></i> التسجيل والبدء
-                        </button>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="progressBar"></div>
+                        </div>
+
+                        <div class="quiz-card" id="quizCard">
+                            <!-- Question Image/Icon (Sticker Style) -->
+                            <div class="question-image-container">
+                                <div class="question-icon-wrapper">
+                                    <i id="questionIcon" class="fas fa-question-circle question-icon-placeholder"></i>
+                                </div>
+                            </div>
+
+                            <div class="question-text" id="questionText"></div>
+                            <div class="options-grid" id="optionsContainer"></div>
+                        </div>
+
+                        <div class="exit-container">
+                            <a href="#" onclick="goBackToSubjects()" class="exit-btn">
+                                <i class="fas fa-sign-out-alt ml-2"></i> خروج من المسابقة
+                            </a>
+                        </div>
                     </div>
+
                 </div>
 
-                <!-- STAGE 2: SUBJECTS -->
-                <div id="subjectSection" class="stage-section">
-                    <div class="page-header">
-                        <h1>اختر مجال المسابقة</h1>
-                        <p>حدد المادة التي تريد التحدي فيها</p>
-                    </div>
 
-                    <div class="subject-grid">
-                        <div class="subject-card math" onclick="selectSubject('math')">
-                            <div class="subject-icon"><i class="fas fa-calculator"></i></div>
-                            <h3>الرياضيات</h3>
+                <!-- NEW FLASHY RESULT MODAL -->
+                <div class="result-modal" id="flashyResultModal">
+                    <div class="result-content">
+                        <div class="result-icon-wrapper" id="resultIconWrapper">
+                            <i class="fas fa-trophy" id="resultIcon"></i>
                         </div>
-                        <div class="subject-card science" onclick="selectSubject('science')">
-                            <div class="subject-icon"><i class="fas fa-flask"></i></div>
-                            <h3>العلوم</h3>
-                        </div>
-                        <div class="subject-card arabic" onclick="selectSubject('arabic')">
-                            <div class="subject-icon"><i class="fas fa-book-open"></i></div>
-                            <h3>لغتي</h3>
-                        </div>
-                        <div class="subject-card english" onclick="selectSubject('english')">
-                            <div class="subject-icon"><i class="fas fa-language"></i></div>
-                            <h3>English</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STAGE 3: LEVELS (NEW INFOGRAPHIC DESIGN) -->
-                <div id="levelSection" class="stage-section">
-                    <div class="page-header">
-                        <h1>مسار التميز</h1>
-                        <p>اختر مستواك وانطلق نحو القمة .. لتكون من المتفوقين!</p>
-                    </div>
-
-                    <div class="steps-container">
-                        <!-- Level 1 -->
-                        <div class="level-step level-easy step-1" onclick="selectLevel('easy')">
-                            <div class="step-number">01</div>
-                            <div class="icon-circle">
-                                <i class="fas fa-seedling"></i>
-                            </div>
-                            <div class="level-title">مبتدئ</div>
-                            <div class="level-desc">انطلاقة سهلة وممتعة<br>لجمع النقاط</div>
+                        <div class="result-title" id="resultTitle">مذهل!</div>
+                        <div class="result-score" id="resultScore">٥٠</div>
+                        <div class="result-message" id="resultMessage">
+                            أحسنت يا بطل! إجاباتك رائعة ومستواك متميز جداً. استمر في هذا التفوق.
                         </div>
 
-                        <!-- Level 2 -->
-                        <div class="level-step level-medium step-2" onclick="selectLevel('medium')">
-                            <div class="step-number">02</div>
-                            <div class="icon-circle">
-                                <i class="fas fa-running"></i>
-                            </div>
-                            <div class="level-title">متوسط</div>
-                            <div class="level-desc">تحدي لقدراتك الذهنية<br>وزيادة المعرفة</div>
-                        </div>
-
-                        <!-- Level 3 (RENAMED) -->
-                        <div class="level-step level-hard step-3" onclick="selectLevel('hard')">
-                            <div class="step-number">03</div>
-                            <div class="icon-circle">
-                                <i class="fas fa-crown"></i>
-                            </div>
-                            <div class="level-title">متفوق</div>
-                            <div class="level-desc">للأبطال فقط!<br>أثبت أنك من النخبة</div>
+                        <div class="modal-buttons">
+                            <button class="modal-btn btn-outline" onclick="resetQuiz()">
+                                <i class="fas fa-redo"></i> محاولة أخرى
+                            </button>
+                            <button class="modal-btn btn-primary" onclick="printCertificate()" id="printBtn">
+                                <i class="fas fa-print"></i> طباعة الشهادة
+                            </button>
+                            <button class="modal-btn btn-primary" onclick="shareCertificateWhatsApp()" id="shareBtn"
+                                style="background: linear-gradient(135deg, #25d366, #128c7e);">
+                                <i class="fab fa-whatsapp"></i> إرسال عبر واتساب
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- STAGE 2: QUIZ -->
-                <div id="quizSection" class="stage-section">
+                <!-- Hidden Certificate Template (Premium) -->
+                <!-- Hidden Certificate Template (Premium V3 - Centered Official) -->
+                <!-- Hidden Certificate Template (Premium V4 - Sturdy Fixed Layout) -->
+                <div id="certificateArea">
+                    <div class="cert-frame-container">
+                        <!-- Corners (Inside the container) -->
+                        <div class="corner-deco c-tl"></div>
+                        <div class="corner-deco c-tr"></div>
+                        <div class="corner-deco c-bl"></div>
+                        <div class="corner-deco c-br"></div>
 
-                    <!-- NEW HUD DESIGN -->
-                    <div class="stats-grid">
-                        <!-- Score Card -->
-                        <div class="stat-card score-card">
-                            <div class="stat-icon"><i class="fas fa-star"></i></div>
-                            <div class="stat-content">
-                                <span class="stat-label">النقاط</span>
-                                <span class="stat-value" id="scoreVal">٠</span>
-                            </div>
+                        <!-- Unified Header Center -->
+                        <div class="cert-header-unified">
+                            <h2>المملكة العربية السعودية</h2>
+                            <h2>وزارة التعليم</h2>
+                            <h2>إدارة التعليم بمنطقة نجران</h2>
+                            <h3>مدرسة محمد بن القاسم الابتدائية</h3>
                         </div>
 
-                        <!-- Progress Card -->
-                        <div class="stat-card progress-card">
-                            <div class="stat-icon"><i class="fas fa-flag-checkered"></i></div>
-                            <div class="stat-content">
-                                <span class="stat-label">السؤال</span>
-                                <span class="stat-value" id="qCount">١</span>
-                                <span class="stat-sub">من ٥</span>
-                            </div>
-                        </div>
+                        <!-- Big Main Title -->
+                        <div class="cert-big-title">شهادة شكر وتقدير</div>
 
-                        <!-- Remaining Card -->
-                        <div class="stat-card remaining-card">
-                            <div class="stat-icon"><i class="fas fa-hourglass-half"></i></div>
-                            <div class="stat-content">
-                                <span class="stat-label">المتبقي</span>
-                                <span class="stat-value" id="remainingVal">٥</span>
+                        <!-- Body Content (Flex Distributed) -->
+                        <div class="cert-body-container">
+                            <div class="cert-line-text">تتقدم إدارة المدرسة ومشرفو الأنشطة بوافر الشكر وعظيم الامتنان
+                                للطالب
+                                المتميز
+                            </div>
+
+                            <div class="cert-student-name" id="certStudentName">اسم الطالب</div>
+
+                            <div class="cert-line-text">
+                                بالصف <span class="highlight-data" id="certGrade">...</span>
+                            </div>
+
+                            <div class="cert-line-text">
+                                وذلك لتفوقه في المسابقة الثقافية الرمضانية لمادة <span class="highlight-data"
+                                    id="certSubject">...</span>
+                            </div>
+
+                            <div class="cert-line-text">
+                                وحصوله على مجموع نقاط <span class="highlight-data" id="certScore">..</span>
+                            </div>
+
+                            <div class="cert-line-text" style="font-size: 1.2rem; color: #7f8c8d; margin-top: 5px;">
+                                راجين من الله له دوام التوفيق والسداد
                             </div>
                         </div>
 
-                        <!-- Subject Card -->
-                        <div class="stat-card subject-card">
-                            <div class="stat-icon"><i class="fas fa-book"></i></div>
-                            <div class="stat-content">
-                                <span class="stat-label">المادة</span>
-                                <span class="stat-value" id="subjectBadge"
-                                    style="font-size:1.2rem; white-space:nowrap;">...</span>
+                        <!-- Signatures -->
+                        <div class="cert-footer-table">
+                            <div class="sig-col">
+                                <div class="sig-role">مشرف المسابقة</div>
+                                <div class="sig-val">أ. ناصر مسعود آل مستنير</div>
+                            </div>
+                            <div class="sig-col">
+                                <div class="sig-role">مشرف النشاط</div>
+                                <div class="sig-val">أ. هاني حامد</div>
+                            </div>
+                            <div class="sig-col">
+                                <div class="sig-role">مدير المدرسة</div>
+                                <div class="sig-val">أ. سفر بن مبارك آل فلكه</div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="progress-container">
-                        <div class="progress-bar" id="progressBar"></div>
-                    </div>
-
-                    <div class="quiz-card" id="quizCard">
-                        <!-- Question Image/Icon (Sticker Style) -->
-                        <div class="question-image-container">
-                            <div class="question-icon-wrapper">
-                                <i id="questionIcon" class="fas fa-question-circle question-icon-placeholder"></i>
-                            </div>
-                        </div>
-
-                        <div class="question-text" id="questionText"></div>
-                        <div class="options-grid" id="optionsContainer"></div>
-                    </div>
-
-                    <div class="exit-container">
-                        <a href="#" onclick="goBackToSubjects()" class="exit-btn">
-                            <i class="fas fa-sign-out-alt ml-2"></i> خروج من المسابقة
-                        </a>
-                    </div>
                 </div>
 
-            </div>
-            <!-- App Footer -->
-            <footer class="app-footer">
-                <div class="footer-content">
-                    <p class="copyright">جميع الحقوق محفوظة لـ مدرسة محمد بن القاسم الابتدائية &copy; 2026</p>
-                    <p class="developer">تصميم وبرمجة وتطوير: <span class="dev-name">الأستاذ / ناصر مسعود آل
-                            مستنير</span></p>
-                </div>
-            </footer>
-        </main>
-    </div>
 
-    <!-- NEW FLASHY RESULT MODAL -->
-    <div class="result-modal" id="flashyResultModal">
-        <div class="result-content">
-            <div class="result-icon-wrapper" id="resultIconWrapper">
-                <i class="fas fa-trophy" id="resultIcon"></i>
-            </div>
-            <div class="result-title" id="resultTitle">مذهل!</div>
-            <div class="result-score" id="resultScore">٥٠</div>
-            <div class="result-message" id="resultMessage">
-                أحسنت يا بطل! إجاباتك رائعة ومستواك متميز جداً. استمر في هذا التفوق.
-            </div>
 
-            <div class="modal-buttons">
-                <button class="modal-btn btn-outline" onclick="resetQuiz()">
-                    <i class="fas fa-redo"></i> محاولة أخرى
-                </button>
-                <button class="modal-btn btn-primary" onclick="printCertificate()" id="printBtn">
-                    <i class="fas fa-print"></i> طباعة الشهادة
-                </button>
-                <button class="modal-btn btn-primary" onclick="shareCertificateWhatsApp()" id="shareBtn"
-                    style="background: linear-gradient(135deg, #25d366, #128c7e);">
-                    <i class="fab fa-whatsapp"></i> إرسال عبر واتساب
-                </button>
-            </div>
-        </div>
-    </div>
+            </div> <!-- End competitions-container -->
 
-    <!-- Hidden Certificate Template (Premium) -->
-    <!-- Hidden Certificate Template (Premium V3 - Centered Official) -->
-    <!-- Hidden Certificate Template (Premium V4 - Sturdy Fixed Layout) -->
-    <div id="certificateArea">
-        <div class="cert-frame-container">
-            <!-- Corners (Inside the container) -->
-            <div class="corner-deco c-tl"></div>
-            <div class="corner-deco c-tr"></div>
-            <div class="corner-deco c-bl"></div>
-            <div class="corner-deco c-br"></div>
 
-            <!-- Unified Header Center -->
-            <div class="cert-header-unified">
-                <h2>المملكة العربية السعودية</h2>
-                <h2>وزارة التعليم</h2>
-                <h2>إدارة التعليم بمنطقة نجران</h2>
-                <h3>مدرسة محمد بن القاسم الابتدائية</h3>
-            </div>
 
-            <!-- Big Main Title -->
-            <div class="cert-big-title">شهادة شكر وتقدير</div>
+            <script src="js/main.js"></script>
+            <script>
+                // State
+                let studentName = '';
+                let currentGrade = 0;
+                let currentSubject = '';
+                let currentQuestionIndex = 0;
+                let score = 0;
 
-            <!-- Body Content (Flex Distributed) -->
-            <div class="cert-body-container">
-                <div class="cert-line-text">تتقدم إدارة المدرسة ومشرفو الأنشطة بوافر الشكر وعظيم الامتنان للطالب المتميز
-                </div>
+                // DB (Strict Arabic with Icons)
+                // DB (Strict Arabic with Icons & Levels)
+                const questionsDB = {
+                    math: {
+                        easy: [
+                            { q: "٥ + ٣ = ؟", options: ["٨", "٧", "٩", "٦"], answer: 0, icon: "fas fa-plus" },
+                            { q: "١٠ - ٤ = ؟", options: ["٦", "٥", "٤", "٧"], answer: 0, icon: "fas fa-minus" },
+                            { q: "٢ × ٣ = ؟", options: ["٦", "٨", "٤", "٥"], answer: 0, icon: "fas fa-times" },
+                            { q: "نصف العدد ١٠ هو؟", options: ["٥", "٢", "٤", "٦"], answer: 0, icon: "fas fa-adjust" },
+                            { q: "عدد أصابع اليد الواحدة؟", options: ["٥", "٤", "٦", "٣"], answer: 0, icon: "fas fa-hand-paper" }
+                        ],
+                        medium: [
+                            { q: "٤٥ ÷ ٩ = ؟", options: ["٥", "٦", "٩", "٤"], answer: 0, icon: "fas fa-divide" },
+                            { q: "٧ × ٨ = ؟", options: ["٥٦", "٥٤", "٤٨", "٤٩"], answer: 0, icon: "fas fa-times" },
+                            { q: "١٠٠ - ٢٥ = ؟", options: ["٧٥", "٦٥", "٨٥", "٥٥"], answer: 0, icon: "fas fa-minus" },
+                            { q: "ربع العدد ٢٠ هو؟", options: ["٥", "٤", "٦", "٨"], answer: 0, icon: "fas fa-chart-pie" },
+                            { q: "١٢ + ١٨ = ؟", options: ["٣٠", "٢٨", "٣٢", "٢٩"], answer: 0, icon: "fas fa-plus" }
+                        ],
+                        hard: [
+                            { q: "الجذر التربيعي لـ ٨١؟", options: ["٩", "٨", "٧", "٦"], answer: 0, icon: "fas fa-square-root-alt" },
+                            { q: "١٥٪ من ٢٠٠ = ؟", options: ["٣٠", "٢٠", "٤٠", "٢٥"], answer: 0, icon: "fas fa-percentage" },
+                            { q: "٢ أس ٣ = ؟", options: ["٨", "٦", "٩", "٤"], answer: 0, icon: "fas fa-superscript" },
+                            { q: "مجموع زوايا المثلث؟", options: ["١٨٠", "٣٦٠", "٩٠", "٢٧٠"], answer: 0, icon: "fas fa-play" },
+                            { q: "حل المعادلة: س + ٥ = ١٢", options: ["٧", "٦", "٨", "٥"], answer: 0, icon: "fas fa-equals" }
+                        ]
+                    },
+                    science: {
+                        easy: [
+                            { q: "حيوان يسمى ملك الغابة؟", options: ["الأسد", "النمر", "الفيل", "الزرافة"], answer: 0, icon: "fas fa-crown" },
+                            { q: "تجمد الماء يتحول إلى؟", options: ["ثلج", "بخار", "سائل", "غيم"], answer: 0, icon: "fas fa-snowflake" },
+                            { q: "عدد أرجل العنكبوت؟", options: ["٨", "٦", "٤", "١٠"], answer: 0, icon: "fas fa-spider" },
+                            { q: "نحتاج الهواء لـ...؟", options: ["التنفس", "الأكل", "النوم", "المشي"], answer: 0, icon: "fas fa-wind" },
+                            { q: "اللون الأخضر في النبات سببه؟", options: ["الكلوروفيل", "الماء", "الشمس", "التربة"], answer: 0, icon: "fas fa-leaf" }
+                        ],
+                        medium: [
+                            { q: "عدد الكواكب الشمسية؟", options: ["٨", "٩", "٧", "١٠"], answer: 0, icon: "fas fa-sun" },
+                            { q: "أسرع حيوان بري؟", options: ["الفهد", "الأسد", "الغزال", "الحصان"], answer: 0, icon: "fas fa-paw" },
+                            { q: "عضو التذوق هو؟", options: ["اللسان", "الأنف", "العين", "الأذن"], answer: 0, icon: "fas fa-grin-tongue" },
+                            { q: "حيوان يعيش في الماء واليابسة؟", options: ["الضفدع", "السمكة", "الحوت", "الجمل"], answer: 0, icon: "fas fa-frog" },
+                            { q: "الجزء المسؤول عن التفكير؟", options: ["الدماغ", "القلب", "المعدة", "الرئة"], answer: 0, icon: "fas fa-brain" }
+                        ],
+                        hard: [
+                            { q: "وحدة قياس القوة؟", options: ["النيوتن", "الجول", "الواط", "الفولت"], answer: 0, icon: "fas fa-weight-hanging" },
+                            { q: "الغاز الأكثر وفرة في الجو؟", options: ["النيتروجين", "الأكسجين", "الهيدروجين", "الهيليوم"], answer: 0, icon: "fas fa-cloud" },
+                            { q: "أقرب كوكب للشمس؟", options: ["عطارد", "الزهرة", "الأرض", "المريخ"], answer: 0, icon: "fas fa-circle" },
+                            { q: "عنصر كيميائي رمزه (O)؟", options: ["الأكسجين", "الهيدروجين", "الذهب", "الحديد"], answer: 0, icon: "fas fa-flask" },
+                            { q: "سرعة الضوء أكبر من الصوت؟", options: ["نعم", "لا", "متساويان", "لا علاقة"], answer: 0, icon: "fas fa-bolt" }
+                        ]
+                    },
+                    arabic: {
+                        easy: [
+                            { q: "ضد كلمة (طويل)؟", options: ["قصير", "كبير", "ضخم", "واسع"], answer: 0, icon: "fas fa-text-height" },
+                            { q: "جمع (قلم)؟", options: ["أقلام", "قلمان", "مقلمة", "قلام"], answer: 0, icon: "fas fa-pen" },
+                            { q: "كلمة تبدأ بـ (ال) الشمسية؟", options: ["الشمس", "القمر", "الباب", "الولد"], answer: 0, icon: "fas fa-sun" },
+                            { q: "فاعل الخير ... (محبوب)؟", options: ["محبوب", "مكروه", "سيء", "قبيح"], answer: 0, icon: "fas fa-heart" },
+                            { q: "صوت الأسد يسمى؟", options: ["زئير", "صهيل", "مواء", "نباح"], answer: 0, icon: "fas fa-volume-up" }
+                        ],
+                        medium: [
+                            { q: "عاصمة السعودية؟", options: ["الرياض", "جدة", "مكة المكرمة", "الدمام"], answer: 0, icon: "fas fa-city" },
+                            { q: "عدد حروف الهجاء؟", options: ["٢٨", "٢٦", "٢٩", "٢٥"], answer: 0, icon: "fas fa-font" },
+                            { q: "(ذهب محمد) الفاعل؟", options: ["محمد", "ذهب", "ضمير", "لا يوجد"], answer: 0, icon: "fas fa-user" },
+                            { q: "مثنى كلمة (طالب)؟", options: ["طالبان", "طلاب", "طالبات", "طلبة"], answer: 0, icon: "fas fa-user-friends" },
+                            { q: "أكمل المثل: الوقت كـ...؟", options: ["السيف", "الذهب", "الماء", "الرياح"], answer: 0, icon: "fas fa-hourglass-half" }
+                        ],
+                        hard: [
+                            { q: "مؤلف علم العروض؟", options: ["الخليل بن أحمد", "سيبويه", "الفرزدق", "الجاحظ"], answer: 0, icon: "fas fa-book-reader" },
+                            { q: "إعراب (السماءُ) في: السماءُ صافية؟", options: ["مبتدأ", "خبر", "فاعل", "مفعول به"], answer: 0, icon: "fas fa-code-branch" },
+                            { q: "معنى (الأبلق)؟", options: ["السواد والبياض", "الأبيض الخالص", "الأسود الخالص", "الأحمر"], answer: 0, icon: "fas fa-palette" },
+                            { q: "شاعر الرسول صلى الله عليه وسلم؟", options: ["حسان بن ثابت", "كعب بن زهير", "عبدالله بن رواحة", "زيد بن ثابت"], answer: 0, icon: "fas fa-feather" },
+                            { q: "جمع (عندليب)؟", options: ["عنادل", "عنادلة", "عندليبات", "عندل"], answer: 0, icon: "fas fa-music" }
+                        ]
+                    },
+                    english: {
+                        easy: [
+                            { q: "Apple is...?", options: ["Fruit", "Car", "Color", "City"], answer: 0, icon: "fas fa-apple-alt" },
+                            { q: "Sun Color?", options: ["Yellow", "Red", "Blue", "Green"], answer: 0, icon: "fas fa-sun" },
+                            { q: "1, 2, 3, ...?", options: ["4", "5", "6", "0"], answer: 0, icon: "fas fa-sort-numeric-down" },
+                            { q: "Cat says...?", options: ["Meow", "Moo", "Woof", "Quack"], answer: 0, icon: "fas fa-cat" },
+                            { q: "Opposite of Big?", options: ["Small", "Tall", "Fat", "Long"], answer: 0, icon: "fas fa-compress" }
+                        ],
+                        medium: [
+                            { q: "Capital of KSA?", options: ["Riyadh", "Jeddah", "Mecca", "Dammam"], answer: 0, icon: "fas fa-map-marker-alt" },
+                            { q: "Opposite of Cold?", options: ["Hot", "Freeze", "Ice", "Winter"], answer: 0, icon: "fas fa-temperature-high" },
+                            { q: "Past of 'Go'?", options: ["Went", "Goes", "Gone", "Going"], answer: 0, icon: "fas fa-walking" },
+                            { q: "Plural of 'Man'?", options: ["Men", "Mans", "Manes", "Mens"], answer: 0, icon: "fas fa-user-friends" },
+                            { q: "Doctor works in...?", options: ["Hospital", "School", "Farm", "Shop"], answer: 0, icon: "fas fa-hospital" }
+                        ],
+                        hard: [
+                            { q: "Largest Ocean?", options: ["Pacific", "Atlantic", "Indian", "Arctic"], answer: 0, icon: "fas fa-water" },
+                            { q: "Synonym of 'Happy'?", options: ["Joyful", "Sad", "Angry", "Tired"], answer: 0, icon: "fas fa-smile-beam" },
+                            { q: "H2O is...?", options: ["Water", "Air", "Fire", "Earth"], answer: 0, icon: "fas fa-tint" },
+                            { q: "Fastest Land Animal?", options: ["Cheetah", "Lion", "Tiger", "Horse"], answer: 0, icon: "fas fa-running" },
+                            { q: "Verb form of 'Beautiful'?", options: ["Beautify", "beauty", "Beautifully", "Beauties"], answer: 0, icon: "fas fa-magic" }
+                        ]
+                    }
+                };
 
-                <div class="cert-student-name" id="certStudentName">اسم الطالب</div>
+                // Current State
+                let currentLevel = 'easy';
 
-                <div class="cert-line-text">
-                    بالصف <span class="highlight-data" id="certGrade">...</span>
-                </div>
+                // --- Registration Logic RESTORED ---
+                function selectGrade(grade, card) {
+                    currentGrade = grade;
+                    document.querySelectorAll('.grade-card').forEach(c => c.style.borderColor = 'transparent');
+                    card.style.borderColor = 'var(--secondary-color)';
+                    card.style.backgroundColor = '#e8f4fc'; // visual feedback
+                }
 
-                <div class="cert-line-text">
-                    وذلك لتفوقه في المسابقة الثقافية الرمضانية لمادة <span class="highlight-data"
-                        id="certSubject">...</span>
-                </div>
+                function submitRegistration() {
+                    const nameInput = document.getElementById('studentName');
+                    if (nameInput.value.trim() === '') {
+                        alert('الرجاء كتابة اسم الطالب');
+                        return;
+                    }
+                    if (currentGrade === 0) {
+                        alert('الرجاء اختيار الصف الدراسي');
+                        return;
+                    }
 
-                <div class="cert-line-text">
-                    وحصوله على مجموع نقاط <span class="highlight-data" id="certScore">..</span>
-                </div>
+                    studentName = nameInput.value.trim();
+                    // document.getElementById('welcomeMsg').innerText = `أهلاً بك يا بطل: ${studentName}`; // If element exists
 
-                <div class="cert-line-text" style="font-size: 1.2rem; color: #7f8c8d; margin-top: 5px;">
-                    راجين من الله له دوام التوفيق والسداد
-                </div>
-            </div>
+                    // Navigate from Registration -> Subjects
+                    document.getElementById('regSection').classList.remove('active');
+                    document.getElementById('subjectSection').classList.add('active');
+                }
 
-            <!-- Signatures -->
-            <div class="cert-footer-table">
-                <div class="sig-col">
-                    <div class="sig-role">مشرف المسابقة</div>
-                    <div class="sig-val">أ. ناصر مسعود آل مستنير</div>
-                </div>
-                <div class="sig-col">
-                    <div class="sig-role">مشرف النشاط</div>
-                    <div class="sig-val">أ. هاني حامد</div>
-                </div>
-                <div class="sig-col">
-                    <div class="sig-role">مدير المدرسة</div>
-                    <div class="sig-val">أ. سفر بن مبارك آل فلكه</div>
-                </div>
-            </div>
-        </div>
+                // --- Selection Logic ---
+                function selectSubject(subject) {
+                    currentSubject = subject;
+                    const names = { math: "الرياضيات", science: "العلوم", arabic: "لغتي", english: "الإنجليزي" };
+                    document.getElementById('subjectBadge').innerText = names[subject];
+
+                    // Inject Subject Class for CSS Theming
+                    document.body.className = '';
+                    document.body.classList.add(`subject-${subject}`);
+
+                    // Go to Level Selection
+                    document.getElementById('subjectSection').classList.remove('active');
+                    document.getElementById('levelSection').classList.add('active');
+                }
+
+                function selectLevel(level) {
+                    currentLevel = level;
+                    startQuiz();
+
+                    document.getElementById('levelSection').classList.remove('active');
+                    document.getElementById('quizSection').classList.add('active');
+                }
+
+                function goBackToSubjects() {
+                    // Reset to Subject Selection
+                    document.querySelectorAll('.stage-section').forEach(el => el.classList.remove('active'));
+                    document.getElementById('subjectSection').classList.add('active');
+
+                    document.body.className = ''; // remove theme
+                    resetQuizState();
+                    document.getElementById('flashyResultModal').classList.remove('active');
+                }
+
+                // Back from Level to Subject (Optional, if we added a back button there)
+                function backToSubjectSelection() {
+                    document.getElementById('levelSection').classList.remove('active');
+                    document.getElementById('subjectSection').classList.add('active');
+                    document.body.className = '';
+                }
+
+                function resetQuizState() {
+                    currentQuestionIndex = 0;
+                    score = 0;
+                }
+
+                function startQuiz() {
+                    resetQuizState();
+                    updateHUD();
+                    document.getElementById('flashyResultModal').classList.remove('active');
+                    showQuestion();
+                }
+
+                function resetQuiz() {
+                    startQuiz();
+                }
+
+                function updateHUD() {
+                    try {
+                        // Score
+                        document.getElementById('scoreVal').innerText = safeToArabicNum(score * 10);
+
+                        // Question X of 5
+                        document.getElementById('qCount').innerText = safeToArabicNum(currentQuestionIndex + 1);
+
+                        // Remaining
+                        const remaining = 5 - currentQuestionIndex;
+                        document.getElementById('remainingVal').innerText = safeToArabicNum(remaining);
+
+                        // Progress Bar
+                        const progress = ((currentQuestionIndex) / 5) * 100;
+                        document.getElementById('progressBar').style.width = `${progress}%`;
+                    } catch (e) { console.error("HUD Error", e); }
+                }
+
+                function showQuestion() {
+                    try {
+                        const qData = questionsDB[currentSubject][currentLevel][currentQuestionIndex % 5];
+
+                        // Set Text
+                        document.getElementById('questionText').innerText = qData.q;
+
+                        // Set Icon
+                        const iconClass = qData.icon || "fas fa-question-circle";
+                        document.getElementById('questionIcon').className = `question-icon-placeholder ${iconClass}`;
+
+                        // Randomize Options
+                        let indices = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
+                        let html = '';
+                        indices.forEach(i => {
+                            html += `<button class="option-btn" onclick="checkAnswer(${i}, this)">${qData.options[i]}</button>`;
+                        });
+                        document.getElementById('optionsContainer').innerHTML = html;
+                    } catch (e) {
+                        console.error("Error showing question:", e);
+                        // Fallback or restart if error
+                        alert("حدث خطأ في تحميل السؤال، سيتم إعادة المحاولة.");
+                        startQuiz();
+                    }
+                }
+
+                // Robust Arabic Converter
+                function safeToArabicNum(num) {
+                    const map = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+                    return num.toString().replace(/\d/g, d => map[d]);
+                }
+
+                function checkAnswer(selectedIndex, btn) {
+                    const qData = questionsDB[currentSubject][currentLevel][currentQuestionIndex % 5];
+                    const isCorrect = (selectedIndex === qData.answer);
+
+                    // Disable all buttons
+                    const btns = document.querySelectorAll('.option-btn');
+                    btns.forEach(b => b.disabled = true);
+
+                    if (isCorrect) {
+                        btn.classList.add('correct');
+                        score++;
+                        triggerConfetti({ particleCount: 50, spread: 50, origin: { y: 0.7 } }); // Small confetti
+                        playSuccessSound();
+                    } else {
+                        btn.classList.add('wrong');
+                        playErrorSound();
+                        // Highlight correct
+                        btns.forEach(b => {
+                            if (b.innerText === qData.options[qData.answer]) b.classList.add('correct');
+                        });
+                    }
+
+                    updateHUD();
+
+                    // Next Question Delay
+                    setTimeout(() => {
+                        currentQuestionIndex++;
+                        if (currentQuestionIndex < 5) {
+                            showQuestion();
+                            updateHUD();
+                        } else {
+                            finishQuiz();
+                        }
+                    }, 1500);
+                }
+
+                function finishQuiz() {
+                    const modal = document.getElementById('flashyResultModal');
+                    const iconWrapper = document.getElementById('resultIconWrapper');
+                    const icon = document.getElementById('resultIcon');
+                    const title = document.getElementById('resultTitle');
+                    const scoreEl = document.getElementById('resultScore');
+                    const msg = document.getElementById('resultMessage');
+                    const printBtn = document.getElementById('printBtn');
+                    const shareBtn = document.getElementById('shareBtn');
+
+                    const finalScore = score * 10;
+                    scoreEl.innerText = safeToArabicNum(finalScore);
+
+                    modal.classList.add('active');
+
+                    if (finalScore >= 40) {
+                        // Success
+                        iconWrapper.className = 'result-icon-wrapper';
+                        icon.className = 'fas fa-trophy';
+                        title.innerText = 'مذهل!';
+                        title.style.color = '#2c3e50';
+                        msg.innerText = 'أحسنت يا بطل! إجاباتك رائعة ومستواك متميز جداً. استمر في هذا التفوق.';
+                        printBtn.style.display = 'inline-flex';
+                        shareBtn.style.display = 'inline-flex';
+
+                        // Big Confetti
+                        triggerConfetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
+                        playSuccessSound();
+                    } else {
+                        // Retry
+                        iconWrapper.className = 'result-icon-wrapper retry-mode';
+                        icon.className = 'fas fa-redo-alt'; // or thumbs-up
+                        title.innerText = 'حاول مرة أخرى';
+                        title.style.color = '#e74c3c';
+                        msg.innerText = 'لا بأس! يمكنك تحقيق نتيجة أفضل. ركز جيداً وحاول مرة أخرى يا بطل.';
+                        printBtn.style.display = 'none';
+                        shareBtn.style.display = 'none';
+                    }
+                }
+
+                // --- Audio ---
+                function playSuccessSound() {
+                    if ('speechSynthesis' in window) {
+                        window.speechSynthesis.cancel();
+                        const msg = new SpeechSynthesisUtterance("أحسنت، إجابة صحيحة");
+                        msg.lang = 'ar-SA';
+                        msg.rate = 1.1;
+                        window.speechSynthesis.speak(msg);
+                    }
+                }
+
+                function playErrorSound() {
+                    if ('speechSynthesis' in window) {
+                        window.speechSynthesis.cancel();
+                        const msg = new SpeechSynthesisUtterance("خطأ، حاول مرة أخرى");
+                        msg.lang = 'ar-SA';
+                        window.speechSynthesis.speak(msg);
+                    }
+                }
+
+                // --- Confetti Wrapper ---
+                function triggerConfetti(opts) {
+                    if (typeof confetti === 'function') {
+                        confetti({
+                            zIndex: 10000,
+                            ...opts
+                        });
+                    }
+                }
+
+                // --- Fill Certificate Data ---
+                function fillCertificateData() {
+                    document.getElementById('certStudentName').innerText = studentName;
+                    const gradeNames = ["", "الأول", "الثاني", "الثالث", "الرابع", "الخامس", "السادس"];
+                    document.getElementById('certGrade').innerText = gradeNames[currentGrade];
+                    const subjNames = { math: "الرياضيات", science: "العلوم", arabic: "لغتي", english: "اللغة الإنجليزية" };
+                    document.getElementById('certSubject').innerText = subjNames[currentSubject];
+                    document.getElementById('certScore').innerText = safeToArabicNum(score * 10);
+                }
+
+                // --- Render Certificate to Canvas (Robust Clone Method) ---
+                function renderCertificateToCanvas() {
+                    return new Promise((resolve, reject) => {
+                        try {
+                            fillCertificateData();
+                            const originalCert = document.getElementById('certificateArea');
+
+                            // Clone to avoid messing with original state
+                            const certClone = originalCert.cloneNode(true);
+
+                            // Force visibility and position on the clone
+                            Object.assign(certClone.style, {
+                                position: 'fixed',
+                                top: '0',
+                                left: '0',
+                                width: '1120px',
+                                height: '790px',
+                                zIndex: '99999',
+                                display: 'block',
+                                visibility: 'visible',
+                                opacity: '1',
+                                background: '#ffffff',
+                                pointerEvents: 'none' // Don't interact
+                            });
+
+                            document.body.appendChild(certClone);
+
+                            // Tiny delay to ensure DOM paint
+                            setTimeout(() => {
+                                html2canvas(certClone, {
+                                    scale: 2,
+                                    useCORS: true,
+                                    backgroundColor: '#ffffff',
+                                    width: 1120,
+                                    height: 790,
+                                    scrollX: 0,
+                                    scrollY: 0,
+                                    windowWidth: 1120,
+                                    windowHeight: 790
+                                }).then(canvas => {
+                                    document.body.removeChild(certClone);
+                                    resolve(canvas);
+                                }).catch(err => {
+                                    document.body.removeChild(certClone);
+                                    reject(err);
+                                });
+                            }, 100);
+
+                        } catch (e) {
+                            reject(e);
+                        }
+                    });
+                }
+
+                // --- Printing (Image-based, NO CSS print issues) ---
+                async function printCertificate() {
+                    const btn = document.getElementById('printBtn');
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحضير...';
+                    btn.disabled = true;
+
+                    try {
+                        const canvas = await renderCertificateToCanvas();
+                        const imgData = canvas.toDataURL('image/png');
+
+                        // Open new window with ONLY the image
+                        const printWin = window.open('', '_blank');
+                        printWin.document.write(`
+                    <html>
+                    <head><title>شهادة تقدير</title></head>
+                    <body style="margin:0; display:flex; justify-content:center; align-items:center; min-height:100vh; background:white;">
+                        <img src="${imgData}" style="max-width:100%; max-height:100vh;" />
+                    </body>
+                    </html>
+                `);
+                        printWin.document.close();
+                        printWin.onload = function () {
+                            printWin.print();
+                        };
+                    } catch (e) {
+                        console.error('Print error:', e);
+                        alert('حدث خطأ أثناء تحضير الشهادة للطباعة');
+                    }
+
+                    btn.innerHTML = '<i class="fas fa-print"></i> طباعة الشهادة';
+                    btn.disabled = false;
+                }
+
+                // --- Share via WhatsApp ---
+                async function shareCertificateWhatsApp() {
+                    const btn = document.getElementById('shareBtn');
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحضير...';
+                    btn.disabled = true;
+
+                    try {
+                        const canvas = await renderCertificateToCanvas();
+
+                        // Try Web Share API first (works on mobile)
+                        canvas.toBlob(async (blob) => {
+                            if (navigator.share && navigator.canShare) {
+                                const file = new File([blob], 'certificate.png', { type: 'image/png' });
+                                const shareData = {
+                                    title: 'شهادة تقدير',
+                                    text: `🏆 شهادة شكر وتقدير للطالب ${studentName} لتفوقه في المسابقة الثقافية الرمضانية`,
+                                    files: [file]
+                                };
+                                if (navigator.canShare(shareData)) {
+                                    await navigator.share(shareData);
+                                } else {
+                                    // Fallback: WhatsApp link with text only
+                                    openWhatsAppText();
+                                }
+                            } else {
+                                // Fallback: Download image + open WhatsApp with text
+                                downloadCertImage(canvas);
+                                openWhatsAppText();
+                            }
+                            btn.innerHTML = '<i class="fab fa-whatsapp"></i> إرسال عبر واتساب';
+                            btn.disabled = false;
+                        }, 'image/png');
+                    } catch (e) {
+                        console.error('Share error:', e);
+                        openWhatsAppText();
+                        btn.innerHTML = '<i class="fab fa-whatsapp"></i> إرسال عبر واتساب';
+                        btn.disabled = false;
+                    }
+                }
+
+                function downloadCertImage(canvas) {
+                    const link = document.createElement('a');
+                    link.download = `شهادة_${studentName}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                }
+
+                function openWhatsAppText() {
+                    const text = `🏆 شهادة شكر وتقدير\n\nللطالب المتميز: ${studentName}\nالمادة: ${document.getElementById('certSubject').innerText}\nالنقاط: ${safeToArabicNum(score * 10)}\n\nمن مدرسة محمد بن القاسم الابتدائية`;
+                    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+                    window.open(url, '_blank');
+                }
+
+            </script>
+
     </div>
 
     <!-- GLOBAL FOOTER (Unified) -->
@@ -1393,507 +1895,8 @@
         </div>
     </footer>
 
-    </div> <!-- End competitions-container -->
-
-    <script src="js/main.js"></script>
-    <script>
-        // State
-        let studentName = '';
-        let currentGrade = 0;
-        let currentSubject = '';
-        let currentQuestionIndex = 0;
-        let score = 0;
-
-        // DB (Strict Arabic with Icons)
-        // DB (Strict Arabic with Icons & Levels)
-        const questionsDB = {
-            math: {
-                easy: [
-                    { q: "٥ + ٣ = ؟", options: ["٨", "٧", "٩", "٦"], answer: 0, icon: "fas fa-plus" },
-                    { q: "١٠ - ٤ = ؟", options: ["٦", "٥", "٤", "٧"], answer: 0, icon: "fas fa-minus" },
-                    { q: "٢ × ٣ = ؟", options: ["٦", "٨", "٤", "٥"], answer: 0, icon: "fas fa-times" },
-                    { q: "نصف العدد ١٠ هو؟", options: ["٥", "٢", "٤", "٦"], answer: 0, icon: "fas fa-adjust" },
-                    { q: "عدد أصابع اليد الواحدة؟", options: ["٥", "٤", "٦", "٣"], answer: 0, icon: "fas fa-hand-paper" }
-                ],
-                medium: [
-                    { q: "٤٥ ÷ ٩ = ؟", options: ["٥", "٦", "٩", "٤"], answer: 0, icon: "fas fa-divide" },
-                    { q: "٧ × ٨ = ؟", options: ["٥٦", "٥٤", "٤٨", "٤٩"], answer: 0, icon: "fas fa-times" },
-                    { q: "١٠٠ - ٢٥ = ؟", options: ["٧٥", "٦٥", "٨٥", "٥٥"], answer: 0, icon: "fas fa-minus" },
-                    { q: "ربع العدد ٢٠ هو؟", options: ["٥", "٤", "٦", "٨"], answer: 0, icon: "fas fa-chart-pie" },
-                    { q: "١٢ + ١٨ = ؟", options: ["٣٠", "٢٨", "٣٢", "٢٩"], answer: 0, icon: "fas fa-plus" }
-                ],
-                hard: [
-                    { q: "الجذر التربيعي لـ ٨١؟", options: ["٩", "٨", "٧", "٦"], answer: 0, icon: "fas fa-square-root-alt" },
-                    { q: "١٥٪ من ٢٠٠ = ؟", options: ["٣٠", "٢٠", "٤٠", "٢٥"], answer: 0, icon: "fas fa-percentage" },
-                    { q: "٢ أس ٣ = ؟", options: ["٨", "٦", "٩", "٤"], answer: 0, icon: "fas fa-superscript" },
-                    { q: "مجموع زوايا المثلث؟", options: ["١٨٠", "٣٦٠", "٩٠", "٢٧٠"], answer: 0, icon: "fas fa-play" },
-                    { q: "حل المعادلة: س + ٥ = ١٢", options: ["٧", "٦", "٨", "٥"], answer: 0, icon: "fas fa-equals" }
-                ]
-            },
-            science: {
-                easy: [
-                    { q: "حيوان يسمى ملك الغابة؟", options: ["الأسد", "النمر", "الفيل", "الزرافة"], answer: 0, icon: "fas fa-crown" },
-                    { q: "تجمد الماء يتحول إلى؟", options: ["ثلج", "بخار", "سائل", "غيم"], answer: 0, icon: "fas fa-snowflake" },
-                    { q: "عدد أرجل العنكبوت؟", options: ["٨", "٦", "٤", "١٠"], answer: 0, icon: "fas fa-spider" },
-                    { q: "نحتاج الهواء لـ...؟", options: ["التنفس", "الأكل", "النوم", "المشي"], answer: 0, icon: "fas fa-wind" },
-                    { q: "اللون الأخضر في النبات سببه؟", options: ["الكلوروفيل", "الماء", "الشمس", "التربة"], answer: 0, icon: "fas fa-leaf" }
-                ],
-                medium: [
-                    { q: "عدد الكواكب الشمسية؟", options: ["٨", "٩", "٧", "١٠"], answer: 0, icon: "fas fa-sun" },
-                    { q: "أسرع حيوان بري؟", options: ["الفهد", "الأسد", "الغزال", "الحصان"], answer: 0, icon: "fas fa-paw" },
-                    { q: "عضو التذوق هو؟", options: ["اللسان", "الأنف", "العين", "الأذن"], answer: 0, icon: "fas fa-grin-tongue" },
-                    { q: "حيوان يعيش في الماء واليابسة؟", options: ["الضفدع", "السمكة", "الحوت", "الجمل"], answer: 0, icon: "fas fa-frog" },
-                    { q: "الجزء المسؤول عن التفكير؟", options: ["الدماغ", "القلب", "المعدة", "الرئة"], answer: 0, icon: "fas fa-brain" }
-                ],
-                hard: [
-                    { q: "وحدة قياس القوة؟", options: ["النيوتن", "الجول", "الواط", "الفولت"], answer: 0, icon: "fas fa-weight-hanging" },
-                    { q: "الغاز الأكثر وفرة في الجو؟", options: ["النيتروجين", "الأكسجين", "الهيدروجين", "الهيليوم"], answer: 0, icon: "fas fa-cloud" },
-                    { q: "أقرب كوكب للشمس؟", options: ["عطارد", "الزهرة", "الأرض", "المريخ"], answer: 0, icon: "fas fa-circle" },
-                    { q: "عنصر كيميائي رمزه (O)؟", options: ["الأكسجين", "الهيدروجين", "الذهب", "الحديد"], answer: 0, icon: "fas fa-flask" },
-                    { q: "سرعة الضوء أكبر من الصوت؟", options: ["نعم", "لا", "متساويان", "لا علاقة"], answer: 0, icon: "fas fa-bolt" }
-                ]
-            },
-            arabic: {
-                easy: [
-                    { q: "ضد كلمة (طويل)؟", options: ["قصير", "كبير", "ضخم", "واسع"], answer: 0, icon: "fas fa-text-height" },
-                    { q: "جمع (قلم)؟", options: ["أقلام", "قلمان", "مقلمة", "قلام"], answer: 0, icon: "fas fa-pen" },
-                    { q: "كلمة تبدأ بـ (ال) الشمسية؟", options: ["الشمس", "القمر", "الباب", "الولد"], answer: 0, icon: "fas fa-sun" },
-                    { q: "فاعل الخير ... (محبوب)؟", options: ["محبوب", "مكروه", "سيء", "قبيح"], answer: 0, icon: "fas fa-heart" },
-                    { q: "صوت الأسد يسمى؟", options: ["زئير", "صهيل", "مواء", "نباح"], answer: 0, icon: "fas fa-volume-up" }
-                ],
-                medium: [
-                    { q: "عاصمة السعودية؟", options: ["الرياض", "جدة", "مكة المكرمة", "الدمام"], answer: 0, icon: "fas fa-city" },
-                    { q: "عدد حروف الهجاء؟", options: ["٢٨", "٢٦", "٢٩", "٢٥"], answer: 0, icon: "fas fa-font" },
-                    { q: "(ذهب محمد) الفاعل؟", options: ["محمد", "ذهب", "ضمير", "لا يوجد"], answer: 0, icon: "fas fa-user" },
-                    { q: "مثنى كلمة (طالب)؟", options: ["طالبان", "طلاب", "طالبات", "طلبة"], answer: 0, icon: "fas fa-user-friends" },
-                    { q: "أكمل المثل: الوقت كـ...؟", options: ["السيف", "الذهب", "الماء", "الرياح"], answer: 0, icon: "fas fa-hourglass-half" }
-                ],
-                hard: [
-                    { q: "مؤلف علم العروض؟", options: ["الخليل بن أحمد", "سيبويه", "الفرزدق", "الجاحظ"], answer: 0, icon: "fas fa-book-reader" },
-                    { q: "إعراب (السماءُ) في: السماءُ صافية؟", options: ["مبتدأ", "خبر", "فاعل", "مفعول به"], answer: 0, icon: "fas fa-code-branch" },
-                    { q: "معنى (الأبلق)؟", options: ["السواد والبياض", "الأبيض الخالص", "الأسود الخالص", "الأحمر"], answer: 0, icon: "fas fa-palette" },
-                    { q: "شاعر الرسول صلى الله عليه وسلم؟", options: ["حسان بن ثابت", "كعب بن زهير", "عبدالله بن رواحة", "زيد بن ثابت"], answer: 0, icon: "fas fa-feather" },
-                    { q: "جمع (عندليب)؟", options: ["عنادل", "عنادلة", "عندليبات", "عندل"], answer: 0, icon: "fas fa-music" }
-                ]
-            },
-            english: {
-                easy: [
-                    { q: "Apple is...?", options: ["Fruit", "Car", "Color", "City"], answer: 0, icon: "fas fa-apple-alt" },
-                    { q: "Sun Color?", options: ["Yellow", "Red", "Blue", "Green"], answer: 0, icon: "fas fa-sun" },
-                    { q: "1, 2, 3, ...?", options: ["4", "5", "6", "0"], answer: 0, icon: "fas fa-sort-numeric-down" },
-                    { q: "Cat says...?", options: ["Meow", "Moo", "Woof", "Quack"], answer: 0, icon: "fas fa-cat" },
-                    { q: "Opposite of Big?", options: ["Small", "Tall", "Fat", "Long"], answer: 0, icon: "fas fa-compress" }
-                ],
-                medium: [
-                    { q: "Capital of KSA?", options: ["Riyadh", "Jeddah", "Mecca", "Dammam"], answer: 0, icon: "fas fa-map-marker-alt" },
-                    { q: "Opposite of Cold?", options: ["Hot", "Freeze", "Ice", "Winter"], answer: 0, icon: "fas fa-temperature-high" },
-                    { q: "Past of 'Go'?", options: ["Went", "Goes", "Gone", "Going"], answer: 0, icon: "fas fa-walking" },
-                    { q: "Plural of 'Man'?", options: ["Men", "Mans", "Manes", "Mens"], answer: 0, icon: "fas fa-user-friends" },
-                    { q: "Doctor works in...?", options: ["Hospital", "School", "Farm", "Shop"], answer: 0, icon: "fas fa-hospital" }
-                ],
-                hard: [
-                    { q: "Largest Ocean?", options: ["Pacific", "Atlantic", "Indian", "Arctic"], answer: 0, icon: "fas fa-water" },
-                    { q: "Synonym of 'Happy'?", options: ["Joyful", "Sad", "Angry", "Tired"], answer: 0, icon: "fas fa-smile-beam" },
-                    { q: "H2O is...?", options: ["Water", "Air", "Fire", "Earth"], answer: 0, icon: "fas fa-tint" },
-                    { q: "Fastest Land Animal?", options: ["Cheetah", "Lion", "Tiger", "Horse"], answer: 0, icon: "fas fa-running" },
-                    { q: "Verb form of 'Beautiful'?", options: ["Beautify", "beauty", "Beautifully", "Beauties"], answer: 0, icon: "fas fa-magic" }
-                ]
-            }
-        };
-
-        // Current State
-        let currentLevel = 'easy';
-
-        // --- Registration Logic RESTORED ---
-        function selectGrade(grade, card) {
-            currentGrade = grade;
-            document.querySelectorAll('.grade-card').forEach(c => c.style.borderColor = 'transparent');
-            card.style.borderColor = 'var(--secondary-color)';
-            card.style.backgroundColor = '#e8f4fc'; // visual feedback
-        }
-
-        function submitRegistration() {
-            const nameInput = document.getElementById('studentName');
-            if (nameInput.value.trim() === '') {
-                alert('الرجاء كتابة اسم الطالب');
-                return;
-            }
-            if (currentGrade === 0) {
-                alert('الرجاء اختيار الصف الدراسي');
-                return;
-            }
-
-            studentName = nameInput.value.trim();
-            // document.getElementById('welcomeMsg').innerText = `أهلاً بك يا بطل: ${studentName}`; // If element exists
-
-            // Navigate from Registration -> Subjects
-            document.getElementById('regSection').classList.remove('active');
-            document.getElementById('subjectSection').classList.add('active');
-        }
-
-        // --- Selection Logic ---
-        function selectSubject(subject) {
-            currentSubject = subject;
-            const names = { math: "الرياضيات", science: "العلوم", arabic: "لغتي", english: "الإنجليزي" };
-            document.getElementById('subjectBadge').innerText = names[subject];
-
-            // Inject Subject Class for CSS Theming
-            document.body.className = '';
-            document.body.classList.add(`subject-${subject}`);
-
-            // Go to Level Selection
-            document.getElementById('subjectSection').classList.remove('active');
-            document.getElementById('levelSection').classList.add('active');
-        }
-
-        function selectLevel(level) {
-            currentLevel = level;
-            startQuiz();
-
-            document.getElementById('levelSection').classList.remove('active');
-            document.getElementById('quizSection').classList.add('active');
-        }
-
-        function goBackToSubjects() {
-            // Reset to Subject Selection
-            document.querySelectorAll('.stage-section').forEach(el => el.classList.remove('active'));
-            document.getElementById('subjectSection').classList.add('active');
-
-            document.body.className = ''; // remove theme
-            resetQuizState();
-            document.getElementById('flashyResultModal').classList.remove('active');
-        }
-
-        // Back from Level to Subject (Optional, if we added a back button there)
-        function backToSubjectSelection() {
-            document.getElementById('levelSection').classList.remove('active');
-            document.getElementById('subjectSection').classList.add('active');
-            document.body.className = '';
-        }
-
-        function resetQuizState() {
-            currentQuestionIndex = 0;
-            score = 0;
-        }
-
-        function startQuiz() {
-            resetQuizState();
-            updateHUD();
-            document.getElementById('flashyResultModal').classList.remove('active');
-            showQuestion();
-        }
-
-        function resetQuiz() {
-            startQuiz();
-        }
-
-        function updateHUD() {
-            try {
-                // Score
-                document.getElementById('scoreVal').innerText = safeToArabicNum(score * 10);
-
-                // Question X of 5
-                document.getElementById('qCount').innerText = safeToArabicNum(currentQuestionIndex + 1);
-
-                // Remaining
-                const remaining = 5 - currentQuestionIndex;
-                document.getElementById('remainingVal').innerText = safeToArabicNum(remaining);
-
-                // Progress Bar
-                const progress = ((currentQuestionIndex) / 5) * 100;
-                document.getElementById('progressBar').style.width = `${progress}%`;
-            } catch (e) { console.error("HUD Error", e); }
-        }
-
-        function showQuestion() {
-            try {
-                const qData = questionsDB[currentSubject][currentLevel][currentQuestionIndex % 5];
-
-                // Set Text
-                document.getElementById('questionText').innerText = qData.q;
-
-                // Set Icon
-                const iconClass = qData.icon || "fas fa-question-circle";
-                document.getElementById('questionIcon').className = `question-icon-placeholder ${iconClass}`;
-
-                // Randomize Options
-                let indices = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
-                let html = '';
-                indices.forEach(i => {
-                    html += `<button class="option-btn" onclick="checkAnswer(${i}, this)">${qData.options[i]}</button>`;
-                });
-                document.getElementById('optionsContainer').innerHTML = html;
-            } catch (e) {
-                console.error("Error showing question:", e);
-                // Fallback or restart if error
-                alert("حدث خطأ في تحميل السؤال، سيتم إعادة المحاولة.");
-                startQuiz();
-            }
-        }
-
-        // Robust Arabic Converter
-        function safeToArabicNum(num) {
-            const map = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-            return num.toString().replace(/\d/g, d => map[d]);
-        }
-
-        function checkAnswer(selectedIndex, btn) {
-            const qData = questionsDB[currentSubject][currentLevel][currentQuestionIndex % 5];
-            const isCorrect = (selectedIndex === qData.answer);
-
-            // Disable all buttons
-            const btns = document.querySelectorAll('.option-btn');
-            btns.forEach(b => b.disabled = true);
-
-            if (isCorrect) {
-                btn.classList.add('correct');
-                score++;
-                triggerConfetti({ particleCount: 50, spread: 50, origin: { y: 0.7 } }); // Small confetti
-                playSuccessSound();
-            } else {
-                btn.classList.add('wrong');
-                playErrorSound();
-                // Highlight correct
-                btns.forEach(b => {
-                    if (b.innerText === qData.options[qData.answer]) b.classList.add('correct');
-                });
-            }
-
-            updateHUD();
-
-            // Next Question Delay
-            setTimeout(() => {
-                currentQuestionIndex++;
-                if (currentQuestionIndex < 5) {
-                    showQuestion();
-                    updateHUD();
-                } else {
-                    finishQuiz();
-                }
-            }, 1500);
-        }
-
-        function finishQuiz() {
-            const modal = document.getElementById('flashyResultModal');
-            const iconWrapper = document.getElementById('resultIconWrapper');
-            const icon = document.getElementById('resultIcon');
-            const title = document.getElementById('resultTitle');
-            const scoreEl = document.getElementById('resultScore');
-            const msg = document.getElementById('resultMessage');
-            const printBtn = document.getElementById('printBtn');
-            const shareBtn = document.getElementById('shareBtn');
-
-            const finalScore = score * 10;
-            scoreEl.innerText = safeToArabicNum(finalScore);
-
-            modal.classList.add('active');
-
-            if (finalScore >= 40) {
-                // Success
-                iconWrapper.className = 'result-icon-wrapper';
-                icon.className = 'fas fa-trophy';
-                title.innerText = 'مذهل!';
-                title.style.color = '#2c3e50';
-                msg.innerText = 'أحسنت يا بطل! إجاباتك رائعة ومستواك متميز جداً. استمر في هذا التفوق.';
-                printBtn.style.display = 'inline-flex';
-                shareBtn.style.display = 'inline-flex';
-
-                // Big Confetti
-                triggerConfetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
-                playSuccessSound();
-            } else {
-                // Retry
-                iconWrapper.className = 'result-icon-wrapper retry-mode';
-                icon.className = 'fas fa-redo-alt'; // or thumbs-up
-                title.innerText = 'حاول مرة أخرى';
-                title.style.color = '#e74c3c';
-                msg.innerText = 'لا بأس! يمكنك تحقيق نتيجة أفضل. ركز جيداً وحاول مرة أخرى يا بطل.';
-                printBtn.style.display = 'none';
-                shareBtn.style.display = 'none';
-            }
-        }
-
-        // --- Audio ---
-        function playSuccessSound() {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const msg = new SpeechSynthesisUtterance("أحسنت، إجابة صحيحة");
-                msg.lang = 'ar-SA';
-                msg.rate = 1.1;
-                window.speechSynthesis.speak(msg);
-            }
-        }
-
-        function playErrorSound() {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const msg = new SpeechSynthesisUtterance("خطأ، حاول مرة أخرى");
-                msg.lang = 'ar-SA';
-                window.speechSynthesis.speak(msg);
-            }
-        }
-
-        // --- Confetti Wrapper ---
-        function triggerConfetti(opts) {
-            if (typeof confetti === 'function') {
-                confetti({
-                    zIndex: 10000,
-                    ...opts
-                });
-            }
-        }
-
-        // --- Fill Certificate Data ---
-        function fillCertificateData() {
-            document.getElementById('certStudentName').innerText = studentName;
-            const gradeNames = ["", "الأول", "الثاني", "الثالث", "الرابع", "الخامس", "السادس"];
-            document.getElementById('certGrade').innerText = gradeNames[currentGrade];
-            const subjNames = { math: "الرياضيات", science: "العلوم", arabic: "لغتي", english: "اللغة الإنجليزية" };
-            document.getElementById('certSubject').innerText = subjNames[currentSubject];
-            document.getElementById('certScore').innerText = safeToArabicNum(score * 10);
-        }
-
-        // --- Render Certificate to Canvas (Robust Clone Method) ---
-        function renderCertificateToCanvas() {
-            return new Promise((resolve, reject) => {
-                try {
-                    fillCertificateData();
-                    const originalCert = document.getElementById('certificateArea');
-
-                    // Clone to avoid messing with original state
-                    const certClone = originalCert.cloneNode(true);
-
-                    // Force visibility and position on the clone
-                    Object.assign(certClone.style, {
-                        position: 'fixed',
-                        top: '0',
-                        left: '0',
-                        width: '1120px',
-                        height: '790px',
-                        zIndex: '99999',
-                        display: 'block',
-                        visibility: 'visible',
-                        opacity: '1',
-                        background: '#ffffff',
-                        pointerEvents: 'none' // Don't interact
-                    });
-
-                    document.body.appendChild(certClone);
-
-                    // Tiny delay to ensure DOM paint
-                    setTimeout(() => {
-                        html2canvas(certClone, {
-                            scale: 2,
-                            useCORS: true,
-                            backgroundColor: '#ffffff',
-                            width: 1120,
-                            height: 790,
-                            scrollX: 0,
-                            scrollY: 0,
-                            windowWidth: 1120,
-                            windowHeight: 790
-                        }).then(canvas => {
-                            document.body.removeChild(certClone);
-                            resolve(canvas);
-                        }).catch(err => {
-                            document.body.removeChild(certClone);
-                            reject(err);
-                        });
-                    }, 100);
-
-                } catch (e) {
-                    reject(e);
-                }
-            });
-        }
-
-        // --- Printing (Image-based, NO CSS print issues) ---
-        async function printCertificate() {
-            const btn = document.getElementById('printBtn');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحضير...';
-            btn.disabled = true;
-
-            try {
-                const canvas = await renderCertificateToCanvas();
-                const imgData = canvas.toDataURL('image/png');
-
-                // Open new window with ONLY the image
-                const printWin = window.open('', '_blank');
-                printWin.document.write(`
-                    <html>
-                    <head><title>شهادة تقدير</title></head>
-                    <body style="margin:0; display:flex; justify-content:center; align-items:center; min-height:100vh; background:white;">
-                        <img src="${imgData}" style="max-width:100%; max-height:100vh;" />
-                    </body>
-                    </html>
-                `);
-                printWin.document.close();
-                printWin.onload = function () {
-                    printWin.print();
-                };
-            } catch (e) {
-                console.error('Print error:', e);
-                alert('حدث خطأ أثناء تحضير الشهادة للطباعة');
-            }
-
-            btn.innerHTML = '<i class="fas fa-print"></i> طباعة الشهادة';
-            btn.disabled = false;
-        }
-
-        // --- Share via WhatsApp ---
-        async function shareCertificateWhatsApp() {
-            const btn = document.getElementById('shareBtn');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحضير...';
-            btn.disabled = true;
-
-            try {
-                const canvas = await renderCertificateToCanvas();
-
-                // Try Web Share API first (works on mobile)
-                canvas.toBlob(async (blob) => {
-                    if (navigator.share && navigator.canShare) {
-                        const file = new File([blob], 'certificate.png', { type: 'image/png' });
-                        const shareData = {
-                            title: 'شهادة تقدير',
-                            text: `🏆 شهادة شكر وتقدير للطالب ${studentName} لتفوقه في المسابقة الثقافية الرمضانية`,
-                            files: [file]
-                        };
-                        if (navigator.canShare(shareData)) {
-                            await navigator.share(shareData);
-                        } else {
-                            // Fallback: WhatsApp link with text only
-                            openWhatsAppText();
-                        }
-                    } else {
-                        // Fallback: Download image + open WhatsApp with text
-                        downloadCertImage(canvas);
-                        openWhatsAppText();
-                    }
-                    btn.innerHTML = '<i class="fab fa-whatsapp"></i> إرسال عبر واتساب';
-                    btn.disabled = false;
-                }, 'image/png');
-            } catch (e) {
-                console.error('Share error:', e);
-                openWhatsAppText();
-                btn.innerHTML = '<i class="fab fa-whatsapp"></i> إرسال عبر واتساب';
-                btn.disabled = false;
-            }
-        }
-
-        function downloadCertImage(canvas) {
-            const link = document.createElement('a');
-            link.download = `شهادة_${studentName}.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        }
-
-        function openWhatsAppText() {
-            const text = `🏆 شهادة شكر وتقدير\n\nللطالب المتميز: ${studentName}\nالمادة: ${document.getElementById('certSubject').innerText}\nالنقاط: ${safeToArabicNum(score * 10)}\n\nمن مدرسة محمد بن القاسم الابتدائية`;
-            const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
-            window.open(url, '_blank');
-        }
-
-    </script>
+    </main>
+    </div>
 </body>
 
 </html>

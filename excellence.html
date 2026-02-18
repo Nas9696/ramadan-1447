@@ -19,23 +19,28 @@
                 <h2>مدرسة محمد بن القاسم</h2>
                 <div class="term-badge">رمضان 1447هـ</div>
             </div>
-                        <ul class="nav-links">
+            <ul class="nav-links">
                 <li><a href="home.html"><i class="fas fa-home fa-fw ml-2"></i> الرئيسية</a></li>
                 <li><a href="intro.html"><i class="fas fa-book-open fa-fw ml-2"></i> كلمة المدير</a></li>
-                
+
                 <li class="has-submenu">
-                    <a href="#"><i class="fas fa-graduation-cap fa-fw ml-2"></i> الخطة الدراسية <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <a href="#"><i class="fas fa-graduation-cap fa-fw ml-2"></i> الخطة الدراسية <i
+                            class="fas fa-chevron-down dropdown-icon"></i></a>
                     <ul class="submenu">
-                        <li><a href="objectives.html"><i class="fas fa-bullseye fa-fw ml-2"></i> الأهداف الإجرائية</a></li>
+                        <li><a href="objectives.html"><i class="fas fa-bullseye fa-fw ml-2"></i> الأهداف الإجرائية</a>
+                        </li>
                         <li><a href="paths.html"><i class="fas fa-road fa-fw ml-2"></i> مسارات العمل</a></li>
-                        <li><a href="procedural-plan.html"><i class="fas fa-tasks fa-fw ml-2"></i> الخطة الزمنية</a></li>
+                        <li><a href="procedural-plan.html"><i class="fas fa-tasks fa-fw ml-2"></i> الخطة الزمنية</a>
+                        </li>
                         <li><a href="roles.html"><i class="fas fa-user-tie fa-fw ml-2"></i> مهام اللجان</a></li>
-                        <li><a href="activities.html"><i class="fas fa-shapes fa-fw ml-2"></i> الأنشطة الرمضانية</a></li>
+                        <li><a href="activities.html"><i class="fas fa-shapes fa-fw ml-2"></i> الأنشطة الرمضانية</a>
+                        </li>
                         <li><a href="appendices.html"><i class="fas fa-paperclip fa-fw ml-2"></i> الملاحق</a></li>
                     </ul>
                 </li>
 
-                <li><a href="excellence.html" class="active"><i class="fas fa-trophy fa-fw ml-2"></i> لوحة التميز</a></li>
+                <li><a href="excellence.html" class="active"><i class="fas fa-trophy fa-fw ml-2"></i> لوحة التميز</a>
+                </li>
                 <li><a href="competitions.html"><i class="fas fa-brain fa-fw ml-2"></i> المسابقات الثقافية</a></li>
                 <li><a href="family-messages.html"><i class="fas fa-envelope fa-fw ml-2"></i> رسائل توعوية</a></li>
                 <li><a href="greetings.html"><i class="fas fa-gift fa-fw ml-2"></i> ارسل تهنئتك لاصدقائك</a></li>
@@ -43,65 +48,76 @@
         </aside>
 
         <main class="main-content">
-            <div class="page-header fade-in">
-                <h1>لوحة الشرف الرقمية</h1>
-                <p>سجل الفخر والإنجاز لمدرسة محمد بن القاسم لشهر رمضان 1447هـ</p>
-            </div>
-
-            <div class="excellence-grid fade-in">
-                <!-- Cards -->
-                <div class="excel-card" onclick="openManager('teachers')">
-                    <div class="excel-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <h3>المعلم المتميز</h3>
-                    <div class="winner-count" id="count-teachers">0</div>
+            <div class="content-wrapper">
+                <div class="page-header fade-in">
+                    <h1>لوحة الشرف الرقمية</h1>
+                    <p>سجل الفخر والإنجاز لمدرسة محمد بن القاسم لشهر رمضان 1447هـ</p>
                 </div>
 
-                <div class="excel-card" onclick="openManager('classes')">
-                    <div class="excel-icon"><i class="fas fa-users-crown"></i></div>
-                    <h3>الفصل الذهبي</h3>
-                    <div class="winner-count" id="count-classes">0</div>
-                </div>
-
-                <div class="excel-card" onclick="openManager('students')">
-                    <div class="excel-icon"><i class="fas fa-user-graduate"></i></div>
-                    <h3>الطالب المثالي</h3>
-                    <div class="winner-count" id="count-students">0</div>
-                </div>
-
-                <div class="excel-card" onclick="openManager('parents')">
-                    <div class="excel-icon"><i class="fas fa-hand-holding-heart"></i></div>
-                    <h3>الأسرة الداعمة</h3>
-                    <div class="winner-count" id="count-parents">0</div>
-                </div>
-            </div>
-
-            <!-- Manager Modal -->
-            <div id="managerModal" class="modal-overlay">
-                <div class="modal-content">
-                    <div style="text-align: left; margin-bottom: 20px;">
-                        <i class="fas fa-times" style="cursor: pointer; font-size: 1.2rem; color: #999;"
-                            onclick="closeManager()"></i>
+                <div class="excellence-grid fade-in">
+                    <!-- Cards -->
+                    <div class="excel-card" onclick="openManager('teachers')">
+                        <div class="excel-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <h3>المعلم المتميز</h3>
+                        <div class="winner-count" id="count-teachers">0</div>
                     </div>
 
-                    <h2 id="modalTitle" style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-color);">
-                    </h2>
-
-                    <div class="input-group">
-                        <input type="text" id="nameInput" class="excel-input" placeholder="اكتب الاسم هنا...">
-                        <button class="add-btn" onclick="addWinner()">إضافة</button>
+                    <div class="excel-card" onclick="openManager('classes')">
+                        <div class="excel-icon"><i class="fas fa-users-crown"></i></div>
+                        <h3>الفصل الذهبي</h3>
+                        <div class="winner-count" id="count-classes">0</div>
                     </div>
 
-                    <div
-                        style="background: #f8f9fa; padding: 1rem; border-radius: 12px; min-height: 200px; margin-top: 1rem;">
-                        <ul id="winnersList" class="winners-list" style="list-style: none; padding: 0;"></ul>
-                        <div id="emptyState" style="text-align: center; color: #aaa; margin-top: 2rem;">
-                            <i class="fas fa-clipboard-list fa-3x"></i>
-                            <p style="margin-top: 1rem;">لا توجد أسماء مضافة بعد.</p>
+                    <div class="excel-card" onclick="openManager('students')">
+                        <div class="excel-icon"><i class="fas fa-user-graduate"></i></div>
+                        <h3>الطالب المثالي</h3>
+                        <div class="winner-count" id="count-students">0</div>
+                    </div>
+
+                    <div class="excel-card" onclick="openManager('parents')">
+                        <div class="excel-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h3>الأسرة الداعمة</h3>
+                        <div class="winner-count" id="count-parents">0</div>
+                    </div>
+                </div>
+
+                <!-- Manager Modal -->
+                <div id="managerModal" class="modal-overlay">
+                    <div class="modal-content">
+                        <div style="text-align: left; margin-bottom: 20px;">
+                            <i class="fas fa-times" style="cursor: pointer; font-size: 1.2rem; color: #999;"
+                                onclick="closeManager()"></i>
+                        </div>
+
+                        <h2 id="modalTitle"
+                            style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-color);">
+                        </h2>
+
+                        <div class="input-group">
+                            <input type="text" id="nameInput" class="excel-input" placeholder="اكتب الاسم هنا...">
+                            <button class="add-btn" onclick="addWinner()">إضافة</button>
+                        </div>
+
+                        <div
+                            style="background: #f8f9fa; padding: 1rem; border-radius: 12px; min-height: 200px; margin-top: 1rem;">
+                            <ul id="winnersList" class="winners-list" style="list-style: none; padding: 0;"></ul>
+                            <div id="emptyState" style="text-align: center; color: #aaa; margin-top: 2rem;">
+                                <i class="fas fa-clipboard-list fa-3x"></i>
+                                <p style="margin-top: 1rem;">لا توجد أسماء مضافة بعد.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- GLOBAL FOOTER (Unified) -->
+            <footer class="app-footer">
+                <div class="footer-content">
+                    <p class="copyright">جميع الحقوق محفوظة لـ مدرسة محمد بن القاسم الابتدائية &copy; 2026</p>
+                    <p class="developer">تصميم وبرمجة وتطوير: <span class="dev-name">الأستاذ / ناصر مسعود آل
+                            مستنير</span></p>
+                </div>
+            </footer>
         </main>
     </div>
 

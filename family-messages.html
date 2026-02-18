@@ -20,6 +20,8 @@
             text-align: center;
             margin-bottom: 3rem;
             position: relative;
+            padding-top: 2rem;
+            /* Added padding to prevent overlap */
         }
 
         .hub-header h1 {
@@ -303,173 +305,194 @@
         </aside>
 
         <main class="main-content">
-            <div class="hub-container fade-in">
+            <div class="content-wrapper">
+                <div class="hub-container fade-in">
 
-                <div class="hub-header">
-                    <h1>رسائل توعوية (رمضان ١٤٤٧هـ)</h1>
-                    <p style="font-size:1.2rem; color:#7f8c8d;">جسور ممتدة بين المدرسة والأسرة لبناء جيل واعد</p>
-                </div>
-
-                <!-- 1. Fathers Section -->
-                <div class="section-block">
-                    <div class="section-title father-title">
-                        <i class="fas fa-user-tie"></i>
-                        <span>إلى شركاء النجاح .. الآباء الكرام</span>
+                    <div class="hub-header">
+                        <h1>رسائل توعوية (رمضان ١٤٤٧هـ)</h1>
+                        <p style="font-size:1.2rem; color:#7f8c8d;">جسور ممتدة بين المدرسة والأسرة لبناء جيل واعد</p>
                     </div>
-                    <div class="message-grid">
-                        <div class="message-card father-card">
-                            <div class="message-icon"><i class="fas fa-handshake"></i></div>
-                            <div class="message-text">
-                                <h4>شراكة استراتيجية</h4>
-                                <p>نجاح ابنك في المدرسة يعتمد بنسبة 70% على التكامل بين دورك في المنزل ودورنا في الفصل.
+
+                    <!-- 1. Fathers Section -->
+                    <div class="section-block">
+                        <div class="section-title father-title">
+                            <i class="fas fa-user-tie"></i>
+                            <span>إلى شركاء النجاح .. الآباء الكرام</span>
+                        </div>
+                        <div class="message-grid">
+                            <div class="message-card father-card">
+                                <div class="message-icon"><i class="fas fa-handshake"></i></div>
+                                <div class="message-text">
+                                    <h4>شراكة استراتيجية</h4>
+                                    <p>نجاح ابنك في المدرسة يعتمد بنسبة 70% على التكامل بين دورك في المنزل ودورنا في
+                                        الفصل.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="message-card father-card">
+                                <div class="message-icon"><i class="fas fa-eye"></i></div>
+                                <div class="message-text">
+                                    <h4>المتابعة اليومية</h4>
+                                    <p>سؤالك اليومي لابنك "ماذا تعلمت اليوم؟" يفتح آفاقاً للحوار ويشعره باهتمامك.</p>
+                                </div>
+                            </div>
+                            <div class="message-card father-card">
+                                <div class="message-icon"><i class="fas fa-praying-hands"></i></div>
+                                <div class="message-text">
+                                    <h4>القدوة الحسنة</h4>
+                                    <p>اصطحابك لابنك إلى المسجد وترتيل القرآن أمامه هو الدرس العملي الأبلغ في رمضان.</p>
+                                </div>
+                            </div>
+                            <div class="message-card father-card">
+                                <div class="message-icon"><i class="fas fa-clock"></i></div>
+                                <div class="message-text">
+                                    <h4>ضبط الوقت</h4>
+                                    <p>تعويد الابن على النوم المبكر في رمضان ليس خياراً، بل ضرورة لتركيزه ومناعته.</p>
+                                </div>
+                            </div>
+                            <div class="message-card father-card">
+                                <div class="message-icon"><i class="fas fa-mobile-alt"></i></div>
+                                <div class="message-text">
+                                    <h4>الرقابة الواعية</h4>
+                                    <p>الأجهزة الذكية سارق صامت للوقت والذهن، قنن استخدامها لتضمن صفاء ذهن ابنك.</p>
+                                </div>
+                            </div>
+                            <div class="message-card father-card">
+                                <div class="message-icon"><i class="fas fa-medal"></i></div>
+                                <div class="message-text">
+                                    <h4>التحفيز المستمر</h4>
+                                    <p>كافئ ابنك على صيامه وإنجازه الدراسي، فالتشجيع يصنع المعجزات في شخصية الطفل.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Mothers Section -->
+                    <div class="section-block">
+                        <div class="section-title mother-title">
+                            <i class="fas fa-heart"></i>
+                            <span>إلى صانعات الأجيال .. الأمهات الفاضلات</span>
+                        </div>
+                        <div class="message-grid">
+                            <div class="message-card mother-card">
+                                <div class="message-icon"><i class="fas fa-utensils"></i></div>
+                                <div class="message-text">
+                                    <h4>وقود العقل</h4>
+                                    <p>وجبة السحور المتوازنة (تمر، حليب، ألياف) تضمن لابنك طاقة ذهنية طوال اليوم
+                                        الدراسي.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="message-card mother-card">
+                                <div class="message-icon"><i class="fas fa-bed"></i></div>
+                                <div class="message-text">
+                                    <h4>عدو التركيز</h4>
+                                    <p>السهر هو العدو الأول للتحصيل الدراسي. الطفل يحتاج 8 ساعات نوم ليلاً ليعمل عقله
+                                        بكفاءة.</p>
+                                </div>
+                            </div>
+                            <div class="message-card mother-card">
+                                <div class="message-icon"><i class="fas fa-smile-beam"></i></div>
+                                <div class="message-text">
+                                    <h4>الدعم النفسي</h4>
+                                    <p>استقبالك لابنك بابتسامة بعد المدرسة وتخفيف ضغوط الصيام عنه يرفع من روحه المعنوية.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="message-card mother-card">
+                                <div class="message-icon"><i class="fas fa-book-reader"></i></div>
+                                <div class="message-text">
+                                    <h4>البيئة المحفزة</h4>
+                                    <p>تخصيص ركن هادئ للمذاكرة بعيداً عن ضجيج التلفاز والمطبخ يساعد على الإنجاز السريع.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="message-card mother-card">
+                                <div class="message-icon"><i class="fas fa-hands-helping"></i></div>
+                                <div class="message-text">
+                                    <h4>غرس القيم</h4>
+                                    <p>رمضان فرصة لتعليمه الصبر، الإيثار، والعطاء. قصي عليه قصص السلف لترسخ في وجدانه.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="message-card mother-card">
+                                <div class="message-icon"><i class="fas fa-clipboard-check"></i></div>
+                                <div class="message-text">
+                                    <h4>تنظيم المهام</h4>
+                                    <p>ساعديه في ترتيب جدوله: صلاة، قراءة قرآن، مذاكرة، ثم ترفيه. النظام أساس النجاح.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Students Section (Infographic Style) -->
+                    <div class="section-block">
+                        <div class="section-title student-title">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>همسات لأحبابنا الأبطال (الطلاب)</span>
+                        </div>
+                        <div class="infographic-grid">
+
+                            <!-- Battery Card -->
+                            <div class="info-graphic-item">
+                                <div class="graphic-icon-box">
+                                    <i class="fas fa-battery-full"></i>
+                                </div>
+                                <h3 class="graphic-title">اشحن طاقتك</h3>
+                                <p class="graphic-desc">نم مبكراً لتستيقظ نشيطاً .. السهر يجعلك "بدون شبكة" في الفصل!
                                 </p>
                             </div>
-                        </div>
-                        <div class="message-card father-card">
-                            <div class="message-icon"><i class="fas fa-eye"></i></div>
-                            <div class="message-text">
-                                <h4>المتابعة اليومية</h4>
-                                <p>سؤالك اليومي لابنك "ماذا تعلمت اليوم؟" يفتح آفاقاً للحوار ويشعره باهتمامك.</p>
-                            </div>
-                        </div>
-                        <div class="message-card father-card">
-                            <div class="message-icon"><i class="fas fa-praying-hands"></i></div>
-                            <div class="message-text">
-                                <h4>القدوة الحسنة</h4>
-                                <p>اصطحابك لابنك إلى المسجد وترتيل القرآن أمامه هو الدرس العملي الأبلغ في رمضان.</p>
-                            </div>
-                        </div>
-                        <div class="message-card father-card">
-                            <div class="message-icon"><i class="fas fa-clock"></i></div>
-                            <div class="message-text">
-                                <h4>ضبط الوقت</h4>
-                                <p>تعويد الابن على النوم المبكر في رمضان ليس خياراً، بل ضرورة لتركيزه ومناعته.</p>
-                            </div>
-                        </div>
-                        <div class="message-card father-card">
-                            <div class="message-icon"><i class="fas fa-mobile-alt"></i></div>
-                            <div class="message-text">
-                                <h4>الرقابة الواعية</h4>
-                                <p>الأجهزة الذكية سارق صامت للوقت والذهن، قنن استخدامها لتضمن صفاء ذهن ابنك.</p>
-                            </div>
-                        </div>
-                        <div class="message-card father-card">
-                            <div class="message-icon"><i class="fas fa-medal"></i></div>
-                            <div class="message-text">
-                                <h4>التحفيز المستمر</h4>
-                                <p>كافئ ابنك على صيامه وإنجازه الدراسي، فالتشجيع يصنع المعجزات في شخصية الطفل.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 2. Mothers Section -->
-                <div class="section-block">
-                    <div class="section-title mother-title">
-                        <i class="fas fa-heart"></i>
-                        <span>إلى صانعات الأجيال .. الأمهات الفاضلات</span>
-                    </div>
-                    <div class="message-grid">
-                        <div class="message-card mother-card">
-                            <div class="message-icon"><i class="fas fa-utensils"></i></div>
-                            <div class="message-text">
-                                <h4>وقود العقل</h4>
-                                <p>وجبة السحور المتوازنة (تمر، حليب، ألياف) تضمن لابنك طاقة ذهنية طوال اليوم الدراسي.
+                            <!-- Game Controller Card -->
+                            <div class="info-graphic-item">
+                                <div class="graphic-icon-box">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                                <h3 class="graphic-title">وقفة قصيرة</h3>
+                                <p class="graphic-desc">قلل من الألعاب الإلكترونية في رمضان .. واستبدلها بسباق الحسنات.
                                 </p>
                             </div>
-                        </div>
-                        <div class="message-card mother-card">
-                            <div class="message-icon"><i class="fas fa-bed"></i></div>
-                            <div class="message-text">
-                                <h4>عدو التركيز</h4>
-                                <p>السهر هو العدو الأول للتحصيل الدراسي. الطفل يحتاج 8 ساعات نوم ليلاً ليعمل عقله
-                                    بكفاءة.</p>
+
+                            <!-- Book Card -->
+                            <div class="info-graphic-item">
+                                <div class="graphic-icon-box">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+                                <h3 class="graphic-title">35 دقيقة ذهبية</h3>
+                                <p class="graphic-desc">زمن الحصة قصير! ركز مع المعلم لتفهم الدرس وتنهي واجباتك في
+                                    المدرسة.
+                                </p>
                             </div>
-                        </div>
-                        <div class="message-card mother-card">
-                            <div class="message-icon"><i class="fas fa-smile-beam"></i></div>
-                            <div class="message-text">
-                                <h4>الدعم النفسي</h4>
-                                <p>استقبالك لابنك بابتسامة بعد المدرسة وتخفيف ضغوط الصيام عنه يرفع من روحه المعنوية.</p>
+
+                            <!-- Mosque Card -->
+                            <div class="info-graphic-item">
+                                <div class="graphic-icon-box">
+                                    <i class="fas fa-mosque"></i>
+                                </div>
+                                <h3 class="graphic-title">ص صديقك</h3>
+                                <p class="graphic-desc">الصلاة ثم الصلاة ثم الصلاة .. هي مفتاح التوفيق والنجاح في الدنيا
+                                    والآخرة.</p>
                             </div>
-                        </div>
-                        <div class="message-card mother-card">
-                            <div class="message-icon"><i class="fas fa-book-reader"></i></div>
-                            <div class="message-text">
-                                <h4>البيئة المحفزة</h4>
-                                <p>تخصيص ركن هادئ للمذاكرة بعيداً عن ضجيج التلفاز والمطبخ يساعد على الإنجاز السريع.</p>
-                            </div>
-                        </div>
-                        <div class="message-card mother-card">
-                            <div class="message-icon"><i class="fas fa-hands-helping"></i></div>
-                            <div class="message-text">
-                                <h4>غرس القيم</h4>
-                                <p>رمضان فرصة لتعليمه الصبر، الإيثار، والعطاء. قصي عليه قصص السلف لترسخ في وجدانه.</p>
-                            </div>
-                        </div>
-                        <div class="message-card mother-card">
-                            <div class="message-icon"><i class="fas fa-clipboard-check"></i></div>
-                            <div class="message-text">
-                                <h4>تنظيم المهام</h4>
-                                <p>ساعديه في ترتيب جدوله: صلاة، قراءة قرآن، مذاكرة، ثم ترفيه. النظام أساس النجاح.</p>
-                            </div>
+
                         </div>
                     </div>
+
                 </div>
-
-                <!-- 3. Students Section (Infographic Style) -->
-                <div class="section-block">
-                    <div class="section-title student-title">
-                        <i class="fas fa-user-graduate"></i>
-                        <span>همسات لأحبابنا الأبطال (الطلاب)</span>
-                    </div>
-                    <div class="infographic-grid">
-
-                        <!-- Battery Card -->
-                        <div class="info-graphic-item">
-                            <div class="graphic-icon-box">
-                                <i class="fas fa-battery-full"></i>
-                            </div>
-                            <h3 class="graphic-title">اشحن طاقتك</h3>
-                            <p class="graphic-desc">نم مبكراً لتستيقظ نشيطاً .. السهر يجعلك "بدون شبكة" في الفصل!</p>
-                        </div>
-
-                        <!-- Game Controller Card -->
-                        <div class="info-graphic-item">
-                            <div class="graphic-icon-box">
-                                <i class="fas fa-gamepad"></i>
-                            </div>
-                            <h3 class="graphic-title">وقفة قصيرة</h3>
-                            <p class="graphic-desc">قلل من الألعاب الإلكترونية في رمضان .. واستبدلها بسباق الحسنات.</p>
-                        </div>
-
-                        <!-- Book Card -->
-                        <div class="info-graphic-item">
-                            <div class="graphic-icon-box">
-                                <i class="fas fa-book-open"></i>
-                            </div>
-                            <h3 class="graphic-title">35 دقيقة ذهبية</h3>
-                            <p class="graphic-desc">زمن الحصة قصير! ركز مع المعلم لتفهم الدرس وتنهي واجباتك في المدرسة.
-                            </p>
-                        </div>
-
-                        <!-- Mosque Card -->
-                        <div class="info-graphic-item">
-                            <div class="graphic-icon-box">
-                                <i class="fas fa-mosque"></i>
-                            </div>
-                            <h3 class="graphic-title">ص صديقك</h3>
-                            <p class="graphic-desc">الصلاة ثم الصلاة ثم الصلاة .. هي مفتاح التوفيق والنجاح في الدنيا
-                                والآخرة.</p>
-                        </div>
-
-                    </div>
-                </div>
-
             </div>
+            <!-- GLOBAL FOOTER (Unified) -->
+            <footer class="app-footer">
+                <div class="footer-content">
+                    <p class="copyright">جميع الحقوق محفوظة لـ مدرسة محمد بن القاسم الابتدائية &copy; 2026</p>
+                    <p class="developer">تصميم وبرمجة وتطوير: <span class="dev-name">الأستاذ / ناصر مسعود آل
+                            مستنير</span></p>
+                </div>
+            </footer>
         </main>
     </div>
+
     <button class="btn-print" onclick="window.print()" title="طباعة الصفحة"><i class="fas fa-print"></i></button>
+
     <script src="js/main.js"></script>
 </body>
 
