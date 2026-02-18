@@ -261,44 +261,95 @@
             color: #333;
         }
 
-        /* --- HUD (Heads Up Display) --- */
-        .hud-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            flex-wrap: wrap;
-            /* Allow wrapping on small screens */
+        /* --- HUD (Stats Grid) --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 1rem;
+            margin-bottom: 2rem;
         }
 
-        .hud-item {
+        .stat-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             display: flex;
             align-items: center;
+            border: 2px solid transparent;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .stat-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-left: 0.8rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .stat-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #7f8c8d;
             font-weight: bold;
-            font-size: 1.1rem;
         }
 
-        .hud-name-badge {
-            background: #f8f9fa;
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 800;
             color: #2c3e50;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            border: 1px solid #e0e0e0;
-            font-size: 1rem;
         }
 
-        .hud-icon {
-            margin-left: 8px;
-            font-size: 1.3rem;
+        .stat-sub {
+            font-size: 0.7rem;
+            color: #95a5a6;
         }
 
-        .text-score {
-            color: #e67e22;
+        /* Card Themes */
+        .score-card {
+            border-bottom: 4px solid #f1c40f;
+        }
+
+        .score-card .stat-icon {
+            background: linear-gradient(135deg, #f1c40f, #f39c12);
+        }
+
+        .progress-card {
+            border-bottom: 4px solid #3498db;
+        }
+
+        .progress-card .stat-icon {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .remaining-card {
+            border-bottom: 4px solid #e74c3c;
+        }
+
+        .remaining-card .stat-icon {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .subject-card {
+            border-bottom: 4px solid #2ecc71;
+        }
+
+        .subject-card .stat-icon {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
         }
 
         .text-progress {
@@ -324,184 +375,313 @@
             border-radius: 10px;
         }
 
-        /* --- Question Area --- */
-        .quiz-card {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            text-align: center;
+        /* --- PROFESSIONAL POLISH --- */
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .competitions-container {
+            max-width: 1000px;
+            margin: 0 auto;
             position: relative;
         }
 
+        /* --- Question Image Area (Sticker Style) --- */
+        .question-image-container {
+            width: 100%;
+            height: 220px;
+            background: rgba(255, 255, 255, 0);
+            /* Transparent */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+            border: none;
+        }
+
+        .question-icon-wrapper {
+            width: 180px;
+            height: 180px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border: 8px solid white;
+            position: relative;
+            z-index: 2;
+            animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Dynamic Border Colors based on subject (JS will inject class) */
+        .subject-math .question-icon-wrapper {
+            border-color: #f1c40f;
+            color: #f1c40f;
+        }
+
+        .subject-science .question-icon-wrapper {
+            border-color: #2ecc71;
+            color: #2ecc71;
+        }
+
+        .subject-arabic .question-icon-wrapper {
+            border-color: #3498db;
+            color: #3498db;
+        }
+
+        .subject-english .question-icon-wrapper {
+            border-color: #e74c3c;
+            color: #e74c3c;
+        }
+
+        .question-icon-placeholder {
+            font-size: 7rem;
+            /* color inherit from wrapper */
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+            animation: gentle-sway 4s ease-in-out infinite;
+        }
+
+        @keyframes gentle-sway {
+
+            0%,
+            100% {
+                transform: rotate(-5deg);
+            }
+
+            50% {
+                transform: rotate(5deg);
+            }
+        }
+
+        /* --- Updated Quiz Card --- */
+        .quiz-card {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            /* Bigger padding */
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            /* softer shadow */
+            text-align: center;
+            position: relative;
+            border: none;
+        }
+
         .question-text {
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-size: 3rem;
+            /* HUGE FONT */
+            font-weight: 900;
             color: #2c3e50;
-            margin-bottom: 2.5rem;
-            line-height: 1.5;
+            margin: 2rem 0 4rem 0;
+            /* More breathing room */
+            line-height: 1.4;
+            text-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
         }
 
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.2rem;
+            gap: 2rem;
+            /* Wider gap */
         }
 
         .option-btn {
-            background: white;
+            background: #f8f9fa;
             border: 2px solid #e0e0e0;
-            border-radius: 15px;
-            padding: 1.2rem;
-            font-size: 1.3rem;
+            border-radius: 25px;
+            /* Softer pill shape */
+            padding: 2rem 1rem;
+            /* Hit area */
+            font-size: 2.2rem;
+            /* HUGE NUMBERS */
             font-family: inherit;
             color: #555;
             cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 4px 0 #e0e0e0;
+            transition: all 0.15s;
+            box-shadow: 0 10px 0 #e0e0e0;
+            /* Deep 3D click effect */
             position: relative;
             top: 0;
+            font-weight: bold;
         }
 
         .option-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 0 #d0d0d0;
+            transform: translateY(-4px);
+            box-shadow: 0 14px 0 #d0d0d0;
+            background: white;
             border-color: var(--secondary-color);
             color: var(--secondary-color);
         }
 
         .option-btn:active:not(:disabled) {
-            transform: translateY(4px);
-            box-shadow: 0 0 0 transparent;
+            transform: translateY(6px);
+            box-shadow: 0 4px 0 transparent;
+            /* Press down */
         }
 
+        /* Correct/Wrong Styles - Stronger */
         .option-btn.correct {
-            background: #27ae60;
+            background: #2ecc71;
             color: white;
-            border-color: #219150;
-            box-shadow: 0 4px 0 #1e824c;
-            animation: pulse-green 0.5s;
+            border-color: #27ae60;
+            box-shadow: 0 10px 0 #219150 !important;
         }
 
         .option-btn.wrong {
             background: #e74c3c;
             color: white;
             border-color: #c0392b;
-            box-shadow: 0 4px 0 #a93226;
-            animation: shake 0.4s;
+            box-shadow: 0 10px 0 #a93226 !important;
         }
 
         .option-btn:disabled {
             cursor: default;
-            opacity: 0.9;
+            opacity: 1;
+            /* Keep visibility high */
+            filter: grayscale(0.2);
         }
 
-        /* --- Result & Certificate --- */
-        .result-overlay {
-            position: absolute;
+        /* --- FLASHY RESULT MODAL --- */
+        .result-modal {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.5s;
-            z-index: 10;
+            backdrop-filter: blur(15px);
+            /* Strong blur */
         }
 
-        .result-overlay.show {
+        .result-modal.active {
             opacity: 1;
             pointer-events: all;
         }
 
-        .medal-icon {
-            font-size: 5rem;
-            color: #f1c40f;
-            margin-bottom: 1rem;
-            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
-            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .result-content {
+            background: white;
+            width: 85%;
+            max-width: 600px;
+            border-radius: 40px;
+            padding: 4rem;
+            text-align: center;
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.5);
         }
 
-        .final-score-text {
-            font-size: 2.5rem;
-            font-weight: 800;
+        .result-modal.active .result-content {
+            transform: scale(1) translateY(0);
+        }
+
+        /* ... keeping wrapper styles but bigger ... */
+        .result-icon-wrapper {
+            width: 150px;
+            height: 150px;
+            background: #f1c40f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 5rem;
+            color: white;
+            box-shadow: 0 15px 30px rgba(241, 196, 15, 0.4);
+            border: 8px solid white;
+            outline: 8px solid rgba(241, 196, 15, 0.3);
+        }
+
+        .result-icon-wrapper.retry-mode {
+            background: #e74c3c;
+            box-shadow: 0 15px 30px rgba(231, 76, 60, 0.4);
+            outline-color: rgba(231, 76, 60, 0.3);
+        }
+
+        .result-title {
+            font-size: 3.5rem;
+            font-weight: 900;
             color: #2c3e50;
             margin-bottom: 0.5rem;
         }
 
-        .feedback-msg {
+        .result-score {
+            font-size: 5rem;
+            font-weight: 800;
+            color: #27ae60;
+            margin: 1.5rem 0;
+            text-shadow: 0 4px 10px rgba(39, 174, 96, 0.2);
+            letter-spacing: -2px;
+        }
+
+        .result-message {
             font-size: 1.2rem;
             color: #7f8c8d;
             margin-bottom: 2rem;
+            line-height: 1.6;
         }
 
-        .action-buttons {
+        .modal-buttons {
             display: flex;
             gap: 1rem;
+            justify-content: center;
         }
 
-        .action-btn {
+        .modal-btn {
             padding: 1rem 2rem;
             border-radius: 50px;
+            border: none;
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
-            border: none;
-            transition: all 0.2s;
-            display: inline-flex;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
             align-items: center;
+            gap: 0.5rem;
         }
 
-        .btn-restart {
-            background: #f0f0f0;
+        .modal-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .btn-outline {
+            background: white;
+            border: 2px solid #e0e0e0;
             color: #555;
         }
 
-        .btn-restart:hover {
-            background: #e0e0e0;
-        }
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
 
-        .btn-print {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-        }
+            50% {
+                transform: scale(1.05);
+            }
 
-        .btn-print:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
-        }
+            70% {
+                transform: scale(0.9);
+            }
 
-        /* EXIT BUTTON Styles */
-        .exit-container {
-            margin-top: 2rem;
-            text-align: center;
-        }
-
-        .exit-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.8rem 2rem;
-            background: #e74c3c;
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
-            transition: all 0.2s;
-        }
-
-        .exit-btn:hover {
-            transform: translateY(-2px);
-            background: #c0392b;
-            box-shadow: 0 6px 15px rgba(231, 76, 60, 0.4);
-            color: white;
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         /* Certificate Print Styles */
@@ -645,8 +825,9 @@
 
                     <div class="registration-card">
                         <div class="school-icon"
-                            style="margin: 0 auto 2rem; width: 100px; height: 100px; font-size: 3rem;"><i
-                                class="fas fa-user-graduate"></i></div>
+                            style="margin: 0 auto 2rem; width: 100px; height: 100px; font-size: 3rem; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white;">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
 
                         <div class="input-group">
                             <label for="studentName">اسم الطالب:</label>
@@ -720,18 +901,44 @@
                 <!-- STAGE 2: QUIZ -->
                 <div id="quizSection" class="stage-section">
 
-                    <div class="hud-container">
-                        <div class="hud-itemhud-name-badge">
-                            <i class="fas fa-user ml-2"></i> <span id="hudStudentName">...</span>
+                    <!-- NEW HUD DESIGN -->
+                    <div class="stats-grid">
+                        <!-- Score Card -->
+                        <div class="stat-card score-card">
+                            <div class="stat-icon"><i class="fas fa-star"></i></div>
+                            <div class="stat-content">
+                                <span class="stat-label">النقاط</span>
+                                <span class="stat-value" id="scoreVal">٠</span>
+                            </div>
                         </div>
-                        <div class="hud-item text-score">
-                            <span id="scoreVal">٠</span> <i class="fas fa-star hud-icon"></i>
+
+                        <!-- Progress Card -->
+                        <div class="stat-card progress-card">
+                            <div class="stat-icon"><i class="fas fa-flag-checkered"></i></div>
+                            <div class="stat-content">
+                                <span class="stat-label">السؤال</span>
+                                <span class="stat-value" id="qCount">١</span>
+                                <span class="stat-sub">من ٥</span>
+                            </div>
                         </div>
-                        <div class="hud-item" style="color:#2c3e50">
-                            <span id="subjectBadge">المادة</span>
+
+                        <!-- Remaining Card -->
+                        <div class="stat-card remaining-card">
+                            <div class="stat-icon"><i class="fas fa-hourglass-half"></i></div>
+                            <div class="stat-content">
+                                <span class="stat-label">المتبقي</span>
+                                <span class="stat-value" id="remainingVal">٥</span>
+                            </div>
                         </div>
-                        <div class="hud-item text-progress">
-                            <span id="qCount">١/٥</span> <i class="fas fa-layer-group hud-icon"></i>
+
+                        <!-- Subject Card -->
+                        <div class="stat-card subject-card">
+                            <div class="stat-icon"><i class="fas fa-book"></i></div>
+                            <div class="stat-content">
+                                <span class="stat-label">المادة</span>
+                                <span class="stat-value" id="subjectBadge"
+                                    style="font-size:1.2rem; white-space:nowrap;">...</span>
+                            </div>
                         </div>
                     </div>
 
@@ -739,25 +946,16 @@
                         <div class="progress-bar" id="progressBar"></div>
                     </div>
 
-                    <div class="quiz-card">
-                        <div class="question-text" id="questionText"></div>
-                        <div class="options-grid" id="optionsContainer"></div>
-
-                        <!-- Result Overlay -->
-                        <div class="result-overlay" id="resultOverlay">
-                            <div class="medal-icon" id="medalIcon"><i class="fas fa-trophy"></i></div>
-                            <div class="final-score-text" id="resultTitle">مذهل!</div>
-                            <div class="feedback-msg">حصلت على <span id="finalScoreVal">٠</span> من ٥ نقاط</div>
-
-                            <div class="action-buttons">
-                                <button class="action-btn btn-restart" onclick="resetQuiz()">
-                                    <i class="fas fa-redo ml-2"></i> جديد
-                                </button>
-                                <button class="action-btn btn-print" onclick="printCertificate()">
-                                    <i class="fas fa-print ml-2"></i> طباعة الشهادة
-                                </button>
+                    <div class="quiz-card" id="quizCard">
+                        <!-- Question Image/Icon (Sticker Style) -->
+                        <div class="question-image-container">
+                            <div class="question-icon-wrapper">
+                                <i id="questionIcon" class="fas fa-question-circle question-icon-placeholder"></i>
                             </div>
                         </div>
+
+                        <div class="question-text" id="questionText"></div>
+                        <div class="options-grid" id="optionsContainer"></div>
                     </div>
 
                     <div class="exit-container">
@@ -769,6 +967,29 @@
 
             </div>
         </main>
+    </div>
+
+    <!-- NEW FLASHY RESULT MODAL -->
+    <div class="result-modal" id="flashyResultModal">
+        <div class="result-content">
+            <div class="result-icon-wrapper" id="resultIconWrapper">
+                <i class="fas fa-trophy" id="resultIcon"></i>
+            </div>
+            <div class="result-title" id="resultTitle">مذهل!</div>
+            <div class="result-score" id="resultScore">٥٠</div>
+            <div class="result-message" id="resultMessage">
+                أحسنت يا بطل! إجاباتك رائعة ومستواك متميز جداً. استمر في هذا التفوق.
+            </div>
+
+            <div class="modal-buttons">
+                <button class="modal-btn btn-outline" onclick="resetQuiz()">
+                    <i class="fas fa-redo"></i> محاولة أخرى
+                </button>
+                <button class="modal-btn btn-primary" onclick="printCertificate()" id="printBtn">
+                    <i class="fas fa-print"></i> طباعة الشهادة
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Hidden Certificate Template -->
@@ -810,42 +1031,41 @@
         let currentQuestionIndex = 0;
         let score = 0;
 
-        // DB (Strict Arabic)
+        // DB (Strict Arabic with Icons)
         const questionsDB = {
             math: [
-                { q: "٤٥ ÷ ٩ = ؟", options: ["٥", "٦", "٩", "٤"], answer: 0 },
-                { q: "مجموع زوايا المثلث؟", options: ["١٨٠", "٣٦٠", "٩٠", "١٠٠"], answer: 0 },
-                { q: "العدد الأولي يقبل القسمة على؟", options: ["نفسه و١", "نفسه فقط", "أي عدد", "٢ فقط"], answer: 0 },
-                { q: "٧ × ٨ = ؟", options: ["٥٦", "٥٤", "٤٨", "٦٤"], answer: 0 },
-                { q: "شكل رباعي الأضلاع هو؟", options: ["المربع", "المثلث", "الدائرة", "الخط"], answer: 0 }
+                { q: "٤٥ ÷ ٩ = ؟", options: ["٥", "٦", "٩", "٤"], answer: 0, icon: "fas fa-divide" },
+                { q: "مجموع زوايا المثلث؟", options: ["١٨٠", "٣٦٠", "٩٠", "١٠٠"], answer: 0, icon: "fas fa-shapes" },
+                { q: "العدد الأولي يقبل القسمة على؟", options: ["نفسه و١", "نفسه فقط", "أي عدد", "٢ فقط"], answer: 0, icon: "fas fa-calculator" },
+                { q: "٧ × ٨ = ؟", options: ["٥٦", "٥٤", "٤٨", "٦٤"], answer: 0, icon: "fas fa-times" },
+                { q: "شكل رباعي الأضلاع هو؟", options: ["المربع", "المثلث", "الدائرة", "الخط"], answer: 0, icon: "fas fa-square" }
             ],
             science: [
-                { q: "غاز التنفس هو؟", options: ["الأكسجين", "الهيدروجين", "الهيليوم", "ثاني أكسيد الكربون"], answer: 0 },
-                { q: "عدد الكواكب الشمسية؟", options: ["٨", "٩", "٧", "١٠"], answer: 0 },
-                { q: "أسرع حيوان بري؟", options: ["الفهد", "الأسد", "الغزال", "الحصان"], answer: 0 },
-                { q: "صوت الحصان يسمى؟", options: ["صهيل", "زئير", "مواء", "نباح"], answer: 0 },
-                { q: "عضو التذوق هو؟", options: ["اللسان", "الأنف", "العين", "الأذن"], answer: 0 }
+                { q: "غاز التنفس هو؟", options: ["الأكسجين", "الهيدروجين", "الهيليوم", "ثاني أكسيد الكربون"], answer: 0, icon: "fas fa-lungs" },
+                { q: "عدد الكواكب الشمسية؟", options: ["٨", "٩", "٧", "١٠"], answer: 0, icon: "fas fa-sun" },
+                { q: "أسرع حيوان بري؟", options: ["الفهد", "الأسد", "الغزال", "الحصان"], answer: 0, icon: "fas fa-paw" },
+                { q: "صوت الحصان يسمى؟", options: ["صهيل", "زئير", "مواء", "نباح"], answer: 0, icon: "fas fa-horse" },
+                { q: "عضو التذوق هو؟", options: ["اللسان", "الأنف", "العين", "الأذن"], answer: 0, icon: "fas fa-grin-tongue" }
             ],
             arabic: [
-                { q: "عاصمة السعودية؟", options: ["الرياض", "جدة", "مكة المكرمة", "الدمام"], answer: 0 },
-                { q: "ضد (يضحك)؟", options: ["يبكي", "يبتسم", "يصرخ", "ينام"], answer: 0 },
-                { q: "جمع (مسجد)؟", options: ["مساجد", "مساجيد", "سجود", "مسجدان"], answer: 0 },
-                { q: "(ذهب محمد) الفاعل؟", options: ["محمد", "ذهب", "ضمير", "لا يوجد"], answer: 0 },
-                { q: "عدد حروف الهجاء؟", options: ["٢٨", "٢٦", "٢٩", "٢٥"], answer: 0 }
+                { q: "عاصمة السعودية؟", options: ["الرياض", "جدة", "مكة المكرمة", "الدمام"], answer: 0, icon: "fas fa-city" },
+                { q: "ضد (يضحك)؟", options: ["يبكي", "يبتسم", "يصرخ", "ينام"], answer: 0, icon: "fas fa-sad-tear" },
+                { q: "جمع (مسجد)؟", options: ["مساجد", "مساجيد", "سجود", "مسجدان"], answer: 0, icon: "fas fa-mosque" },
+                { q: "(ذهب محمد) الفاعل؟", options: ["محمد", "ذهب", "ضمير", "لا يوجد"], answer: 0, icon: "fas fa-user" },
+                { q: "عدد حروف الهجاء؟", options: ["٢٨", "٢٦", "٢٩", "٢٥"], answer: 0, icon: "fas fa-font" }
             ],
             english: [
-                { q: "Capital of KSA?", options: ["Riyadh", "Jeddah", "Mecca", "Dammam"], answer: 0 },
-                { q: "Apple is...?", options: ["Fruit", "Car", "Color", "City"], answer: 0 },
-                { q: "Opposite of Cold?", options: ["Hot", "Freeze", "Ice", "Winter"], answer: 0 },
-                { q: "Animal saying Moo?", options: ["Cow", "Cat", "Dog", "Bird"], answer: 0 },
-                { q: "Sun Color?", options: ["Yellow", "Red", "Blue", "Green"], answer: 0 }
+                { q: "Capital of KSA?", options: ["Riyadh", "Jeddah", "Mecca", "Dammam"], answer: 0, icon: "fas fa-map-marker-alt" },
+                { q: "Apple is...?", options: ["Fruit", "Car", "Color", "City"], answer: 0, icon: "fas fa-apple-alt" },
+                { q: "Opposite of Cold?", options: ["Hot", "Freeze", "Ice", "Winter"], answer: 0, icon: "fas fa-temperature-high" },
+                { q: "Animal saying Moo?", options: ["Cow", "Cat", "Dog", "Bird"], answer: 0, icon: "fas fa-hippo" }, // Cow icon not always free, using hippo or generic
+                { q: "Sun Color?", options: ["Yellow", "Red", "Blue", "Green"], answer: 0, icon: "fas fa-sun" }
             ]
         };
 
         // --- Registration ---
         function selectGrade(grade, card) {
             currentGrade = grade;
-            // Highlight logic
             document.querySelectorAll('.grade-card').forEach(c => c.style.borderColor = 'transparent');
             card.style.borderColor = 'var(--secondary-color)';
         }
@@ -863,9 +1083,8 @@
 
             studentName = nameInput.value.trim();
             document.getElementById('welcomeMsg').innerText = `أهلاً بك يا بطل: ${studentName}`;
-            document.getElementById('hudStudentName').innerText = studentName; // Set name in HUD
 
-            // Switch to Subjects
+            // Navigate
             document.getElementById('regSection').classList.remove('active');
             document.getElementById('subjectSection').classList.add('active');
         }
@@ -876,8 +1095,11 @@
             const names = { math: "الرياضيات", science: "العلوم", arabic: "لغتي", english: "الإنجليزي" };
             document.getElementById('subjectBadge').innerText = names[subject];
 
-            document.getElementById('scoreVal').innerText = toArabicNum(0);
+            // Inject Subject Class for CSS Theming
+            document.body.className = ''; // reset
+            document.body.classList.add(`subject-${subject}`);
 
+            // Initial reset happens in startQuiz
             startQuiz();
 
             document.getElementById('subjectSection').classList.remove('active');
@@ -887,28 +1109,55 @@
         function goBackToSubjects() {
             document.getElementById('quizSection').classList.remove('active');
             document.getElementById('subjectSection').classList.add('active');
+            resetQuizState();
+            document.getElementById('flashyResultModal').classList.remove('active');
+        }
+
+        function resetQuizState() {
+            currentQuestionIndex = 0;
+            score = 0;
         }
 
         function startQuiz() {
-            currentQuestionIndex = 0;
-            score = 0;
+            resetQuizState();
             updateHUD();
-            document.getElementById('resultOverlay').classList.remove('show');
+            document.getElementById('flashyResultModal').classList.remove('active');
             showQuestion();
         }
 
+        function resetQuiz() {
+            startQuiz();
+        }
+
         function updateHUD() {
-            document.getElementById('scoreVal').innerText = toArabicNum(score * 10);
-            document.getElementById('qCount').innerText = `${toArabicNum(currentQuestionIndex + 1)}/${toArabicNum(5)}`;
-            const progress = ((currentQuestionIndex) / 5) * 100;
-            document.getElementById('progressBar').style.width = `${progress}%`;
+            try {
+                // Score
+                document.getElementById('scoreVal').innerText = safeToArabicNum(score * 10);
+
+                // Question X of 5
+                document.getElementById('qCount').innerText = safeToArabicNum(currentQuestionIndex + 1);
+
+                // Remaining
+                const remaining = 5 - currentQuestionIndex;
+                document.getElementById('remainingVal').innerText = safeToArabicNum(remaining);
+
+                // Progress Bar
+                const progress = ((currentQuestionIndex) / 5) * 100;
+                document.getElementById('progressBar').style.width = `${progress}%`;
+            } catch (e) { console.error("HUD Error", e); }
         }
 
         function showQuestion() {
-            const qData = questionsDB[currentSubject][currentQuestionIndex % questionsDB[currentSubject].length];
+            const qData = questionsDB[currentSubject][currentQuestionIndex % 5];
+
+            // Set Text
             document.getElementById('questionText').innerText = qData.q;
 
-            // Randomize
+            // Set Icon
+            const iconClass = qData.icon || "fas fa-question-circle";
+            document.getElementById('questionIcon').className = `question-icon-placeholder ${iconClass}`;
+
+            // Randomize Options
             let indices = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
             let html = '';
             indices.forEach(i => {
@@ -917,93 +1166,117 @@
             document.getElementById('optionsContainer').innerHTML = html;
         }
 
-        // Helper to avoid dependency issues
+        // Robust Arabic Converter
         function safeToArabicNum(num) {
-            try {
-                if (typeof window.toArabicNum === 'function') return window.toArabicNum(num);
-                const map = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-                return num.toString().replace(/\d/g, d => map[d]);
-            } catch (e) { return num; }
+            const map = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+            return num.toString().replace(/\d/g, d => map[d]);
         }
 
         function checkAnswer(selectedIndex, btn) {
-            try {
-                const qData = questionsDB[currentSubject][currentQuestionIndex % questionsDB[currentSubject].length];
-                const isCorrect = (selectedIndex === qData.answer);
-                const btns = document.querySelectorAll('.option-btn');
-                btns.forEach(b => b.disabled = true);
+            const qData = questionsDB[currentSubject][currentQuestionIndex % 5];
+            const isCorrect = (selectedIndex === qData.answer);
 
-                if (isCorrect) {
-                    btn.classList.add('correct');
-                    score++;
-                    try { triggerConfetti(); } catch (e) { console.error("Confetti error", e); }
-                    try { playSuccessSound(); } catch (e) { console.error("Audio error", e); }
-                } else {
-                    btn.classList.add('wrong');
-                    try { playErrorSound(); } catch (e) { console.error("Audio error", e); }
-                    btns.forEach(b => {
-                        try {
-                            if (b.innerText === qData.options[qData.answer]) b.classList.add('correct');
-                        } catch (e) { }
-                    });
-                }
+            // Disable all buttons
+            const btns = document.querySelectorAll('.option-btn');
+            btns.forEach(b => b.disabled = true);
 
-                try {
-                    document.getElementById('scoreVal').innerText = safeToArabicNum(score * 10);
-                } catch (e) {
-                    console.error("Score update error:", e);
-                }
-
-            } catch (fatal) {
-                console.error("Fatal checkAnswer error", fatal);
+            if (isCorrect) {
+                btn.classList.add('correct');
+                score++;
+                triggerConfetti({ particleCount: 50, spread: 50, origin: { y: 0.7 } }); // Small confetti
+                playSuccessSound();
+            } else {
+                btn.classList.add('wrong');
+                playErrorSound();
+                // Highlight correct
+                btns.forEach(b => {
+                    if (b.innerText === qData.options[qData.answer]) b.classList.add('correct');
+                });
             }
 
-            // Always proceed
+            updateHUD();
+
+            // Next Question Delay
             setTimeout(() => {
-                try {
-                    currentQuestionIndex++;
-                    if (currentQuestionIndex < 5) showQuestion();
-                    else finishQuiz();
-                } catch (e) {
-                    console.error("Navigation error", e);
-                    // Fallback
+                currentQuestionIndex++;
+                if (currentQuestionIndex < 5) {
+                    showQuestion();
+                    updateHUD();
+                } else {
                     finishQuiz();
                 }
             }, 1500);
         }
 
-        // --- EXPLICIT AUDIO FUNCTION ---
+        function finishQuiz() {
+            const modal = document.getElementById('flashyResultModal');
+            const iconWrapper = document.getElementById('resultIconWrapper');
+            const icon = document.getElementById('resultIcon');
+            const title = document.getElementById('resultTitle');
+            const scoreEl = document.getElementById('resultScore');
+            const msg = document.getElementById('resultMessage');
+            const printBtn = document.getElementById('printBtn');
+
+            const finalScore = score * 10;
+            scoreEl.innerText = safeToArabicNum(finalScore);
+
+            modal.classList.add('active');
+
+            if (finalScore >= 40) {
+                // Success
+                iconWrapper.className = 'result-icon-wrapper';
+                icon.className = 'fas fa-trophy';
+                title.innerText = 'مذهل!';
+                title.style.color = '#2c3e50';
+                msg.innerText = 'أحسنت يا بطل! إجاباتك رائعة ومستواك متميز جداً. استمر في هذا التفوق.';
+                printBtn.style.display = 'inline-flex';
+
+                // Big Confetti
+                triggerConfetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
+                playSuccessSound();
+            } else {
+                // Retry
+                iconWrapper.className = 'result-icon-wrapper retry-mode';
+                icon.className = 'fas fa-redo-alt'; // or thumbs-up
+                title.innerText = 'حاول مرة أخرى';
+                title.style.color = '#e74c3c';
+                msg.innerText = 'لا بأس! يمكنك تحقيق نتيجة أفضل. ركز جيداً وحاول مرة أخرى يا بطل.';
+                printBtn.style.display = 'none';
+            }
+        }
+
+        // --- Audio ---
         function playSuccessSound() {
-            try {
-                if ('speechSynthesis' in window) {
-                    window.speechSynthesis.cancel();
-                    const msg = new SpeechSynthesisUtterance("أحسنت، إجابة صحيحة");
-                    msg.lang = 'ar-SA';
-                    msg.rate = 1.1;
-                    msg.volume = 1.0;
-                    window.speechSynthesis.speak(msg);
-                }
-            } catch (e) { console.error("Audio Error:", e); }
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const msg = new SpeechSynthesisUtterance("أحسنت، إجابة صحيحة");
+                msg.lang = 'ar-SA';
+                msg.rate = 1.1;
+                window.speechSynthesis.speak(msg);
+            }
         }
 
         function playErrorSound() {
-            try {
-                if ('speechSynthesis' in window) {
-                    window.speechSynthesis.cancel();
-                    const msg = new SpeechSynthesisUtterance("إجابة خاطئة، حاول مرة أخرى يا بطل");
-                    msg.lang = 'ar-SA';
-                    msg.rate = 1.0;
-                    msg.volume = 1.0;
-                    window.speechSynthesis.speak(msg);
-                }
-            } catch (e) { console.error("Audio Error:", e); }
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const msg = new SpeechSynthesisUtterance("خطأ، حاول مرة أخرى");
+                msg.lang = 'ar-SA';
+                window.speechSynthesis.speak(msg);
+            }
         }
 
-
+        // --- Confetti Wrapper ---
+        function triggerConfetti(opts) {
+            if (typeof confetti === 'function') {
+                confetti({
+                    zIndex: 10000,
+                    ...opts
+                });
+            }
+        }
 
         // --- Printing ---
         function printCertificate() {
-            // Fill Data
             document.getElementById('certStudentName').innerText = studentName;
 
             const gradeNames = ["", "الأول", "الثاني", "الثالث", "الرابع", "الخامس", "السادس"];
@@ -1012,7 +1285,7 @@
             const subjNames = { math: "الرياضيات", science: "العلوم", arabic: "لغتي", english: "اللغة الإنجليزية" };
             document.getElementById('certSubject').innerText = subjNames[currentSubject];
 
-            document.getElementById('certScore').innerText = toArabicNum(score * 10);
+            document.getElementById('certScore').innerText = safeToArabicNum(score * 10);
 
             window.print();
         }
