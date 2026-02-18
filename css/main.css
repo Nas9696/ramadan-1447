@@ -72,8 +72,8 @@ ul {
     /* Slightly smaller */
     height: 70px;
     background: rgba(255, 255, 255, 0.1);
-    color: var(--warning-color);
-    /* Gold */
+    color: var(--white);
+    /* White Icon */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -94,10 +94,10 @@ ul {
 }
 
 .term-badge {
-    background: var(--warning-color);
-    /* Gold */
-    color: #2c3e50;
-    /* Dark Text */
+    background: var(--white);
+    /* White Background */
+    color: var(--primary-color);
+    /* Dark Blue Text */
     padding: 2px 12px;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -135,14 +135,14 @@ ul {
     background: rgba(255, 255, 255, 0.05);
     /* Subtle background instead of full gradient */
     color: white;
-    border-right-color: var(--warning-color);
-    /* Gold indicator */
+    border-right-color: var(--white);
+    /* White indicator */
     padding-right: 1.5rem;
     /* Slight movement effect */
 }
 
 .nav-links a.active {
-    background: linear-gradient(90deg, rgba(241, 196, 15, 0.2), transparent);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), transparent);
 }
 
 .nav-links i {
@@ -151,14 +151,54 @@ ul {
     margin-left: 10px;
     font-size: 1.1rem;
     transition: transform 0.3s;
-    color: var(--warning-color);
-    /* Gold Icons */
+    color: var(--white);
+    /* White Icons */
 }
 
 .nav-links a:hover i,
 .nav-links a.active i {
     color: #fff;
     transform: scale(1.1);
+}
+
+/* Submenu Styles */
+.nav-links .submenu {
+    display: none;
+    background: rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-links .has-submenu.open .submenu {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+.nav-links .submenu a {
+    padding-left: 2.5rem;
+    font-size: 0.95rem;
+}
+
+.nav-links .dropdown-icon {
+    margin-right: auto;
+    margin-left: 0;
+    font-size: 0.8rem;
+    transition: transform 0.3s;
+}
+
+.nav-links .has-submenu.open .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .main-content {
@@ -231,8 +271,10 @@ ul {
 .excel-icon {
     width: 60px;
     height: 60px;
-    background: #fdf2e9;
-    color: var(--secondary-color);
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    /* Sidebar Blue */
+    color: var(--white);
+    /* White Icon */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -243,7 +285,7 @@ ul {
 
 /* Flashy Button Animation */
 .flash-button {
-    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
     color: white;
     padding: 8px 20px;
     border-radius: 50px;

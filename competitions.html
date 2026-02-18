@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المسابقات الثقافية | مدرسة محمد بن القاسم</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/print.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        .competitions-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* --- Animations --- */
+        @keyframes popIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        @keyframes pulse-green {
+            0% {
+                box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(39, 174, 96, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(39, 174, 96, 0);
+            }
+        }
+
+        /* --- Layout --- */
+        .stage-section {
+            display: none;
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        .stage-section.active {
+            display: block;
+        }
+
+        /* --- Registration --- */
+        .registration-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .input-group {
+            margin-bottom: 2rem;
+            text-align: right;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .input-field:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(230, 126, 34, 0.1);
+        }
+
+        .start-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .start-btn:hover {
+            background: #d35400;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(211, 84, 0, 0.3);
+        }
+
+        /* --- Welcome Screen --- */
+        .welcome-msg {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        /* --- Grade Cards --- */
+        .grade-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .grade-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .grade-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--secondary-color);
+        }
+
+        .grade-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .grade-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #555;
+        }
+
+        /* --- Subject Grid --- */
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .subject-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-top: 6px solid;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .math {
+            border-color: #e74c3c;
+            background: linear-gradient(to bottom, #fff, #fff0f0);
+        }
+
+        .math i {
+            color: #e74c3c;
+        }
+
+        .science {
+            border-color: #27ae60;
+            background: linear-gradient(to bottom, #fff, #f0fff4);
+        }
+
+        .science i {
+            color: #27ae60;
+        }
+
+        .arabic {
+            border-color: #f39c12;
+            background: linear-gradient(to bottom, #fff, #fff9e6);
+        }
+
+        .arabic i {
+            color: #f39c12;
+        }
+
+        .english {
+            border-color: #3498db;
+            background: linear-gradient(to bottom, #fff, #f0f8ff);
+        }
+
+        .english i {
+            color: #3498db;
+        }
+
+        .subject-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .subject-card h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: #333;
+        }
+
+        /* --- HUD (Heads Up Display) --- */
+        .hud-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            flex-wrap: wrap;
+            /* Allow wrapping on small screens */
+            gap: 1rem;
+        }
+
+        .hud-item {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .hud-name-badge {
+            background: #f8f9fa;
+            color: #2c3e50;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #e0e0e0;
+            font-size: 1rem;
+        }
+
+        .hud-icon {
+            margin-left: 8px;
+            font-size: 1.3rem;
+        }
+
+        .text-score {
+            color: #e67e22;
+        }
+
+        .text-progress {
+            color: #3498db;
+        }
+
+        /* --- Progress Bar --- */
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+        }
+
+        /* --- Question Area --- */
+        .quiz-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+        }
+
+        .question-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 2.5rem;
+            line-height: 1.5;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 1.2rem;
+            font-size: 1.3rem;
+            font-family: inherit;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 0 #e0e0e0;
+            position: relative;
+            top: 0;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #d0d0d0;
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .option-btn:active:not(:disabled) {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 transparent;
+        }
+
+        .option-btn.correct {
+            background: #27ae60;
+            color: white;
+            border-color: #219150;
+            box-shadow: 0 4px 0 #1e824c;
+            animation: pulse-green 0.5s;
+        }
+
+        .option-btn.wrong {
+            background: #e74c3c;
+            color: white;
+            border-color: #c0392b;
+            box-shadow: 0 4px 0 #a93226;
+            animation: shake 0.4s;
+        }
+
+        .option-btn:disabled {
+            cursor: default;
+            opacity: 0.9;
+        }
+
+        /* --- Result & Certificate --- */
+        .result-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+            z-index: 10;
+        }
+
+        .result-overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .medal-icon {
+            font-size: 5rem;
+            color: #f1c40f;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .final-score-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .feedback-msg {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .action-btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-restart {
+            background: #f0f0f0;
+            color: #555;
+        }
+
+        .btn-restart:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-print:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        /* EXIT BUTTON Styles */
+        .exit-container {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .exit-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+            transition: all 0.2s;
+        }
+
+        .exit-btn:hover {
+            transform: translateY(-2px);
+            background: #c0392b;
+            box-shadow: 0 6px 15px rgba(231, 76, 60, 0.4);
+            color: white;
+        }
+
+        /* Certificate Print Styles */
+        #certificateArea {
+            display: none;
+            /* Hidden by default */
+        }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            #certificateArea,
+            #certificateArea * {
+                visibility: visible;
+            }
+
+            #certificateArea {
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: white;
+                padding: 2rem;
+                border: 10px double #2c3e50;
+                text-align: center;
+                direction: rtl;
+            }
+
+            .cert-header {
+                margin-bottom: 3rem;
+                border-bottom: 2px solid #eee;
+                padding-bottom: 1rem;
+            }
+
+            .cert-title {
+                font-size: 3rem;
+                color: #2c3e50;
+                margin-bottom: 1rem;
+            }
+
+            .cert-body {
+                font-size: 1.5rem;
+                line-height: 2;
+                color: #333;
+                margin-bottom: 3rem;
+            }
+
+            .cert-name {
+                font-weight: bold;
+                color: #e67e22;
+                border-bottom: 2px dotted #999;
+                padding: 0 1rem;
+            }
+
+            .cert-grade {
+                font-weight: bold;
+            }
+
+            .cert-score {
+                font-size: 4rem;
+                color: #27ae60;
+                font-weight: 800;
+                display: block;
+                margin: 1rem 0;
+            }
+
+            .cert-footer {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 4rem;
+                padding: 0 4rem;
+            }
+
+            .cert-sig {
+                text-align: center;
+            }
+
+            .cert-sig strong {
+                display: block;
+                margin-bottom: 4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="school-icon"><i class="fas fa-school"></i></div>
+                <h2>مدرسة محمد بن القاسم</h2>
+                <div class="term-badge">رمضان ١٤٤٧هـ</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="home.html"><i class="fas fa-home fa-fw ml-2"></i> الرئيسية</a></li>
+                <li><a href="intro.html"><i class="fas fa-book-open fa-fw ml-2"></i> كلمة المدير</a></li>
+
+                <li class="has-submenu">
+                    <a href="#"><i class="fas fa-graduation-cap fa-fw ml-2"></i> الخطة الدراسية <i
+                            class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <ul class="submenu">
+                        <li><a href="objectives.html"><i class="fas fa-bullseye fa-fw ml-2"></i> الأهداف الإجرائية</a>
+                        </li>
+                        <li><a href="paths.html"><i class="fas fa-road fa-fw ml-2"></i> مسارات العمل</a></li>
+                        <li><a href="procedural-plan.html"><i class="fas fa-tasks fa-fw ml-2"></i> الخطة الزمنية</a>
+                        </li>
+                        <li><a href="roles.html"><i class="fas fa-user-tie fa-fw ml-2"></i> مهام اللجان</a></li>
+                        <li><a href="activities.html"><i class="fas fa-shapes fa-fw ml-2"></i> الأنشطة الرمضانية</a>
+                        </li>
+                        <li><a href="appendices.html"><i class="fas fa-paperclip fa-fw ml-2"></i> الملاحق</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="excellence.html"><i class="fas fa-trophy fa-fw ml-2"></i> لوحة التميز</a></li>
+                <li><a href="competitions.html" class="active"><i class="fas fa-brain fa-fw ml-2"></i> المسابقات
+                        الثقافية</a></li>
+                <li><a href="family-messages.html"><i class="fas fa-envelope fa-fw ml-2"></i> رسائل توعوية</a></li>
+                <li><a href="greetings.html"><i class="fas fa-gift fa-fw ml-2"></i> ارسل تهنئتك لاصدقائك</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="competitions-container">
+
+                <!-- STAGE 0: REGISTRATION -->
+                <div id="regSection" class="stage-section active">
+                    <div class="page-header">
+                        <h1>المسابقات الثقافية الكبرى</h1>
+                        <p>سجل بياناتك لتبدأ التحدي والمنافسة</p>
+                    </div>
+
+                    <div class="registration-card">
+                        <div class="school-icon"
+                            style="margin: 0 auto 2rem; width: 100px; height: 100px; font-size: 3rem;"><i
+                                class="fas fa-user-graduate"></i></div>
+
+                        <div class="input-group">
+                            <label for="studentName">اسم الطالب:</label>
+                            <input type="text" id="studentName" class="input-field" placeholder="اكتب اسمك هنا...">
+                        </div>
+
+                        <div class="input-group">
+                            <label>الصف الدراسي:</label>
+                            <div class="grade-grid"
+                                style="grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0;">
+                                <div class="grade-card" onclick="selectGrade(1, this)" style="padding: 1rem;">
+                                    <div class="grade-icon" style="font-size: 1.5rem;">١</div>
+                                    <div class="grade-title" style="font-size: 0.9rem;">أول</div>
+                                </div>
+                                <div class="grade-card" onclick="selectGrade(2, this)" style="padding: 1rem;">
+                                    <div class="grade-icon" style="font-size: 1.5rem;">٢</div>
+                                    <div class="grade-title" style="font-size: 0.9rem;">ثاني</div>
+                                </div>
+                                <div class="grade-card" onclick="selectGrade(3, this)" style="padding: 1rem;">
+                                    <div class="grade-icon" style="font-size: 1.5rem;">٣</div>
+                                    <div class="grade-title" style="font-size: 0.9rem;">ثالث</div>
+                                </div>
+                                <div class="grade-card" onclick="selectGrade(4, this)" style="padding: 1rem;">
+                                    <div class="grade-icon" style="font-size: 1.5rem;">٤</div>
+                                    <div class="grade-title" style="font-size: 0.9rem;">رابع</div>
+                                </div>
+                                <div class="grade-card" onclick="selectGrade(5, this)" style="padding: 1rem;">
+                                    <div class="grade-icon" style="font-size: 1.5rem;">٥</div>
+                                    <div class="grade-title" style="font-size: 0.9rem;">خامس</div>
+                                </div>
+                                <div class="grade-card" onclick="selectGrade(6, this)" style="padding: 1rem;">
+                                    <div class="grade-icon" style="font-size: 1.5rem;">٦</div>
+                                    <div class="grade-title" style="font-size: 0.9rem;">سادس</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="start-btn" onclick="submitRegistration()">
+                            <i class="fas fa-check ml-2"></i> التسجيل والبدء
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STAGE 1: WELCOME & SUBJECT -->
+                <div id="subjectSection" class="stage-section">
+                    <div class="page-header" style="margin-bottom:2rem;">
+                        <h1 class="welcome-msg" id="welcomeMsg">أهلاً يا بطل</h1>
+                        <p>اختر المجال الذي تريد المنافسة فيه اليوم</p>
+                    </div>
+
+                    <div class="subject-grid">
+                        <div class="subject-card math" onclick="selectSubject('math')">
+                            <div class="subject-icon"><i class="fas fa-calculator"></i></div>
+                            <h3>الرياضيات</h3>
+                        </div>
+                        <div class="subject-card science" onclick="selectSubject('science')">
+                            <div class="subject-icon"><i class="fas fa-flask"></i></div>
+                            <h3>العلوم</h3>
+                        </div>
+                        <div class="subject-card arabic" onclick="selectSubject('arabic')">
+                            <div class="subject-icon"><i class="fas fa-language"></i></div>
+                            <h3>لغتي الجميلة</h3>
+                        </div>
+                        <div class="subject-card english" onclick="selectSubject('english')">
+                            <div class="subject-icon"><i class="fas fa-globe-americas"></i></div>
+                            <h3>اللغة الإنجليزية</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STAGE 2: QUIZ -->
+                <div id="quizSection" class="stage-section">
+
+                    <div class="hud-container">
+                        <div class="hud-itemhud-name-badge">
+                            <i class="fas fa-user ml-2"></i> <span id="hudStudentName">...</span>
+                        </div>
+                        <div class="hud-item text-score">
+                            <span id="scoreVal">٠</span> <i class="fas fa-star hud-icon"></i>
+                        </div>
+                        <div class="hud-item" style="color:#2c3e50">
+                            <span id="subjectBadge">المادة</span>
+                        </div>
+                        <div class="hud-item text-progress">
+                            <span id="qCount">١/٥</span> <i class="fas fa-layer-group hud-icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+
+                    <div class="quiz-card">
+                        <div class="question-text" id="questionText"></div>
+                        <div class="options-grid" id="optionsContainer"></div>
+
+                        <!-- Result Overlay -->
+                        <div class="result-overlay" id="resultOverlay">
+                            <div class="medal-icon" id="medalIcon"><i class="fas fa-trophy"></i></div>
+                            <div class="final-score-text" id="resultTitle">مذهل!</div>
+                            <div class="feedback-msg">حصلت على <span id="finalScoreVal">٠</span> من ٥ نقاط</div>
+
+                            <div class="action-buttons">
+                                <button class="action-btn btn-restart" onclick="resetQuiz()">
+                                    <i class="fas fa-redo ml-2"></i> جديد
+                                </button>
+                                <button class="action-btn btn-print" onclick="printCertificate()">
+                                    <i class="fas fa-print ml-2"></i> طباعة الشهادة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exit-container">
+                        <a href="#" onclick="goBackToSubjects()" class="exit-btn">
+                            <i class="fas fa-sign-out-alt ml-2"></i> خروج من المسابقة
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Hidden Certificate Template -->
+    <div id="certificateArea">
+        <div class="cert-header">
+            <h3>المملكة العربية السعودية</h3>
+            <h3>وزارة التعليم</h3>
+            <h3>مدرسة محمد بن القاسم الابتدائية</h3>
+        </div>
+        <div class="cert-title">شهادة تفوق</div>
+        <div class="cert-body">
+            تشهد إدارة مسابقات رمضان الثقافية بأن الطالب/
+            <br>
+            <span class="cert-name" id="certStudentName">اسم الطالب</span>
+            <br>
+            بالصف <span class="cert-grade" id="certGrade">الخامس</span>
+            <br>
+            قد اجتاز مسابقة مادة <strong id="certSubject">الرياضيات</strong> بنجاح وحصل على نتيجة:
+            <span class="cert-score" id="certScore">٥٠</span>
+        </div>
+        <div class="cert-footer">
+            <div class="cert-sig">
+                <strong>مشرف النشاط</strong>
+                أ. سعد بن سعيد
+            </div>
+            <div class="cert-sig">
+                <strong>مدير المدرسة</strong>
+                سفر بن مبارك آل فلكه
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // State
+        let studentName = '';
+        let currentGrade = 0;
+        let currentSubject = '';
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        // DB (Strict Arabic)
+        const questionsDB = {
+            math: [
+                { q: "٤٥ ÷ ٩ = ؟", options: ["٥", "٦", "٩", "٤"], answer: 0 },
+                { q: "مجموع زوايا المثلث؟", options: ["١٨٠", "٣٦٠", "٩٠", "١٠٠"], answer: 0 },
+                { q: "العدد الأولي يقبل القسمة على؟", options: ["نفسه و١", "نفسه فقط", "أي عدد", "٢ فقط"], answer: 0 },
+                { q: "٧ × ٨ = ؟", options: ["٥٦", "٥٤", "٤٨", "٦٤"], answer: 0 },
+                { q: "شكل رباعي الأضلاع هو؟", options: ["المربع", "المثلث", "الدائرة", "الخط"], answer: 0 }
+            ],
+            science: [
+                { q: "غاز التنفس هو؟", options: ["الأكسجين", "الهيدروجين", "الهيليوم", "ثاني أكسيد الكربون"], answer: 0 },
+                { q: "عدد الكواكب الشمسية؟", options: ["٨", "٩", "٧", "١٠"], answer: 0 },
+                { q: "أسرع حيوان بري؟", options: ["الفهد", "الأسد", "الغزال", "الحصان"], answer: 0 },
+                { q: "صوت الحصان يسمى؟", options: ["صهيل", "زئير", "مواء", "نباح"], answer: 0 },
+                { q: "عضو التذوق هو؟", options: ["اللسان", "الأنف", "العين", "الأذن"], answer: 0 }
+            ],
+            arabic: [
+                { q: "عاصمة السعودية؟", options: ["الرياض", "جدة", "مكة المكرمة", "الدمام"], answer: 0 },
+                { q: "ضد (يضحك)؟", options: ["يبكي", "يبتسم", "يصرخ", "ينام"], answer: 0 },
+                { q: "جمع (مسجد)؟", options: ["مساجد", "مساجيد", "سجود", "مسجدان"], answer: 0 },
+                { q: "(ذهب محمد) الفاعل؟", options: ["محمد", "ذهب", "ضمير", "لا يوجد"], answer: 0 },
+                { q: "عدد حروف الهجاء؟", options: ["٢٨", "٢٦", "٢٩", "٢٥"], answer: 0 }
+            ],
+            english: [
+                { q: "Capital of KSA?", options: ["Riyadh", "Jeddah", "Mecca", "Dammam"], answer: 0 },
+                { q: "Apple is...?", options: ["Fruit", "Car", "Color", "City"], answer: 0 },
+                { q: "Opposite of Cold?", options: ["Hot", "Freeze", "Ice", "Winter"], answer: 0 },
+                { q: "Animal saying Moo?", options: ["Cow", "Cat", "Dog", "Bird"], answer: 0 },
+                { q: "Sun Color?", options: ["Yellow", "Red", "Blue", "Green"], answer: 0 }
+            ]
+        };
+
+        // --- Registration ---
+        function selectGrade(grade, card) {
+            currentGrade = grade;
+            // Highlight logic
+            document.querySelectorAll('.grade-card').forEach(c => c.style.borderColor = 'transparent');
+            card.style.borderColor = 'var(--secondary-color)';
+        }
+
+        function submitRegistration() {
+            const nameInput = document.getElementById('studentName');
+            if (nameInput.value.trim() === '') {
+                alert('الرجاء كتابة اسم الطالب');
+                return;
+            }
+            if (currentGrade === 0) {
+                alert('الرجاء اختيار الصف الدراسي');
+                return;
+            }
+
+            studentName = nameInput.value.trim();
+            document.getElementById('welcomeMsg').innerText = `أهلاً بك يا بطل: ${studentName}`;
+            document.getElementById('hudStudentName').innerText = studentName; // Set name in HUD
+
+            // Switch to Subjects
+            document.getElementById('regSection').classList.remove('active');
+            document.getElementById('subjectSection').classList.add('active');
+        }
+
+        // --- Subject & Quiz ---
+        function selectSubject(subject) {
+            currentSubject = subject;
+            const names = { math: "الرياضيات", science: "العلوم", arabic: "لغتي", english: "الإنجليزي" };
+            document.getElementById('subjectBadge').innerText = names[subject];
+
+            document.getElementById('scoreVal').innerText = toArabicNum(0);
+
+            startQuiz();
+
+            document.getElementById('subjectSection').classList.remove('active');
+            document.getElementById('quizSection').classList.add('active');
+        }
+
+        function goBackToSubjects() {
+            document.getElementById('quizSection').classList.remove('active');
+            document.getElementById('subjectSection').classList.add('active');
+        }
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            updateHUD();
+            document.getElementById('resultOverlay').classList.remove('show');
+            showQuestion();
+        }
+
+        function updateHUD() {
+            document.getElementById('scoreVal').innerText = toArabicNum(score * 10);
+            document.getElementById('qCount').innerText = `${toArabicNum(currentQuestionIndex + 1)}/${toArabicNum(5)}`;
+            const progress = ((currentQuestionIndex) / 5) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+        }
+
+        function showQuestion() {
+            const qData = questionsDB[currentSubject][currentQuestionIndex % questionsDB[currentSubject].length];
+            document.getElementById('questionText').innerText = qData.q;
+
+            // Randomize
+            let indices = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
+            let html = '';
+            indices.forEach(i => {
+                html += `<button class="option-btn" onclick="checkAnswer(${i}, this)">${qData.options[i]}</button>`;
+            });
+            document.getElementById('optionsContainer').innerHTML = html;
+        }
+
+        // Helper to avoid dependency issues
+        function safeToArabicNum(num) {
+            try {
+                if (typeof window.toArabicNum === 'function') return window.toArabicNum(num);
+                const map = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+                return num.toString().replace(/\d/g, d => map[d]);
+            } catch (e) { return num; }
+        }
+
+        function checkAnswer(selectedIndex, btn) {
+            try {
+                const qData = questionsDB[currentSubject][currentQuestionIndex % questionsDB[currentSubject].length];
+                const isCorrect = (selectedIndex === qData.answer);
+                const btns = document.querySelectorAll('.option-btn');
+                btns.forEach(b => b.disabled = true);
+
+                if (isCorrect) {
+                    btn.classList.add('correct');
+                    score++;
+                    try { triggerConfetti(); } catch (e) { console.error("Confetti error", e); }
+                    try { playSuccessSound(); } catch (e) { console.error("Audio error", e); }
+                } else {
+                    btn.classList.add('wrong');
+                    try { playErrorSound(); } catch (e) { console.error("Audio error", e); }
+                    btns.forEach(b => {
+                        try {
+                            if (b.innerText === qData.options[qData.answer]) b.classList.add('correct');
+                        } catch (e) { }
+                    });
+                }
+
+                try {
+                    document.getElementById('scoreVal').innerText = safeToArabicNum(score * 10);
+                } catch (e) {
+                    console.error("Score update error:", e);
+                }
+
+            } catch (fatal) {
+                console.error("Fatal checkAnswer error", fatal);
+            }
+
+            // Always proceed
+            setTimeout(() => {
+                try {
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex < 5) showQuestion();
+                    else finishQuiz();
+                } catch (e) {
+                    console.error("Navigation error", e);
+                    // Fallback
+                    finishQuiz();
+                }
+            }, 1500);
+        }
+
+        // --- EXPLICIT AUDIO FUNCTION ---
+        function playSuccessSound() {
+            try {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const msg = new SpeechSynthesisUtterance("أحسنت، إجابة صحيحة");
+                    msg.lang = 'ar-SA';
+                    msg.rate = 1.1;
+                    msg.volume = 1.0;
+                    window.speechSynthesis.speak(msg);
+                }
+            } catch (e) { console.error("Audio Error:", e); }
+        }
+
+        function playErrorSound() {
+            try {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const msg = new SpeechSynthesisUtterance("إجابة خاطئة، حاول مرة أخرى يا بطل");
+                    msg.lang = 'ar-SA';
+                    msg.rate = 1.0;
+                    msg.volume = 1.0;
+                    window.speechSynthesis.speak(msg);
+                }
+            } catch (e) { console.error("Audio Error:", e); }
+        }
+
+
+
+        // --- Printing ---
+        function printCertificate() {
+            // Fill Data
+            document.getElementById('certStudentName').innerText = studentName;
+
+            const gradeNames = ["", "الأول", "الثاني", "الثالث", "الرابع", "الخامس", "السادس"];
+            document.getElementById('certGrade').innerText = gradeNames[currentGrade];
+
+            const subjNames = { math: "الرياضيات", science: "العلوم", arabic: "لغتي", english: "اللغة الإنجليزية" };
+            document.getElementById('certSubject').innerText = subjNames[currentSubject];
+
+            document.getElementById('certScore').innerText = toArabicNum(score * 10);
+
+            window.print();
+        }
+
+    </script>
+</body>
+
+</html>
