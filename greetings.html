@@ -716,6 +716,13 @@
 
         <main class="main-content">
             <div class="greetings-container fade-in">
+                <!-- Top Actions Bar -->
+                <div class="top-actions" style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+                    <button onclick="window.print()" class="btn-action"
+                        style="background: var(--blue-royal); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-family: 'Tajawal', sans-serif; font-size: 0.9rem; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                        <i class="fas fa-print"></i> <span>طباعة الصفحة</span>
+                    </button>
+                </div>
 
                 <div class="page-header">
                     <h1>اصنع تهنئة رمضانية مميزة</h1>
@@ -813,9 +820,7 @@
                         <i class="fas fa-share-alt"></i> مشاركة (موبايل/واتس)
                     </button>
 
-                    <button class="btn-action btn-print" onclick="window.print()">
-                        <i class="fas fa-print"></i> طباعة
-                    </button>
+
                 </div>
 
                 <!-- 3. Live Preview -->
@@ -849,6 +854,14 @@
                 </div>
 
             </div>
+            <!-- GLOBAL FOOTER (Unified) -->
+            <footer class="app-footer">
+                <div class="footer-content">
+                    <p class="copyright">جميع الحقوق محفوظة لـ مدرسة محمد بن القاسم الابتدائية &copy; 2026</p>
+                    <p class="developer">تصميم وبرمجة وتطوير: <span class="dev-name">الأستاذ / ناصر مسعود آل
+                            مستنير</span></p>
+                </div>
+            </footer>
         </main>
     </div>
 
@@ -1042,6 +1055,7 @@
         }
 
     </script>
+
 </body>
 
 </html>

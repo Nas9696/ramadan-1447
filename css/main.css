@@ -561,7 +561,7 @@ ul {
     color: #2980b9;
 }
 
-.btn-print {
+/* .btn-print {
     position: fixed;
     bottom: 30px;
     left: 30px;
@@ -575,7 +575,7 @@ ul {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     z-index: 2000;
-}
+} */
 
 .fade-in {
     animation: fadeIn 0.6s ease-out;
@@ -590,5 +590,73 @@ ul {
     to {
         opacity: 1;
         transform: translateY(0)
+    }
+}
+
+/* --- APP FOOTER --- */
+/* --- APP FOOTER --- */
+.app-footer {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    padding: 1rem;
+    /* Reduced padding */
+    text-align: center;
+    margin-top: 2rem;
+    width: 100%;
+    border-top: 3px solid #d4af37;
+    /* Thinner border */
+    position: relative;
+    z-index: 100;
+    border-radius: var(--radius);
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Footer for landing page (full width, no radius) */
+.home-footer .app-footer {
+    border-radius: 0;
+    margin-top: 0;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyright {
+    font-size: 0.95rem;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+.developer {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.dev-name {
+    color: #f1c40f;
+    /* Gold */
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: right;
+    }
+
+    .developer {
+        margin-top: 0;
+    }
+}
+
+@media print {
+    .app-footer {
+        display: none !important;
     }
 }
