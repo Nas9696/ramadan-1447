@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إصدار الشهادات | الخطة التعليمية الرمضانية</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/print.css">
+    <link rel="stylesheet" href="css/certificates.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="school-icon"><i class="fas fa-school"></i></div>
+                <h2>مدرسة محمد بن القاسم</h2>
+                <div class="term-badge">رمضان 1447هـ</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="home.html"><i class="fas fa-home fa-fw ml-2"></i> الرئيسية</a></li>
+                <li><a href="intro.html"><i class="fas fa-book-open fa-fw ml-2"></i> كلمة المدير</a></li>
+
+                <li class="has-submenu">
+                    <a href="#"><i class="fas fa-graduation-cap fa-fw ml-2"></i> الخطة الدراسية <i
+                            class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <ul class="submenu">
+                        <li><a href="objectives.html"><i class="fas fa-bullseye fa-fw ml-2"></i> الأهداف الإجرائية</a>
+                        </li>
+                        <li><a href="paths.html"><i class="fas fa-road fa-fw ml-2"></i> مسارات العمل</a></li>
+                        <li><a href="procedural-plan.html"><i class="fas fa-tasks fa-fw ml-2"></i> الخطة الزمنية</a>
+                        </li>
+                        <li><a href="roles.html"><i class="fas fa-user-tie fa-fw ml-2"></i> مهام اللجان</a></li>
+                        <li><a href="activities.html"><i class="fas fa-shapes fa-fw ml-2"></i> الأنشطة الرمضانية</a>
+                        </li>
+                        <li><a href="appendices.html"><i class="fas fa-paperclip fa-fw ml-2"></i> الملاحق</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="excellence.html"><i class="fas fa-trophy fa-fw ml-2"></i> لوحة التميز</a></li>
+                <li><a href="certificates.html" class="active"><i class="fas fa-certificate fa-fw ml-2"></i> إصدار
+                        الشهادات</a></li>
+                <li><a href="competitions.html"><i class="fas fa-brain fa-fw ml-2"></i> المسابقات الثقافية</a></li>
+                <li><a href="family-messages.html"><i class="fas fa-envelope fa-fw ml-2"></i> رسائل توعوية</a></li>
+                <li><a href="greetings.html"><i class="fas fa-gift fa-fw ml-2"></i> بطاقات التهنئة</a></li>
+                <li><a href="national-occasions.html"><i class="fas fa-flag fa-fw ml-2"></i> المناسبات الوطنية</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="page-header fade-in">
+                    <h1>منصة إصدار الشهادات</h1>
+                    <p>إعداد وطباعة شهادات الشكر والتقدير للطلاب المتميزين</p>
+                </div>
+
+                <div id="view-generator" class="fade-in">
+
+                    <div class="generator-controls"
+                        style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px;">
+                        <h3
+                            style="margin-bottom: 15px; color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 10px;">
+                            <i class="fas fa-sliders-h"></i> إعدادات الشهادة
+                        </h3>
+
+                        <div class="form-grid"
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <!-- Student Info -->
+                            <div class="form-group">
+                                <label>اسم الطالب/ـة</label>
+                                <input type="text" id="certStudentName" class="excel-input" placeholder="الاسم ثلاثي"
+                                    oninput="updatePreview()">
+                            </div>
+                            <div class="form-group">
+                                <label>الجنس</label>
+                                <select id="certGender" class="excel-input" onchange="updatePreview()">
+                                    <option value="male">طالب (ذكر)</option>
+                                    <option value="female">طالبة (أنثى)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>الصف الدراسي</label>
+                                <input type="text" id="certGrade" class="excel-input"
+                                    placeholder="مثال: الخامس الابتدائي" oninput="updatePreview()">
+                            </div>
+                            <div class="form-group">
+                                <label>مجال التميز</label>
+                                <input type="text" id="certField" class="excel-input"
+                                    placeholder="مثال: التفوق الدراسي، حفظ القرآن" oninput="updatePreview()">
+                            </div>
+
+                            <!-- Staff Info -->
+                            <div class="form-group">
+                                <label>مدير المدرسة</label>
+                                <input type="text" id="certManager" class="excel-input" value="أ. سفر بن مبارك آل فلكه"
+                                    oninput="updatePreview()">
+                            </div>
+                            <div class="form-group">
+                                <label>المرشد الطلابي</label>
+                                <input type="text" id="certCounselor" class="excel-input"
+                                    value="أ. علي بن محمد آل مقبول" oninput="updatePreview()">
+                            </div>
+                            <div class="form-group">
+                                <label>معلم الصف / المادة</label>
+                                <input type="text" id="certTeacher" class="excel-input" placeholder="اسم المعلم"
+                                    oninput="updatePreview()">
+                            </div>
+                            <div class="form-group">
+                                <label>اسم المدرسة</label>
+                                <input type="text" id="certSchool" class="excel-input"
+                                    value="مدرسة محمد بن القاسم الابتدائية" oninput="updatePreview()">
+                            </div>
+                        </div>
+
+                        <!-- Theme Selector -->
+                        <h4 style="margin: 20px 0 10px; color: #555;">اختر نموذج الشهادة (الخلفية):</h4>
+                        <div class="theme-grid"
+                            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px;">
+                            <!-- 10 Themes representing BG images 1-10 -->
+                            <button class="theme-btn active" onclick="setTheme('bg1')" style="background:#ddd;">نموذج
+                                1</button>
+                            <button class="theme-btn" onclick="setTheme('bg2')" style="background:#ddd;">نموذج
+                                2</button>
+                            <button class="theme-btn" onclick="setTheme('bg3')" style="background:#ddd;">نموذج
+                                3</button>
+                            <button class="theme-btn" onclick="setTheme('bg4')" style="background:#ddd;">نموذج
+                                4</button>
+                            <button class="theme-btn" onclick="setTheme('bg5')" style="background:#ddd;">نموذج
+                                5</button>
+                            <button class="theme-btn" onclick="setTheme('bg6')" style="background:#ddd;">نموذج
+                                6</button>
+                            <button class="theme-btn" onclick="setTheme('bg7')" style="background:#ddd;">نموذج
+                                7</button>
+                            <button class="theme-btn" onclick="setTheme('bg8')" style="background:#ddd;">نموذج
+                                8</button>
+                            <button class="theme-btn" onclick="setTheme('bg9')" style="background:#ddd;">نموذج
+                                9</button>
+                            <button class="theme-btn" onclick="setTheme('bg10')" style="background:#ddd;">نموذج
+                                10</button>
+                        </div>
+
+                        <div style="margin-top: 20px; text-align: center;">
+                            <button onclick="printCertificate()" class="add-btn"
+                                style="padding: 10px 40px; font-size: 1.1rem;"><i class="fas fa-print"></i> طباعة
+                                الشهادة</button>
+                        </div>
+                    </div>
+
+                    <!-- Preview Frame -->
+                    <div class="cert-preview-wrapper"
+                        style="overflow: auto; border: 1px solid #ccc; background: #555; padding: 20px; border-radius: 8px;">
+                        <div id="certificateFrame" class="theme-bg1"
+                            style="background-size: cover; background-position: center; position: relative;">
+
+                            <!-- Overlay Content -->
+                            <div class="cert-content">
+                                <!-- Adjustable Header Area -->
+                                <div class="cert-header" style="margin-top: 15%;">
+                                    <!-- Header text usually in BG, but we keep school name just in case? 
+                                         User said "Madrassa Name" in requirements. 
+                                         Some backgrounds might have headers. We will make this generic. -->
+                                    <h3 id="pSchool" style="display:none;">مدرسة محمد بن القاسم الابتدائية</h3>
+                                </div>
+
+                                <div class="cert-body" style="text-align: center; margin-top: 5%;">
+                                    <h2 id="pGenderTitle" style="font-size: 2rem; color: #333; margin-bottom: 20px;">
+                                        للطالب المتفوق</h2>
+                                    <div class="student-name" id="pStudent"
+                                        style="font-size: 4rem; color: #1a4a7c; font-weight: bold; margin: 20px 0;">
+                                        الاسم هنا</div>
+                                    <p class="cert-text" style="font-size: 1.5rem; color: #555;">بالصف <span id="pGrade"
+                                            style="font-weight:bold;">...</span></p>
+                                    <p class="cert-text" style="font-size: 1.5rem; color: #555;">لتميزه في: <span
+                                            id="pField" style="font-weight:bold; color: #c0392b;">...</span></p>
+                                </div>
+
+                                <div class="cert-footer"
+                                    style="display: flex; justify-content: space-around; margin-top: 10%; align-items: flex-end;">
+                                    <div class="sig-block" style="text-align: center;">
+                                        <div class="sig-title" style="font-weight:bold; margin-bottom: 40px;">معلم
+                                            الصف/المادة</div>
+                                        <div class="sig-name" id="pTeacher" style="font-size: 1.2rem;">...</div>
+                                    </div>
+                                    <div class="sig-block" style="text-align: center;">
+                                        <div class="sig-title" style="font-weight:bold; margin-bottom: 40px;">المرشد
+                                            الطلابي</div>
+                                        <div class="sig-name" id="pCounselor" style="font-size: 1.2rem;">أ. علي بن محمد
+                                            آل مقبول</div>
+                                    </div>
+                                    <div class="sig-block" style="text-align: center;">
+                                        <div class="sig-title" style="font-weight:bold; margin-bottom: 40px;">مدير
+                                            المدرسة</div>
+                                        <div class="sig-name" id="pManager" style="font-size: 1.2rem;">أ. سفر بن مبارك
+                                            آل فلكه</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <footer class="app-footer">
+                <div class="footer-content">
+                    <p class="copyright">جميع الحقوق محفوظة لـ مدرسة محمد بن القاسم الابتدائية &copy; 2026</p>
+                    <p class="developer">تصميم وبرمجة وتطوير: <span class="dev-name">الأستاذ / ناصر مسعود آل
+                            مستنير</span></p>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script src="js/main.js?v=4"></script>
+    <script src="js/certificates.js"></script>
+</body>
+
+</html>

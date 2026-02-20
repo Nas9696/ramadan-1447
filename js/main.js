@@ -8,24 +8,35 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- 1. SIDEBAR DROPDOWN LOGIC ---
-  // Ensure we are selecting the correct elements. 
-  // The previous code used .has-submenu > a, which assumes standard markup.
-  const dropdowns = document.querySelectorAll('.has-submenu > a');
+  // --- 1. SIDEBAR DROPDOWN LOGIC (Event Delegation) ---
+  const sidebar = document.querySelector('.sidebar');
+  if (sidebar) {
+    sidebar.addEventListener('click', (e) => {
+      // Check if the clicked element is, or is inside, a dropdown trigger
+      const trigger = e.target.closest('.has-submenu > a');
 
-  dropdowns.forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation(); // Stop event from bubbling up to document
+      if (trigger) {
+        e.preventDefault();
+        e.stopPropagation(); // Stop bubbling immediately
 
-      // Toggle the 'open' class on the parent li (has-submenu)
-      const parent = trigger.parentElement;
-      parent.classList.toggle('open');
+        const parent = trigger.closest('.has-submenu');
+        if (parent) {
+          // Toggle the open class
+          parent.classList.toggle('open');
 
-      // Log for debugging (optional/removed in prod)
-      // console.log('Dropdown clicked:', parent);
+          // Optional: Close other menus if you want accordion behavior
+          /*
+          const others = sidebar.querySelectorAll('.has-submenu.open');
+          others.forEach(other => {
+            if (other !== parent) {
+              other.classList.remove('open');
+            }
+          });
+          */
+        }
+      }
     });
-  });
+  }
 
   // --- 2. MOBILE NAVIGATION LOGIC ---
   const body = document.body;

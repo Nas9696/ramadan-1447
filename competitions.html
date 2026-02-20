@@ -906,7 +906,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: 45px 60px;
+            padding: 30px 60px 140px 60px;
+            /* Shifted content up: less top padding, much more bottom padding */
             background: #fff;
         }
 
@@ -1022,7 +1023,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 35px;
+            gap: 15px;
+            /* Reduced gap to pull names up */
             width: 30%;
         }
 
@@ -1085,7 +1087,8 @@
                 <li><a href="competitions.html" class="active"><i class="fas fa-brain fa-fw ml-2"></i> المسابقات
                         الثقافية</a></li>
                 <li><a href="family-messages.html"><i class="fas fa-envelope fa-fw ml-2"></i> رسائل توعوية</a></li>
-                <li><a href="greetings.html"><i class="fas fa-gift fa-fw ml-2"></i> ارسل تهنئتك لاصدقائك</a></li>
+                <li><a href="greetings.html"><i class="fas fa-gift fa-fw ml-2"></i> بطاقات التهنئة</a></li>
+                <li><a href="national-occasions.html"><i class="fas fa-flag fa-fw ml-2"></i> المناسبات الوطنية</a></li>
             </ul>
         </aside>
 
@@ -1107,8 +1110,27 @@
                             </div>
 
                             <div class="input-group">
-                                <label for="studentName">اسم الطالب:</label>
+                                <label for="studentName">اسم الطالب / الطالبة:</label>
                                 <input type="text" id="studentName" class="input-field" placeholder="اكتب اسمك هنا...">
+                            </div>
+
+                            <!-- Gender Selection -->
+                            <div class="input-group" style="margin-bottom: 2rem;">
+                                <label>الجنس:</label>
+                                <div style="display: flex; justify-content: center; gap: 2rem;">
+                                    <div class="gender-card selected" onclick="selectGender('male', this)"
+                                        style="cursor: pointer; padding: 1rem 2rem; border: 2px solid var(--secondary-color); border-radius: 15px; background: #e8f4fc; transition: all 0.3s; text-align: center;">
+                                        <i class="fas fa-user-graduate"
+                                            style="font-size: 2.5rem; color: #3498db; margin-bottom: 0.5rem;"></i>
+                                        <div style="font-weight: bold; color: #2c3e50;">طالب</div>
+                                    </div>
+                                    <div class="gender-card" onclick="selectGender('female', this)"
+                                        style="cursor: pointer; padding: 1rem 2rem; border: 2px solid #e0e0e0; border-radius: 15px; background: white; transition: all 0.3s; text-align: center;">
+                                        <i class="fas fa-user-graduate"
+                                            style="font-size: 2.5rem; color: #e91e63; margin-bottom: 0.5rem;"></i>
+                                        <div style="font-weight: bold; color: #2c3e50;">طالبة</div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="input-group">
@@ -1138,6 +1160,46 @@
                                     <div class="grade-card" onclick="selectGrade(6, this)" style="padding: 1rem;">
                                         <div class="grade-icon" style="font-size: 1.5rem;">٦</div>
                                         <div class="grade-title" style="font-size: 0.9rem;">سادس</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- School Settings Toggle -->
+                            <div style="margin-bottom: 2rem; border-top: 1px solid #eee; padding-top: 1.5rem;">
+                                <button type="button" onclick="toggleSchoolSettings()"
+                                    style="background: #f0f3f5; border: 2px solid #dce4ec; color: #2c3e50; cursor: pointer; font-size: 1rem; display: flex; align-items: center; margin: 0 auto; gap: 0.8rem; padding: 12px 25px; border-radius: 50px; transition: all 0.3s; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                                    <i class="fas fa-cogs" style="color: #2980b9;"></i> إعدادات المدرسة والشهادة
+                                    (اختياري) <i id="settingsChevron" class="fas fa-chevron-down"
+                                        style="font-size: 0.9em; opacity: 0.6;"></i>
+                                </button>
+
+                                <div id="schoolSettings"
+                                    style="display:none; margin-top:1.5rem; text-align:right; background:#f9f9f9; padding:1.5rem; border-radius:15px;">
+                                    <div class="input-group">
+                                        <label style="font-size:0.9rem;">المدينة / المنطقة:</label>
+                                        <input type="text" id="schoolCity" class="input-field" value="نجران"
+                                            style="font-size:1rem; padding:0.5rem;">
+                                    </div>
+                                    <div class="input-group">
+                                        <label style="font-size:0.9rem;">اسم المدرسة:</label>
+                                        <input type="text" id="schoolNameInput" class="input-field"
+                                            value="مدرسة محمد بن القاسم الابتدائية"
+                                            style="font-size:1rem; padding:0.5rem;">
+                                    </div>
+                                    <div class="input-group">
+                                        <label style="font-size:0.9rem;">مدير المدرسة:</label>
+                                        <input type="text" id="schoolManager" class="input-field"
+                                            value="أ. سفر بن مبارك آل فلكه" style="font-size:1rem; padding:0.5rem;">
+                                    </div>
+                                    <div class="input-group">
+                                        <label style="font-size:0.9rem;">مشرف النشاط:</label>
+                                        <input type="text" id="activitySupervisor" class="input-field"
+                                            value="أ. هاني حامد" style="font-size:1rem; padding:0.5rem;">
+                                    </div>
+                                    <div class="input-group">
+                                        <label style="font-size:0.9rem;">مشرف المسابقة:</label>
+                                        <input type="text" id="compSupervisor" class="input-field"
+                                            value="أ. ناصر مسعود آل مستنير" style="font-size:1rem; padding:0.5rem;">
                                     </div>
                                 </div>
                             </div>
@@ -1343,16 +1405,16 @@
 
                             <div class="cert-student-name" id="certStudentName">اسم الطالب</div>
 
-                            <div class="cert-line-text">
+                            <div class="cert-line-text" id="certGradeLine">
                                 بالصف <span class="highlight-data" id="certGrade">...</span>
                             </div>
 
-                            <div class="cert-line-text">
+                            <div class="cert-line-text" id="certSubjectLine">
                                 وذلك لتفوقه في المسابقة الثقافية الرمضانية لمادة <span class="highlight-data"
                                     id="certSubject">...</span>
                             </div>
 
-                            <div class="cert-line-text">
+                            <div class="cert-line-text" id="certScoreLine">
                                 وحصوله على مجموع نقاط <span class="highlight-data" id="certScore">..</span>
                             </div>
 
@@ -1365,15 +1427,15 @@
                         <div class="cert-footer-table">
                             <div class="sig-col">
                                 <div class="sig-role">مشرف المسابقة</div>
-                                <div class="sig-val">أ. ناصر مسعود آل مستنير</div>
+                                <div class="sig-val" id="certCompSup">أ. ناصر مسعود آل مستنير</div>
                             </div>
                             <div class="sig-col">
                                 <div class="sig-role">مشرف النشاط</div>
-                                <div class="sig-val">أ. هاني حامد</div>
+                                <div class="sig-val" id="certActSup">أ. هاني حامد</div>
                             </div>
                             <div class="sig-col">
                                 <div class="sig-role">مدير المدرسة</div>
-                                <div class="sig-val">أ. سفر بن مبارك آل فلكه</div>
+                                <div class="sig-val" id="certManager">أ. سفر بن مبارك آل فلكه</div>
                             </div>
                         </div>
                     </div>
@@ -1385,10 +1447,11 @@
 
 
 
-            <script src="js/main.js"></script>
+            <script src="js/main.js?v=4"></script>
             <script>
                 // State
                 let studentName = '';
+                let currentGender = 'male'; // 'male' or 'female'
                 let currentGrade = 0;
                 let currentSubject = '';
                 let currentQuestionIndex = 0;
@@ -1494,7 +1557,33 @@
                 // Current State
                 let currentLevel = 'easy';
 
+                // --- School Settings Logic ---
+                function toggleSchoolSettings() {
+                    const settings = document.getElementById('schoolSettings');
+                    const chevron = document.getElementById('settingsChevron');
+                    if (settings.style.display === 'none') {
+                        settings.style.display = 'block';
+                        chevron.className = 'fas fa-chevron-up';
+                    } else {
+                        settings.style.display = 'none';
+                        chevron.className = 'fas fa-chevron-down';
+                    }
+                }
+
                 // --- Registration Logic RESTORED ---
+                function selectGender(gender, card) {
+                    currentGender = gender;
+                    document.querySelectorAll('.gender-card').forEach(c => {
+                        c.classList.remove('selected');
+                        c.style.borderColor = '#e0e0e0';
+                        c.style.backgroundColor = 'white';
+                    });
+
+                    card.classList.add('selected');
+                    card.style.borderColor = gender === 'male' ? 'var(--secondary-color)' : '#e91e63';
+                    card.style.backgroundColor = gender === 'male' ? '#e8f4fc' : '#fce4ec';
+                }
+
                 function selectGrade(grade, card) {
                     currentGrade = grade;
                     document.querySelectorAll('.grade-card').forEach(c => c.style.borderColor = 'transparent');
@@ -1505,7 +1594,7 @@
                 function submitRegistration() {
                     const nameInput = document.getElementById('studentName');
                     if (nameInput.value.trim() === '') {
-                        alert('الرجاء كتابة اسم الطالب');
+                        alert('الرجاء كتابة الاسم');
                         return;
                     }
                     if (currentGrade === 0) {
@@ -1514,11 +1603,13 @@
                     }
 
                     studentName = nameInput.value.trim();
-                    // document.getElementById('welcomeMsg').innerText = `أهلاً بك يا بطل: ${studentName}`; // If element exists
 
                     // Navigate from Registration -> Subjects
                     document.getElementById('regSection').classList.remove('active');
                     document.getElementById('subjectSection').classList.add('active');
+
+                    // Update Welcome Message based on Gender (if exists)
+                    // const welcomeTitle = currentGender === 'male' ? 'أهلاً يا بطل' : 'أهلاً يا بطلة';
                 }
 
                 // --- Selection Logic ---
@@ -1684,7 +1775,13 @@
                         icon.className = 'fas fa-trophy';
                         title.innerText = 'مذهل!';
                         title.style.color = '#2c3e50';
-                        msg.innerText = 'أحسنت يا بطل! إجاباتك رائعة ومستواك متميز جداً. استمر في هذا التفوق.';
+
+                        if (currentGender === 'male') {
+                            msg.innerText = 'أحسنت يا بطل! إجاباتك رائعة ومستواك متميز جداً. استمر في هذا التفوق.';
+                        } else {
+                            msg.innerText = 'أحسنتِ يا بطلة! إجاباتك رائعة ومستواك متميز جداً. استمري في هذا التفوق.';
+                        }
+
                         printBtn.style.display = 'inline-flex';
                         shareBtn.style.display = 'inline-flex';
 
@@ -1697,17 +1794,25 @@
                         icon.className = 'fas fa-redo-alt'; // or thumbs-up
                         title.innerText = 'حاول مرة أخرى';
                         title.style.color = '#e74c3c';
-                        msg.innerText = 'لا بأس! يمكنك تحقيق نتيجة أفضل. ركز جيداً وحاول مرة أخرى يا بطل.';
+
+                        if (currentGender === 'male') {
+                            msg.innerText = 'لا بأس! يمكنك تحقيق نتيجة أفضل. ركز جيداً وحاول مرة أخرى يا بطل.';
+                        } else {
+                            msg.innerText = 'لا بأس! يمكنك تحقيق نتيجة أفضل. ركزي جيداً وحاولي مرة أخرى يا بطلة.';
+                        }
+
                         printBtn.style.display = 'none';
                         shareBtn.style.display = 'none';
                     }
                 }
 
                 // --- Audio ---
+                // --- Audio ---
                 function playSuccessSound() {
                     if ('speechSynthesis' in window) {
                         window.speechSynthesis.cancel();
-                        const msg = new SpeechSynthesisUtterance("أحسنت، إجابة صحيحة");
+                        const text = currentGender === 'male' ? "أحسنت يا بطل، إجابة صحيحة" : "أحسنتِ يا بطلة، إجابة صحيحة";
+                        const msg = new SpeechSynthesisUtterance(text);
                         msg.lang = 'ar-SA';
                         msg.rate = 1.1;
                         window.speechSynthesis.speak(msg);
@@ -1735,12 +1840,73 @@
 
                 // --- Fill Certificate Data ---
                 function fillCertificateData() {
+                    // Get Settings Values
+                    const city = document.getElementById('schoolCity').value || "نجران";
+                    const sName = document.getElementById('schoolNameInput').value || "مدرسة محمد بن القاسم الابتدائية";
+                    const mgr = document.getElementById('schoolManager').value || "أ. سفر بن مبارك آل فلكه";
+                    const actSup = document.getElementById('activitySupervisor').value || "أ. هاني حامد";
+                    const compSup = document.getElementById('compSupervisor').value || "أ. ناصر مسعود آل مستنير";
+
+                    // Update Headers
+                    const headerHtml = `
+                            <h2>المملكة العربية السعودية</h2>
+                            <h2>وزارة التعليم</h2>
+                            <h2>إدارة التعليم بمنطقة ${city}</h2>
+                            <h3>${sName}</h3>
+                    `;
+                    document.querySelector('.cert-header-unified').innerHTML = headerHtml;
+
+                    // Update Signatures
+                    document.getElementById('certCompSup').innerText = compSup;
+                    document.getElementById('certActSup').innerText = actSup;
+                    document.getElementById('certManager').innerText = mgr;
+
                     document.getElementById('certStudentName').innerText = studentName;
+
                     const gradeNames = ["", "الأول", "الثاني", "الثالث", "الرابع", "الخامس", "السادس"];
-                    document.getElementById('certGrade').innerText = gradeNames[currentGrade];
                     const subjNames = { math: "الرياضيات", science: "العلوم", arabic: "لغتي", english: "اللغة الإنجليزية" };
+
+                    document.getElementById('certGrade').innerText = gradeNames[currentGrade];
                     document.getElementById('certSubject').innerText = subjNames[currentSubject];
                     document.getElementById('certScore').innerText = safeToArabicNum(score * 10);
+
+                    // Gender Adjustments
+                    const certBody = document.querySelector('.cert-body-container');
+                    const textLines = certBody.querySelectorAll('.cert-line-text');
+
+                    // 1. Intro Line: "تتقدم إدارة المدرسة... للطالب / للطالبة"
+                    // We need to target the first line which corresponds to index 0 in flex container (or find by content)
+                    // The easiest way is to re-inject the HTML for precise control or modify existing logic
+
+                    // Let's just reconstruct the specific parts we gave IDs to
+                    if (currentGender === 'female') {
+                        // Change "للطالب" to "للطالبة" in the STATIC text before name? 
+                        // Actually the HTML structure:
+                        // <div class="cert-line-text">تتقدم... للطالب المتميز</div>
+                        // Use regex to replace specific words if valid
+
+                        textLines[0].innerHTML = `تتقدم إدارة المدرسة ومشرفو الأنشطة بوافر الشكر وعظيم الامتنان <br> للطالبة المتميزة`;
+
+                        // "بالصف" is neutral
+
+                        // "وذلك لتفوقه" -> "وذلك لتفوقها"
+                        const subjectLine = document.getElementById('certSubjectLine');
+                        subjectLine.innerHTML = `وذلك لتفوقها في المسابقة الثقافية الرمضانية لمادة <span class="highlight-data">${subjNames[currentSubject]}</span>`;
+
+                        // "وحصوله" -> "وحصولها"
+                        const scoreLine = document.getElementById('certScoreLine');
+                        scoreLine.innerHTML = `وحصولها على مجموع نقاط <span class="highlight-data">${safeToArabicNum(score * 10)}</span>`;
+
+                    } else {
+                        // Default Male
+                        textLines[0].innerHTML = `تتقدم إدارة المدرسة ومشرفو الأنشطة بوافر الشكر وعظيم الامتنان <br> للطالب المتميز`;
+
+                        const subjectLine = document.getElementById('certSubjectLine');
+                        subjectLine.innerHTML = `وذلك لتفوقه في المسابقة الثقافية الرمضانية لمادة <span class="highlight-data">${subjNames[currentSubject]}</span>`;
+
+                        const scoreLine = document.getElementById('certScoreLine');
+                        scoreLine.innerHTML = `وحصوله على مجموع نقاط <span class="highlight-data">${safeToArabicNum(score * 10)}</span>`;
+                    }
                 }
 
                 // --- Render Certificate to Canvas (Robust Clone Method) ---

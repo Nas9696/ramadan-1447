@@ -1,0 +1,119 @@
+/* =========================================
+   Certificates Page Styles
+   ========================================= */
+
+/* Use same controls style as before */
+.generator-controls h4 {
+    font-family: 'Tajawal', sans-serif;
+}
+
+.excel-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    font-family: 'Tajawal', sans-serif;
+    transition: border-color 0.3s;
+}
+
+.excel-input:focus {
+    border-color: var(--primary-color, #1a4a7c);
+    outline: none;
+}
+
+.theme-btn {
+    border: none;
+    padding: 15px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.9rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.theme-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.theme-btn.active {
+    transform: scale(0.95);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+    border: 3px solid #f1c40f;
+}
+
+/* Certificate Frame */
+.cert-preview-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+#certificateFrame {
+    width: 1123px;
+    /* A4 Landscape */
+    height: 794px;
+    position: relative;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    /* Default font */
+    font-family: 'Amiri', serif;
+}
+
+@media screen and (max-width: 1200px) {
+    #certificateFrame {
+        zoom: 0.6;
+    }
+}
+
+/* Themes - Background Images */
+/* Expecting images in ../img/certificates/bg1.jpg etc */
+
+.theme-bg1 {
+    background-image: url('../img/certificates/bg1.jpg');
+}
+
+.theme-bg2 {
+    background-image: url('../img/certificates/bg2.png');
+}
+
+.theme-bg3 {
+    background-image: url('../img/certificates/bg3.jpg');
+}
+
+.theme-bg4 {
+    background-image: url('../img/certificates/bg4.jpg');
+}
+
+.theme-bg5 {
+    background-image: url('../img/certificates/bg5.jpg');
+}
+
+.theme-bg6 {
+    background-image: url('../img/certificates/bg6.jpg');
+}
+
+.theme-bg7 {
+    background-image: url('../img/certificates/bg7.jpg');
+}
+
+.theme-bg8 {
+    background-image: url('../img/certificates/bg8.jpg');
+}
+
+.theme-bg9 {
+    background-image: url('../img/certificates/bg9.jpg');
+}
+
+.theme-bg10 {
+    background-image: url('../img/certificates/bg10.jpg');
+}
+
+/* Fallback colors if images missing */
+.theme-bg1 {
+    background-color: #e3f2fd;
+}
+
+.theme-bg2 {
+    background-color: #f1f8e9;
+}

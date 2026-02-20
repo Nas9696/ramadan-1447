@@ -1,0 +1,498 @@
+/* National Occasions Styling */
+
+:root {
+    --founding-color: #a47e53;
+    /* Earthy brown/gold for Founding Day */
+    --national-green: #198754;
+    /* Saudi Green */
+    --flag-green: #006C35;
+    --hero-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.national-hero {
+    background: var(--hero-gradient);
+    color: white;
+    padding: 3rem;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Amiri', serif;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.hero-decoration {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10rem;
+    opacity: 0.1;
+    color: white;
+}
+
+/* Grid Layout */
+.occasions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+/* Card Base Styles */
+.occasion-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: all 0.4s ease;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    min-height: 350px;
+}
+
+.occasion-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--hover-shadow);
+}
+
+.card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.05;
+    transition: 0.4s;
+    z-index: 0;
+}
+
+.occasion-card:hover .card-bg {
+    opacity: 0.1;
+    transform: scale(1.1);
+}
+
+.card-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: 0.4s;
+}
+
+.occasion-card:hover .icon-circle {
+    transform: rotateY(180deg);
+}
+
+.occasion-card h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-family: 'Cairo', sans-serif;
+}
+
+.occasion-card .date {
+    font-size: 1rem;
+    color: #777;
+    background: #f0f0f0;
+    padding: 5px 15px;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.occasion-card .desc {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: auto;
+    /* Push button to bottom */
+}
+
+.btn-more {
+    margin-top: 1.5rem;
+    color: inherit;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.occasion-card:hover .btn-more {
+    gap: 15px;
+}
+
+/* Specific Card Themes */
+
+/* 1. Founding Day */
+.founding-card {
+    border-top: 5px solid var(--founding-color);
+}
+
+.founding-card .icon-circle {
+    background: var(--founding-color);
+}
+
+.founding-card h3 {
+    color: var(--founding-color);
+}
+
+.founding-card .btn-more {
+    color: var(--founding-color);
+}
+
+/* 2. National Day */
+.national-day-card {
+    border-top: 5px solid var(--national-green);
+}
+
+.national-day-card .icon-circle {
+    background: var(--national-green);
+}
+
+.national-day-card h3 {
+    color: var(--national-green);
+}
+
+.national-day-card .btn-more {
+    color: var(--national-green);
+}
+
+/* 3. Flag Day */
+.flag-day-card {
+    border-top: 5px solid var(--flag-green);
+}
+
+.flag-day-card .icon-circle {
+    background: var(--flag-green);
+}
+
+.flag-day-card h3 {
+    color: var(--flag-green);
+}
+
+.flag-day-card .btn-more {
+    color: var(--flag-green);
+}
+
+/* Inner Page Header (For sub-pages) */
+.page-hero {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 2rem;
+    color: white;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.page-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+}
+
+.page-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.page-hero h1 {
+    font-size: 3.5rem;
+    font-family: 'Amiri', serif;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 0.5rem;
+}
+
+.page-hero p {
+    font-size: 1.4rem;
+    font-weight: 300;
+}
+
+/* Content Container for sub-pages */
+.inner-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.inner-section {
+    margin-bottom: 3rem;
+}
+
+.inner-section h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+    border-bottom: 3px solid #eee;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.gallery-item {
+    border-radius: 10px;
+    overflow: hidden;
+    height: 200px;
+    border: 1px solid #ddd;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Founding Day Digital Book Styles */
+.book-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    position: relative;
+}
+
+/* Local Chapter Navigation */
+.chapter-nav {
+    position: sticky;
+    top: 20px;
+    width: 250px;
+    flex-shrink: 0;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-right: 4px solid var(--founding-color);
+    z-index: 10;
+}
+
+.chapter-nav h4 {
+    color: var(--founding-color);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.chapter-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.chapter-nav li {
+    margin-bottom: 10px;
+}
+
+.chapter-nav a {
+    text-decoration: none;
+    color: #666;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    display: block;
+    padding: 5px 0;
+}
+
+.chapter-nav a:hover,
+.chapter-nav a.active {
+    color: var(--founding-color);
+    font-weight: 600;
+    padding-right: 5px;
+}
+
+/* Book Sections */
+.book-section {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid #f0f0f0;
+    scroll-margin-top: 100px;
+}
+
+/* Cover Style */
+.book-cover {
+    height: 600px;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://etimg.etb2bimg.com/photo/89669527.cms');
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.book-cover h1 {
+    font-size: 5rem;
+    font-family: 'Amiri', serif;
+    margin-bottom: 1rem;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.book-cover .motto {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    opacity: 0.9;
+}
+
+/* Chapter Heading Styles */
+.chapter-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--founding-color);
+    padding-bottom: 15px;
+}
+
+.chapter-number {
+    background: var(--founding-color);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.chapter-title {
+    font-size: 2rem;
+    color: #333;
+    font-family: 'Amiri', serif;
+}
+
+/* Content Text Styling */
+.book-text {
+    font-size: 1.15rem;
+    line-height: 2;
+    color: #444;
+    text-align: justify;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 350px;
+    background: #f8f8f8;
+    border: 2px dashed #ddd;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    margin: 30px 0;
+    transition: 0.3s;
+}
+
+.image-placeholder:hover {
+    background: #f0f0f0;
+    border-color: var(--founding-color);
+}
+
+.image-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .book-container {
+        flex-direction: column;
+    }
+
+    .chapter-nav {
+        width: 100%;
+        position: relative;
+        top: 0;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .book-cover h1 {
+        font-size: 3rem;
+    }
+
+    .book-cover .motto {
+        font-size: 1.2rem;
+    }
+
+    .book-section {
+        padding: 30px 20px;
+    }
+}

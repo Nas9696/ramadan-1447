@@ -7,6 +7,7 @@
     <title>لوحة التميز | الخطة التعليمية الرمضانية</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/print.css">
+    <link rel="stylesheet" href="css/excellence.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 
@@ -41,9 +42,11 @@
 
                 <li><a href="excellence.html" class="active"><i class="fas fa-trophy fa-fw ml-2"></i> لوحة التميز</a>
                 </li>
+                <li><a href="certificates.html"><i class="fas fa-certificate fa-fw ml-2"></i> إصدار الشهادات</a></li>
                 <li><a href="competitions.html"><i class="fas fa-brain fa-fw ml-2"></i> المسابقات الثقافية</a></li>
                 <li><a href="family-messages.html"><i class="fas fa-envelope fa-fw ml-2"></i> رسائل توعوية</a></li>
-                <li><a href="greetings.html"><i class="fas fa-gift fa-fw ml-2"></i> ارسل تهنئتك لاصدقائك</a></li>
+                <li><a href="greetings.html"><i class="fas fa-gift fa-fw ml-2"></i> بطاقات التهنئة</a></li>
+                <li><a href="national-occasions.html"><i class="fas fa-flag fa-fw ml-2"></i> المناسبات الوطنية</a></li>
             </ul>
         </aside>
 
@@ -54,34 +57,33 @@
                     <p>سجل الفخر والإنجاز لمدرسة محمد بن القاسم لشهر رمضان 1447هـ</p>
                 </div>
 
-                <div class="excellence-grid fade-in">
-                    <!-- Cards -->
-                    <div class="excel-card" onclick="openManager('teachers')">
-                        <div class="excel-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                        <h3>المعلم المتميز</h3>
-                        <div class="winner-count" id="count-teachers">0</div>
-                    </div>
-
-                    <div class="excel-card" onclick="openManager('classes')">
-                        <div class="excel-icon"><i class="fas fa-users-crown"></i></div>
-                        <h3>الفصل الذهبي</h3>
-                        <div class="winner-count" id="count-classes">0</div>
-                    </div>
-
-                    <div class="excel-card" onclick="openManager('students')">
-                        <div class="excel-icon"><i class="fas fa-user-graduate"></i></div>
-                        <h3>الطالب المثالي</h3>
-                        <div class="winner-count" id="count-students">0</div>
-                    </div>
-
-                    <div class="excel-card" onclick="openManager('parents')">
-                        <div class="excel-icon"><i class="fas fa-hand-holding-heart"></i></div>
-                        <h3>الأسرة الداعمة</h3>
-                        <div class="winner-count" id="count-parents">0</div>
+                <!-- View 1: Board of Honor (Existing) -->
+                <div id="view-board" class="fade-in">
+                    <div class="excellence-grid">
+                        <div class="excel-card" onclick="openManager('teachers')">
+                            <div class="excel-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                            <h3>المعلم المتميز</h3>
+                            <div class="winner-count" id="count-teachers">0</div>
+                        </div>
+                        <div class="excel-card" onclick="openManager('classes')">
+                            <div class="excel-icon"><i class="fas fa-users-crown"></i></div>
+                            <h3>الفصل الذهبي</h3>
+                            <div class="winner-count" id="count-classes">0</div>
+                        </div>
+                        <div class="excel-card" onclick="openManager('students')">
+                            <div class="excel-icon"><i class="fas fa-user-graduate"></i></div>
+                            <h3>الطالب المثالي</h3>
+                            <div class="winner-count" id="count-students">0</div>
+                        </div>
+                        <div class="excel-card" onclick="openManager('parents')">
+                            <div class="excel-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                            <h3>الأسرة الداعمة</h3>
+                            <div class="winner-count" id="count-parents">0</div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Manager Modal -->
+                <!-- Manager Modal (Existing) -->
                 <div id="managerModal" class="modal-overlay">
                     <div class="modal-content">
                         <div style="text-align: left; margin-bottom: 20px;">
@@ -121,6 +123,7 @@
         </main>
     </div>
 
+    <script src="js/main.js?v=4"></script>
     <script>
         // Data Management
         let currentCategory = '';
